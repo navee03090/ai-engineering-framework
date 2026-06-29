@@ -1,0 +1,11 @@
+---
+description: Deployment and environment configuration
+globs: vercel.json,.env.example,DEPLOYMENT.md
+alwaysApply: false
+---
+
+Follow `DEPLOYMENT.md`.
+
+- Secrets in `.env.local` only — never commit.
+- Vercel env vars must match `.env.example` keys.
+- Dedicated Supabase project per application.

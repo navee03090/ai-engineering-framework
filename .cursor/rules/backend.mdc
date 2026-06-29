@@ -1,0 +1,12 @@
+---
+description: API route and server conventions
+globs: app/api/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+Follow `API_GUIDELINES.md`.
+
+- Use `apiSuccess` and `apiError` from `lib/api/responses.ts`.
+- Validate all inputs with Zod before calling services.
+- Return appropriate HTTP status codes.
+- Keep route handlers thin.

@@ -1,0 +1,12 @@
+---
+description: AI and Gemini usage rules
+globs: lib/**/*.{ts,tsx},agents/**/*.{ts,tsx},prompts/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+Follow `AI_RULES.md` and `PROMPT_ENGINEERING.md`.
+
+- Model: `gemini-2.5-flash` via `lib/gemini.ts`.
+- Use `generateStructuredResponse` with Zod for JSON outputs.
+- No prompts inside components.
+- Do not send secrets or service keys to the model.

@@ -1,0 +1,13 @@
+---
+description: AEF project constitution and workflow
+alwaysApply: true
+---
+
+Read `PROJECT_CONSTITUTION.md` before making changes.
+
+- Build incrementally; one phase at a time.
+- Business logic belongs in `services/`, not UI components.
+- AI calls go through `lib/ai.ts` and `lib/gemini.ts`.
+- Prompts live in `prompts/` only.
+- Validate external input with Zod.
+- First consumer project: Pakistan Disaster Response AI Command Center.

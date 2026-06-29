@@ -1,0 +1,717 @@
+AI Project Starter Template. Think of it as your personal framework. Every future project will start from this template instead of starting from scratch.
+
+What We'll Build
+
+We'll create a GitHub repository like this:
+
+ai-project-template/
+│
+├── app/
+├── components/
+├── hooks/
+├── services/
+├── agents/
+├── prompts/
+├── lib/
+│   ├── gemini.ts
+│   ├── supabase.ts
+│   ├── utils.ts
+│   └── validations.ts
+├── database/
+├── supabase/
+│   ├── migrations/
+│   └── seed.sql
+├── types/
+├── middleware/
+├── public/
+├── styles/
+├── docs/
+├── n8n/
+│   ├── workflows/
+│   └── README.md
+│
+├── .env.example
+├── .gitignore
+├── README.md
+├── package.json
+├── next.config.ts
+├── tsconfig.json
+└── vercel.json
+
+This will become your base template for every AI project.
+
+Step-by-Step Plan
+
+We'll do this over several small phases.
+
+Phase A — Create the Base Template
+
+Create a new project:
+
+npx create-next-app@latest ai-project-template
+
+Choose:
+
+✔ TypeScript
+✔ App Router
+✔ Tailwind CSS
+✔ ESLint
+✔ src folder → No
+✔ Turbopack → Yes
+✔ Import Alias → @/*
+Phase B — Install Standard Packages
+
+Run:
+
+npm install @supabase/supabase-js
+npm install react-hook-form
+npm install zod
+npm install @hookform/resolvers
+npm install lucide-react
+npm install class-variance-authority
+npm install clsx
+npm install tailwind-merge
+npm install dotenv
+npm install uuid
+Phase C — Install shadcn/ui
+npx shadcn@latest init
+
+Choose defaults.
+
+Phase D — Create Folder Structure
+
+We'll generate the folders shown above.
+
+Phase E — Configure Supabase
+
+Create:
+
+lib/supabase.ts
+
+This file will contain your reusable Supabase client.
+
+Phase F — Configure Gemini
+
+Create:
+
+lib/gemini.ts
+
+This becomes your central AI service.
+
+Every project will reuse this file.
+
+Phase G — Create Services
+
+Example:
+
+services/
+
+auth.service.ts
+
+incident.service.ts
+
+user.service.ts
+
+notification.service.ts
+
+Every project will put business logic here.
+
+Phase H — Create AI Agents
+
+Create:
+
+agents/
+
+orchestrator.ts
+
+types.ts
+
+Future agents are added here.
+
+Phase I — Create Prompt Folder
+prompts/
+
+system.prompt.ts
+
+base.prompt.ts
+
+No prompts inside components.
+
+Phase J — Environment Variables
+
+Create:
+
+.env.example
+
+Example:
+
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+
+NEXT_PUBLIC_SUPABASE_URL=
+
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+
+SUPABASE_SERVICE_ROLE_KEY=
+
+GEMINI_API_KEY=
+
+N8N_WEBHOOK_URL=
+
+Every project copies this to .env.local.
+
+Phase K — GitHub
+
+Initialize Git:
+
+git init
+git add .
+git commit -m "Initial AI Project Template"
+
+Create a GitHub repository:
+
+ai-project-template
+
+Push it.
+
+Phase L — Vercel
+
+Deploy once.
+
+Every new project will already be Vercel-ready.
+
+Future Workflow
+
+When you want a new project:
+
+Instead of:
+
+New Project
+
+↓
+
+Install packages
+
+↓
+
+Configure Supabase
+
+↓
+
+Configure Gemini
+
+↓
+
+Create folders
+
+↓
+
+Create README
+
+↓
+
+Create env
+
+You'll do:
+
+git clone https://github.com/yourusername/ai-project-template
+
+Rename it:
+
+Pakistan-Disaster-AI
+
+Then:
+
+npm install
+
+Open in Cursor.
+
+Paste your Master Cursor Prompt.
+
+Import the UI from v0.
+
+Start building features.
+
+Even Better (Highly Recommended)
+
+I can help you build AI Project Template v1.0 as a complete starter kit. It would already include:
+
+✅ Next.js App Router
+✅ TypeScript
+✅ Tailwind CSS
+✅ shadcn/ui
+✅ Supabase configured
+✅ Gemini configured
+✅ n8n webhook helper
+✅ Authentication structure
+✅ AI agent architecture
+✅ Prompt management
+✅ Service layer
+✅ Error handling
+✅ Logging
+✅ Reusable API response helpers
+✅ Zod validation
+✅ Environment management
+✅ README
+✅ GitHub Actions (optional)
+✅ Vercel configuration
+
+From then on, every new AI project becomes:
+
+Clone your template.
+Import the frontend from v0.
+Paste the Master Cursor Prompt.
+Start implementing project-specific features.
+
+This will save you a significant amount of setup time and keep all of your projects consistent.
+
+My suggestion
+
+Let's build this template once, properly, as your personal engineering foundation. After that, every future project—whether it's the Pakistan Disaster Response AI, CivicAI, or another hackathon idea—will start from the same high-quality base instead of repeating the same setup work. I can guide you through building it phase by phase, just like we did with your other projects.
+
+yes i want it
+
+Perfect. Based on everything we've worked on together (Pakistan Disaster AI, CivicAI, your hackathon preparation, Cursor, v0, Gemini, Supabase, Vercel, n8n), I think we should build something much bigger than a template.
+
+We're going to build your own AI Engineering Framework.
+
+🚀 AI Engineering Framework (AEF) v1.0
+
+Think of this as your personal version of what companies have internally.
+
+Every project you build will start from this.
+
+Examples:
+
+✅ Pakistan Disaster Response AI
+✅ CivicAI Pakistan Citizen Assistant
+✅ SehatFind AI
+✅ Quizeora AI
+✅ Future Startup
+✅ Freelance Projects
+✅ Portfolio Projects
+
+Everything starts from the same framework.
+
+What We Are Building
+AI Engineering Framework
+
+↓
+
+Clone Repository
+
+↓
+
+Import UI from v0
+
+↓
+
+Paste Master Cursor Prompt
+
+↓
+
+Start Building Features
+
+Instead of spending 2 hours setting up, you'll spend 10 minutes.
+
+Framework Roadmap
+
+We'll build it like a real software product.
+
+Phase A — Foundation
+
+Goal
+
+Create the perfect Next.js base project.
+
+Includes:
+
+Next.js App Router
+TypeScript
+Tailwind
+shadcn/ui
+ESLint
+Prettier
+Husky
+Git
+Vercel Ready
+Phase B — AI Infrastructure
+
+Create reusable AI services.
+
+lib/
+
+gemini.ts
+
+ai.ts
+
+prompt-manager.ts
+
+json-parser.ts
+
+response-validator.ts
+
+Every future project uses these.
+
+Phase C — Supabase Infrastructure
+
+Create reusable database layer.
+
+database/
+
+supabase/
+
+migrations/
+
+seed/
+
+types/
+
+queries/
+
+Never rewrite Supabase setup again.
+
+Phase D — Agent Framework
+agents/
+
+orchestrator.ts
+
+base-agent.ts
+
+types.ts
+
+memory.ts
+
+registry.ts
+
+Future agents simply extend BaseAgent.
+
+Phase E — Prompt Framework
+prompts/
+
+base.prompt.ts
+
+system.prompt.ts
+
+user.prompt.ts
+
+templates/
+
+Professional prompt management.
+
+Phase F — API Framework
+api/
+
+validation/
+
+middleware/
+
+responses/
+
+errors/
+
+Reusable API utilities.
+
+Phase G — Service Layer
+services/
+
+auth.service.ts
+
+email.service.ts
+
+storage.service.ts
+
+ai.service.ts
+
+notification.service.ts
+
+Every project reuses these.
+
+Phase H — Authentication
+
+Supabase Auth already configured.
+
+Support:
+
+Google
+GitHub
+Email
+Magic Link
+Phase I — File Upload
+
+Already working.
+
+Support:
+
+Images
+PDFs
+Audio
+Documents
+Phase J — Email
+
+Already integrated.
+
+Support:
+
+Gmail
+Resend
+
+Switch with one variable.
+
+Phase K — n8n
+
+Already integrated.
+
+n8n/
+
+workflows/
+
+templates/
+
+README.md
+
+Simply import workflows.
+
+Phase L — Documentation
+
+Auto-generated.
+
+README
+
+Architecture
+
+API Docs
+
+Database Schema
+
+Folder Structure
+Phase M — Deployment
+
+Already configured.
+
+Vercel
+
+↓
+
+Supabase
+
+↓
+
+Gemini
+
+↓
+
+n8n
+
+Just add environment variables.
+
+Final Folder Structure
+ai-engineering-framework/
+
+app/
+
+components/
+
+hooks/
+
+services/
+
+agents/
+
+prompts/
+
+database/
+
+supabase/
+
+lib/
+
+middleware/
+
+types/
+
+utils/
+
+docs/
+
+scripts/
+
+tests/
+
+n8n/
+
+public/
+
+styles/
+
+.env.example
+
+README.md
+
+package.json
+
+vercel.json
+Master Cursor Prompt
+
+Instead of 3000 words every time,
+
+you'll only say:
+
+Read the PROJECT_CONSTITUTION.md file and follow it during this project.
+
+Cursor will already know:
+
+Coding standards
+Folder structure
+Architecture
+AI rules
+Deployment
+Supabase
+Gemini
+n8n
+Master Prompt Files
+
+We'll create:
+
+PROJECT_CONSTITUTION.md
+
+CODING_STANDARDS.md
+
+AI_RULES.md
+
+ARCHITECTURE.md
+
+API_GUIDELINES.md
+
+DATABASE_GUIDELINES.md
+
+DEPLOYMENT.md
+
+Cursor reads these like documentation.
+
+GitHub Repository
+github.com/yourname
+
+↓
+
+ai-engineering-framework
+
+Every project:
+
+Use this template
+
+↓
+
+Rename repository
+
+↓
+
+Start coding
+
+Exactly how many professional teams work.
+
+The Biggest Improvement
+
+Here's something I strongly recommend that most people don't do.
+
+Instead of keeping your "Master Cursor Prompt" only in chat, we'll build it into the repository.
+
+We'll create:
+
+.cursor/
+
+rules/
+
+project.mdc
+
+architecture.mdc
+
+backend.mdc
+
+ai.mdc
+
+supabase.mdc
+
+deployment.mdc
+
+These are Cursor Rules.
+
+Cursor automatically reads them whenever you work on the project.
+
+That means you won't have to paste the same prompt at the start of every conversation.
+
+Your project itself will teach Cursor how to behave.
+
+The Plan
+
+We'll build this like a real product in 15 phases:
+
+Phase 1
+
+Foundation (Next.js, Tailwind, shadcn, Git, Vercel)
+
+Phase 2
+
+Project Constitution & Cursor Rules
+
+Phase 3
+
+Folder Structure & Architecture
+
+Phase 4
+
+Supabase Infrastructure
+
+Phase 5
+
+Gemini AI Infrastructure
+
+Phase 6
+
+Agent Framework
+
+Phase 7
+
+Prompt Framework
+
+Phase 8
+
+Service Layer
+
+Phase 9
+
+API Framework
+
+Phase 10
+
+Authentication
+
+Phase 11
+
+File Upload & Storage
+
+Phase 12
+
+Email & Notifications
+
+Phase 13
+
+n8n Integration
+
+Phase 14
+
+Testing & Documentation
+
+Phase 15
+
+GitHub Template & One-Click Project Creation
+
+My recommendation
+
+I don't want this to be just another starter template—I want it to become your personal AI engineering platform that you use for years.
+
+Every future project will then follow this workflow:
+
+Create a new repository from your template.
+Design the UI in v0 and import it.
+Open the project in Cursor (which already has your rules).
+Start implementing project-specific features.

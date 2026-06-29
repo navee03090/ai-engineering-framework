@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Engineering Framework (AEF) v1.0
 
-## Getting Started
+Reusable foundation for AI applications — Next.js, Supabase, Gemini, shadcn/ui, and engineering docs built in.
 
-First, run the development server:
+## Quick start
 
 ```bash
+cd ai-engineering-framework
+cp .env.example .env.local
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Sprint 1 includes
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Phase 1:** Next.js 16, TypeScript, Tailwind v4, shadcn/ui, Prettier, Husky, Vercel config
+- **Phase 2:** `PROJECT_CONSTITUTION.md`, Cursor rules, engineering documentation
+- **Phase 3:** Folder structure (`services/`, `agents/`, `prompts/`, `database/`, `n8n/`, etc.)
+- **Phase 4:** Supabase browser/server/admin clients, migrations, seed, types
+- **Phase 5:** Gemini (`gemini-2.5-flash`), `lib/ai.ts`, prompt manager, JSON parser, validators
 
-## Learn More
+## Scripts
 
-To learn more about Next.js, take a look at the following resources:
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Production build |
+| `npm run lint` | ESLint |
+| `npm run format` | Prettier write |
+| `npm run test` | Vitest unit tests |
+| `npm run test:e2e` | Playwright E2E tests |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Configuration
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Create a **new** Supabase project.
+2. Run `supabase/migrations/00001_init.sql`.
+3. Add keys to `.env.local` (see `.env.example`).
+4. Add `GEMINI_API_KEY` for AI routes.
 
-## Deploy on Vercel
+## Health checks
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `GET /api/health` — framework status
+- `POST /api/ai/health` — Gemini structured response (requires API key)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Cursor workflow
+
+Start each session with:
+
+> Read PROJECT_CONSTITUTION.md and follow it.
+
+Rules in `.cursor/rules/` load automatically.
+
+## New project from template
+
+1. Use this repo as a **GitHub Template**.
+2. Create a new repository (e.g. `pakistan-disaster-ai`).
+3. `npm install`, configure `.env.local`, import UI from v0, build features.
+
+## First consumer
+
+**Pakistan Disaster Response AI Command Center** — validates multi-agent AI, OCR, vision, orchestration, uploads, and notifications.
+
+## License
+
+Private template — adjust for your organization.

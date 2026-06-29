@@ -1,0 +1,16 @@
+---
+description: Architecture and folder boundaries
+globs: **/*.{ts,tsx}
+alwaysApply: false
+---
+
+Follow `ARCHITECTURE.md`.
+
+- `app/` — thin routes and layouts
+- `services/` — business logic
+- `agents/` — multi-agent orchestration
+- `lib/` — shared infrastructure
+- `components/` — UI only
+
+Use Supabase server client in Server Components and route handlers.
+Never expose `SUPABASE_SERVICE_ROLE_KEY` to the client.

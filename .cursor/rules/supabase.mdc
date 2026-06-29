@@ -1,0 +1,13 @@
+---
+description: Supabase and database conventions
+globs: lib/supabase/**/*.{ts,tsx},supabase/**/*,database/**/*,types/database.ts
+alwaysApply: false
+---
+
+Follow `DATABASE_GUIDELINES.md`.
+
+- RLS on all tables.
+- Migrations in `supabase/migrations/`.
+- Browser client: `lib/supabase/client.ts`.
+- Server client: `lib/supabase/server.ts`.
+- Admin client: `lib/supabase/admin.ts` (server only).
