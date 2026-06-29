@@ -58,6 +58,8 @@ Rules in `.cursor/rules/` load automatically.
 2. Create a new repository (e.g. `pakistan-disaster-ai`).
 3. `npm install`, configure `.env.local`, import UI from v0, build features.
 
+See **[docs/V0-IMPORT-GUIDE.md](./docs/V0-IMPORT-GUIDE.md)** for the full v0 import workflow.
+
 ## First consumer
 
 **Pakistan Disaster Response AI Command Center** — validates multi-agent AI, OCR, vision, orchestration, uploads, and notifications.

@@ -12,6 +12,7 @@ const docs = [
   "DEPLOYMENT.md",
   "PROMPT_ENGINEERING.md",
   "AGENT_DESIGN.md",
+  "docs/V0-IMPORT-GUIDE.md",
 ];
 
 export default function DocsPage() {
