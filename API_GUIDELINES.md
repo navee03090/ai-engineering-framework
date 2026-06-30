@@ -4,35 +4,71 @@
 
 - Place handlers in `app/api/<resource>/route.ts`.
 - Export named HTTP method functions: `GET`, `POST`, `PUT`, `PATCH`, `DELETE`.
+- **Use `createApiHandler()` from `lib/api`** for all new and updated routes.
+
+## Standard handler pattern
+
+```typescript
+import { apiSuccess, createApiHandler, RATE_LIMITS } from "@/lib/api";
+import { mySchema } from "@/lib/validations/my-feature";
+import { myService } from "@/services/my.service";
+
+export const POST = createApiHandler({
+  route: "POST /api/my-resource",
+  rateLimit: RATE_LIMITS.default,
+  auth: true, // optional
+  bodySchema: mySchema,
+  handler: async ({ body, user, params }) => {
+    const result = await myService.create(body, user!.id);
+    return apiSuccess({ result }, { status: 201 });
+  },
+});
+```
 
 ## Response contract
 
 Use helpers from `lib/api/responses.ts`:
 
 ```typescript
-// Success
 return apiSuccess({ id: "123" });
-
-// Error
 return apiError("Invalid input", 400, "VALIDATION_ERROR");
 ```
 
+Every successful `createApiHandler` response includes `x-request-id`.
+
 ## Validation
 
-1. Parse `request.json()` or search params.
-2. Validate with Zod.
-3. Return `400` with clear messages on failure.
+- JSON body: `bodySchema` on `createApiHandler` (uses `parseJsonBody`).
+- Query params: `querySchema` on `createApiHandler` (uses `parseQueryParams`).
+- Do not call `request.json()` directly in route files.
 
-## Authentication (Phase 10+)
+## Authentication
 
-- Read session via `lib/supabase/server.ts`.
-- Return `401` when unauthenticated; `403` when unauthorized.
+- Set `auth: true` on routes that require a logged-in user.
+- Services remain the place for business authorization rules.
+
+## Rate limiting
+
+| Preset | Use for |
+|--------|---------|
+| `RATE_LIMITS.default` | General CRUD |
+| `RATE_LIMITS.ai` | Agent/AI/analyze routes |
+| `RATE_LIMITS.auth` | Signup/signin/signout |
+| `rateLimit: false` | Health checks |
+
+## Service layer
+
+```text
+createApiHandler → services/ → Supabase / Gemini / Resend / n8n
+```
+
+Never call external services directly from route handlers.
 
 ## AI routes
 
-- Keep routes thin; call `lib/ai.ts` or `services/ai.service.ts`.
-- Return `503` when `GEMINI_API_KEY` is missing.
-- Never expose raw model errors to clients — log server-side.
+- Keep routes thin; call `services/ai.service.ts`.
+- Use `RATE_LIMITS.ai`.
+- Never expose raw model errors to clients — logs capture details server-side.
 
 ## Health endpoints
 
@@ -52,5 +88,7 @@ return apiError("Invalid input", 400, "VALIDATION_ERROR");
 
 ## Logging
 
-- Log errors with context (route name, user id if available).
+- `lib/api/logger.ts` logs request id, route, status, and duration.
 - Do not log passwords, tokens, or full prompts with PII.
+
+See [docs/PHASE-9.md](./docs/PHASE-9.md).

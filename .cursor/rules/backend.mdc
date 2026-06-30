@@ -4,9 +4,10 @@ globs: app/api/**/*.{ts,tsx}
 alwaysApply: false
 ---
 
-Follow `API_GUIDELINES.md`.
+Follow `API_GUIDELINES.md` and `docs/PHASE-9.md`.
 
-- Use `apiSuccess` and `apiError` from `lib/api/responses.ts`.
-- Validate all inputs with Zod before calling services.
-- Return appropriate HTTP status codes.
-- Keep route handlers thin.
+- Use `createApiHandler` from `lib/api` for all API routes.
+- Use `apiSuccess` / `apiError` — do not build raw `Response.json` in routes.
+- Validate with `bodySchema` / `querySchema` — never parse JSON manually.
+- Call `services/` only — no direct Supabase/Gemini in route files.
+- Apply `RATE_LIMITS.ai` to AI routes and `RATE_LIMITS.auth` to auth routes.

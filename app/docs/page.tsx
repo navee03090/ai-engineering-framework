@@ -16,6 +16,7 @@ const docs = [
   "docs/PHASE-6.md",
   "docs/PHASE-7.md",
   "docs/PHASE-8.md",
+  "docs/PHASE-9.md",
 ];
 
 export default function DocsPage() {

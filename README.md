@@ -40,6 +40,11 @@ Open [http://localhost:3000](http://localhost:3000).
 - **Incidents API** for Pakistan Disaster Response workflows
 - See [docs/PHASE-8.md](./docs/PHASE-8.md)
 
+## Phase 9
+
+- **API framework:** `createApiHandler`, validation, logging, rate limits
+- See [docs/PHASE-9.md](./docs/PHASE-9.md)
+
 ## Scripts
 
 | Command | Description |

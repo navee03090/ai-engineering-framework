@@ -1,10 +1,10 @@
+import { apiSuccess, createApiHandler } from "@/lib/api";
 import { aiService } from "@/services/ai.service";
-import { apiSuccess } from "@/lib/api/responses";
-import { handleServiceRoute } from "@/lib/api/handle-route";
 
-export async function GET() {
-  return handleServiceRoute(async () => {
+export const GET = createApiHandler({
+  route: "GET /api/agents",
+  handler: async () => {
     const agents = aiService.listAgents();
     return apiSuccess({ agents, count: agents.length });
-  });
-}
+  },
+});

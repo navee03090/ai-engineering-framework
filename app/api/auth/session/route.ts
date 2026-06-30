@@ -1,10 +1,10 @@
+import { apiSuccess, createApiHandler } from "@/lib/api";
 import { authService } from "@/services/auth.service";
-import { apiSuccess } from "@/lib/api/responses";
-import { handleServiceRoute } from "@/lib/api/handle-route";
 
-export async function GET() {
-  return handleServiceRoute(async () => {
+export const GET = createApiHandler({
+  route: "GET /api/auth/session",
+  handler: async () => {
     const session = await authService.getSession();
     return apiSuccess({ session });
-  });
-}
+  },
+});

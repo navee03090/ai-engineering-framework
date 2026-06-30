@@ -1,13 +1,13 @@
-import { authService } from "@/services/auth.service";
-import { apiSuccess } from "@/lib/api/responses";
-import { handleServiceRoute } from "@/lib/api/handle-route";
+import { apiSuccess, createApiHandler, RATE_LIMITS } from "@/lib/api";
 import { signUpSchema } from "@/lib/validations";
+import { authService } from "@/services/auth.service";
 
-export async function POST(request: Request) {
-  return handleServiceRoute(async () => {
-    const body = await request.json();
-    const input = signUpSchema.parse(body);
-    const result = await authService.signUp(input);
+export const POST = createApiHandler({
+  route: "POST /api/auth/signup",
+  rateLimit: RATE_LIMITS.auth,
+  bodySchema: signUpSchema,
+  handler: async ({ body }) => {
+    const result = await authService.signUp(body);
     return apiSuccess(result, { status: 201 });
-  });
-}
+  },
+});

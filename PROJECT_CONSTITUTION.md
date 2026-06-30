@@ -70,9 +70,15 @@ AEF is a reusable engineering foundation for AI applications. Every new project 
 - Incidents migration (`00002_incidents.sql`)
 - Thin API routes via `handleServiceRoute`
 
+## Phase 9 (completed)
+
+- `createApiHandler` API framework
+- Validation, logging, rate limits, `x-request-id` headers
+- All API routes migrated to standard handler pattern
+
 ## Remaining roadmap
 
-Phases 9–15: API framework, auth UI, file upload, Resend/n8n integration hardening, testing expansion, GitHub template publish.
+Phases 10–15: Auth UI, file upload, email/n8n hardening, testing expansion, GitHub template publish.
 
 ## Cursor instruction
 

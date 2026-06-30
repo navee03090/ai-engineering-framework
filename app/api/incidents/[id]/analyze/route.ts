@@ -1,20 +1,19 @@
+import { apiSuccess, createApiHandler, RATE_LIMITS } from "@/lib/api";
+import { authService } from "@/services/auth.service";
 import { incidentService } from "@/services/incident.service";
 import { notificationService } from "@/services/notification.service";
-import { authService } from "@/services/auth.service";
-import { apiSuccess } from "@/lib/api/responses";
-import { handleServiceRoute } from "@/lib/api/handle-route";
 
-type RouteContext = {
-  params: Promise<{ id: string }>;
-};
+type IncidentParams = { id: string };
 
-export async function POST(_request: Request, context: RouteContext) {
-  return handleServiceRoute(async () => {
-    const { id } = await context.params;
-    const incident = await incidentService.analyzeAndPersist(id);
+export const POST = createApiHandler<undefined, undefined, IncidentParams>({
+  route: "POST /api/incidents/[id]/analyze",
+  rateLimit: RATE_LIMITS.ai,
+  handler: async ({ params }) => {
+    const incident = await incidentService.analyzeAndPersist(params.id);
 
     try {
       const user = await authService.getUser();
+
       if (user?.email) {
         await notificationService.notifyIncidentAnalyzed({
           id: incident.id,
@@ -25,9 +24,9 @@ export async function POST(_request: Request, context: RouteContext) {
         });
       }
     } catch {
-      // Notification is best-effort and should not fail analysis.
+      // Notification is best-effort.
     }
 
     return apiSuccess({ incident });
-  });
-}
+  },
+});

@@ -1,14 +1,18 @@
+import { apiSuccess, createApiHandler } from "@/lib/api";
 import { listPromptTemplates, listPromptTemplatesByTag } from "@/lib/prompt-manager";
-import { apiSuccess } from "@/lib/api/responses";
+import { promptsQuerySchema } from "@/lib/validations/prompts";
 
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const tag = searchParams.get("tag");
+export const GET = createApiHandler({
+  route: "GET /api/prompts",
+  querySchema: promptsQuerySchema,
+  handler: async ({ query }) => {
+    const prompts = query.tag
+      ? listPromptTemplatesByTag(query.tag)
+      : listPromptTemplates();
 
-  const prompts = tag ? listPromptTemplatesByTag(tag) : listPromptTemplates();
-
-  return apiSuccess({
-    prompts,
-    count: prompts.length,
-  });
-}
+    return apiSuccess({
+      prompts,
+      count: prompts.length,
+    });
+  },
+});

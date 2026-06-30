@@ -1,29 +1,13 @@
-import { aiService } from "@/services/ai.service";
-import { apiError, apiSuccess } from "@/lib/api/responses";
-import { handleServiceRoute } from "@/lib/api/handle-route";
+import { apiError, apiSuccess, createApiHandler, RATE_LIMITS } from "@/lib/api";
 import { agentPipelineRequestSchema } from "@/lib/validations/agents";
+import { aiService } from "@/services/ai.service";
 
-export async function POST(request: Request) {
-  return handleServiceRoute(async () => {
-    let body: unknown;
-
-    try {
-      body = await request.json();
-    } catch {
-      return apiError("Invalid JSON body", 400, "INVALID_JSON");
-    }
-
-    const parsed = agentPipelineRequestSchema.safeParse(body);
-
-    if (!parsed.success) {
-      return apiError(
-        parsed.error.issues[0]?.message ?? "Invalid request",
-        400,
-        "VALIDATION_ERROR"
-      );
-    }
-
-    const { steps, context } = parsed.data;
+export const POST = createApiHandler({
+  route: "POST /api/agents/pipeline",
+  rateLimit: RATE_LIMITS.ai,
+  bodySchema: agentPipelineRequestSchema,
+  handler: async ({ body }) => {
+    const { steps, context } = body;
     const result = await aiService.runPipeline(steps, context);
 
     if (!result.success) {
@@ -31,5 +15,5 @@ export async function POST(request: Request) {
     }
 
     return apiSuccess(result);
-  });
-}
+  },
+});

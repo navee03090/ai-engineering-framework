@@ -1,6 +1,6 @@
-import { NextResponse } from "next/server";
 import { z } from "zod";
 
+import { apiError, apiSuccess, createApiHandler, RATE_LIMITS } from "@/lib/api";
 import { generateStructuredResponse } from "@/lib/ai";
 import { buildSystemPrompt } from "@/lib/prompt-manager";
 
@@ -9,15 +9,14 @@ const healthSchema = z.object({
   message: z.string(),
 });
 
-export async function POST() {
-  if (!process.env.GEMINI_API_KEY) {
-    return NextResponse.json(
-      { error: "GEMINI_API_KEY is not configured." },
-      { status: 503 }
-    );
-  }
+export const POST = createApiHandler({
+  route: "POST /api/ai/health",
+  rateLimit: RATE_LIMITS.ai,
+  handler: async () => {
+    if (!process.env.GEMINI_API_KEY) {
+      return apiError("GEMINI_API_KEY is not configured.", 503, "AI_UNAVAILABLE");
+    }
 
-  try {
     const result = await generateStructuredResponse(
       "Return a short JSON health check for the AI layer.",
       healthSchema,
@@ -30,9 +29,6 @@ export async function POST() {
       }
     );
 
-    return NextResponse.json({ ok: true, result });
-  } catch (error) {
-    const message = error instanceof Error ? error.message : "Unknown AI error";
-    return NextResponse.json({ error: message }, { status: 500 });
-  }
-}
+    return apiSuccess({ ok: true, result });
+  },
+});

@@ -10,6 +10,7 @@ test("health API returns ok", async ({ request }) => {
   expect(response.ok()).toBeTruthy();
 
   const body = await response.json();
-  expect(body.status).toBe("ok");
-  expect(body.framework).toBe("AI Engineering Framework");
+  expect(body.success).toBe(true);
+  expect(body.data.status).toBe("ok");
+  expect(body.data.framework).toBe("AI Engineering Framework");
 });
