@@ -1,24 +1,78 @@
-import type { AgentDefinition, AgentResult } from "@/agents/types";
+import { createRunContext } from "@/agents/memory";
+import { registerDefaultAgents, type AgentRegistry, agentRegistry } from "@/agents/registry";
+import type {
+  AgentContext,
+  AgentPipelineResult,
+  AgentPipelineStep,
+  AgentResult,
+} from "@/agents/types";
 
-/**
- * Multi-agent orchestration ships in Phase 6.
- * Sprint 1 reserves the module boundary.
- */
 export class AgentOrchestrator {
-  private readonly agents = new Map<string, AgentDefinition>();
+  constructor(private readonly registry: AgentRegistry = agentRegistry) {}
 
-  register(agent: AgentDefinition) {
-    this.agents.set(agent.name, agent);
+  ensureReady(): void {
+    registerDefaultAgents(this.registry);
   }
 
-  async run<T>(name: string, input: unknown): Promise<AgentResult<T>> {
-    const agent = this.agents.get(name);
+  listAgents() {
+    this.ensureReady();
+    return this.registry.list();
+  }
+
+  async run<T>(
+    name: string,
+    input: unknown,
+    context: AgentContext = {}
+  ): Promise<AgentResult<T>> {
+    this.ensureReady();
+
+    const agent = this.registry.get(name);
 
     if (!agent) {
       return { success: false, error: `Agent not found: ${name}` };
     }
 
-    return (await agent.run(input)) as AgentResult<T>;
+    const runContext = createRunContext(context);
+    return agent.execute(input, runContext) as Promise<AgentResult<T>>;
+  }
+
+  async runPipeline(
+    steps: AgentPipelineStep[],
+    context: AgentContext = {}
+  ): Promise<AgentPipelineResult> {
+    this.ensureReady();
+
+    const runContext = createRunContext(context);
+    const pipelineResults: AgentPipelineResult["steps"] = [];
+    let finalOutput: unknown;
+    let success = true;
+
+    for (const step of steps) {
+      const previous = pipelineResults.at(-1)?.result ?? {
+        success: false,
+        error: "No previous step",
+      };
+
+      const input =
+        step.mapInput?.(previous, runContext) ?? step.input ?? finalOutput ?? previous.data;
+
+      const result = await this.run(step.agent, input, runContext);
+      pipelineResults.push({ agent: step.agent, result });
+
+      if (!result.success) {
+        success = false;
+        break;
+      }
+
+      finalOutput = result.data;
+    }
+
+    return {
+      runId: runContext.runId!,
+      success,
+      steps: pipelineResults,
+      finalOutput,
+    };
   }
 }
 

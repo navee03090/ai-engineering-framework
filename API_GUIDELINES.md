@@ -40,6 +40,9 @@ return apiError("Invalid input", 400, "VALIDATION_ERROR");
 |-------|---------|
 | `GET /api/health` | Framework + env configuration status |
 | `POST /api/ai/health` | Live Gemini structured response test |
+| `GET /api/agents` | List registered agents |
+| `POST /api/agents/run` | Run a single agent |
+| `POST /api/agents/pipeline` | Run sequential agent pipeline |
 
 ## Logging
 

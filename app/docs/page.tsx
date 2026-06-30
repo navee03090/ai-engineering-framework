@@ -13,6 +13,7 @@ const docs = [
   "PROMPT_ENGINEERING.md",
   "AGENT_DESIGN.md",
   "docs/V0-IMPORT-GUIDE.md",
+  "docs/PHASE-6.md",
 ];
 
 export default function DocsPage() {

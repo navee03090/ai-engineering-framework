@@ -8,11 +8,15 @@ Agents coordinate multi-step AI workflows — classification, OCR, vision, orche
 
 ```
 agents/
-├── types.ts          # Agent interfaces
-├── base-agent.ts     # Abstract base class
-├── orchestrator.ts   # Multi-agent coordination
-├── memory.ts         # Conversation / run memory
-└── registry.ts       # Agent registration
+├── types.ts              # Agent interfaces
+├── base-agent.ts         # Abstract base class
+├── orchestrator.ts       # Multi-agent coordination
+├── memory.ts             # Per-run execution memory
+├── registry.ts           # Agent registration
+├── summarizer.agent.ts   # Example: text summarization
+├── classifier.agent.ts   # Example: structured incident classification
+├── echo.agent.ts         # Test agent (no Gemini)
+└── index.ts              # Public exports
 ```
 
 ## Design rules
@@ -49,3 +53,5 @@ export class ClassifierAgent extends BaseAgent<IncidentInput, ClassificationOutp
 ```
 
 Register in `registry.ts`; invoke from `orchestrator.ts` or `services/ai.service.ts`.
+
+See [docs/PHASE-6.md](./docs/PHASE-6.md) for API endpoints and pipeline examples.

@@ -21,6 +21,13 @@ Open [http://localhost:3000](http://localhost:3000).
 - **Phase 4:** Supabase browser/server/admin clients, migrations, seed, types
 - **Phase 5:** Gemini (`gemini-2.5-flash`), `lib/ai.ts`, prompt manager, JSON parser, validators
 
+## Phase 6
+
+- **Agent framework:** `BaseAgent`, registry, orchestrator, memory
+- **Example agents:** summarizer, classifier
+- **API:** `/api/agents`, `/api/agents/run`, `/api/agents/pipeline`
+- See [docs/PHASE-6.md](./docs/PHASE-6.md)
+
 ## Scripts
 
 | Command | Description |

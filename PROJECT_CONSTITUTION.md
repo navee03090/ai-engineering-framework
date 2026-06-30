@@ -44,7 +44,7 @@ AEF is a reusable engineering foundation for AI applications. Every new project 
 | [PROMPT_ENGINEERING.md](./PROMPT_ENGINEERING.md) | Prompt templates and composition |
 | [AGENT_DESIGN.md](./AGENT_DESIGN.md) | Multi-agent patterns and orchestration |
 
-## Sprint 1 scope (completed in this repo)
+## Sprint 1 scope (completed)
 
 - Phase 1: Next.js foundation, shadcn/ui, Prettier, Husky, Vercel config
 - Phase 2: Constitution, Cursor rules, engineering docs
@@ -52,9 +52,15 @@ AEF is a reusable engineering foundation for AI applications. Every new project 
 - Phase 4: Supabase clients, migrations, seed, types
 - Phase 5: Gemini infrastructure (`gemini.ts`, `ai.ts`, prompt manager, validators)
 
-## Remaining roadmap (after Sprint 1)
+## Phase 6 (completed)
 
-Phases 6–15: Agent framework, prompt framework, service layer, API framework, auth (email/password), file upload, Resend email, n8n Cloud, testing expansion, GitHub template publish.
+- Agent framework: `BaseAgent`, registry, orchestrator, memory
+- Example agents: `summarizer`, `classifier`
+- API: `GET /api/agents`, `POST /api/agents/run`, `POST /api/agents/pipeline`
+
+## Remaining roadmap
+
+Phases 7–15: Prompt framework, service layer, API framework, auth (email/password), file upload, Resend email, n8n Cloud, testing expansion, GitHub template publish.
 
 ## Cursor instruction
 
