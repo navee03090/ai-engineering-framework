@@ -14,7 +14,11 @@ const coreDocs = [
   "AGENT_DESIGN.md",
 ];
 
-const guides = ["docs/API-REFERENCE.md", "docs/V0-IMPORT-GUIDE.md"];
+const guides = [
+  "docs/TEMPLATE-SETUP.md",
+  "docs/API-REFERENCE.md",
+  "docs/V0-IMPORT-GUIDE.md",
+];
 
 const phaseDocs = [
   "docs/PHASE-6.md",
@@ -26,6 +30,7 @@ const phaseDocs = [
   "docs/PHASE-12.md",
   "docs/PHASE-13.md",
   "docs/PHASE-14.md",
+  "docs/PHASE-15.md",
 ];
 
 function DocCard({ doc }: { doc: string }) {

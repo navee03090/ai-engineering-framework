@@ -14,7 +14,7 @@ export const GET = createApiHandler({
       status: "ok",
       framework: "AI Engineering Framework",
       version: "1.0.0",
-      phase: 14,
+      phase: 15,
       services: {
         supabase: supabaseConfigured ? "configured" : "missing_env",
         gemini: geminiConfigured ? "configured" : "missing_env",

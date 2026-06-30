@@ -1,117 +1,81 @@
 # AI Engineering Framework (AEF) v1.0
 
-Reusable foundation for AI applications — Next.js, Supabase, Gemini, shadcn/ui, and engineering docs built in.
+[![Use this template](https://img.shields.io/badge/Use%20this%20template-2ea44f?style=for-the-badge)](https://github.com/navee03090/ai-engineering-framework/generate)
 
-## Quick start
+Reusable foundation for AI applications — Next.js, Supabase, Gemini, shadcn/ui, multi-agent architecture, and engineering docs built in.
+
+**All 15 phases complete.** Use as your GitHub template for hackathons, SaaS, civic tech, and disaster response projects.
+
+## New project (one-click)
+
+1. Click **[Use this template](https://github.com/navee03090/ai-engineering-framework/generate)** on GitHub.
+2. Clone your new repo, then:
 
 ```bash
-cd ai-engineering-framework
-cp .env.example .env.local
+npm install
+npm run setup -- --name "Your Product Name"
+```
+
+3. Configure `.env.local`, run Supabase migrations, `npm run dev`.
+
+Full checklist: **[docs/TEMPLATE-SETUP.md](./docs/TEMPLATE-SETUP.md)**
+
+## Quick start (this repo)
+
+```bash
+cp .env.example .env.local   # or: npm run setup
 npm install
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## Sprint 1 includes
+## What's included
 
-- **Phase 1:** Next.js 16, TypeScript, Tailwind v4, shadcn/ui, Prettier, Husky, Vercel config
-- **Phase 2:** `PROJECT_CONSTITUTION.md`, Cursor rules, engineering documentation
-- **Phase 3:** Folder structure (`services/`, `agents/`, `prompts/`, `database/`, `n8n/`, etc.)
-- **Phase 4:** Supabase browser/server/admin clients, migrations, seed, types
-- **Phase 5:** Gemini (`gemini-2.5-flash`), `lib/ai.ts`, prompt manager, JSON parser, validators
-
-## Phase 6
-
-- **Agent framework:** `BaseAgent`, registry, orchestrator, memory
-- **Example agents:** summarizer, classifier
-- **API:** `/api/agents`, `/api/agents/run`, `/api/agents/pipeline`
-- See [docs/PHASE-6.md](./docs/PHASE-6.md)
-
-## Phase 7
-
-- **Prompt framework:** versioned registry, disaster template pack, `buildAgentPromptBundle`
-- **API:** `GET /api/prompts` (metadata)
-- See [docs/PHASE-7.md](./docs/PHASE-7.md)
-
-## Phase 8
-
-- **Service layer:** `ai`, `auth`, `incident`, `storage`, `email`, `notification`
-- **Incidents API** for Pakistan Disaster Response workflows
-- See [docs/PHASE-8.md](./docs/PHASE-8.md)
-
-## Phase 9
-
-- **API framework:** `createApiHandler`, validation, logging, rate limits
-- See [docs/PHASE-9.md](./docs/PHASE-9.md)
-
-## Phase 10
-
-- **Authentication UI:** `/login`, `/signup`, protected `/dashboard`
-- See [docs/PHASE-10.md](./docs/PHASE-10.md)
-
-## Phase 11
-
-- **File uploads:** `/uploads`, Supabase Storage, incident attachments API
-- See [docs/PHASE-11.md](./docs/PHASE-11.md)
-
-## Phase 12
-
-- **Email & notifications:** Resend templates, n8n alerts, `/notifications`
-- See [docs/PHASE-12.md](./docs/PHASE-12.md)
-
-## Phase 13
-
-- **n8n Cloud:** `n8nService`, event catalog, webhook APIs, expanded workflows
-- See [docs/PHASE-13.md](./docs/PHASE-13.md)
-
-## Phase 14
-
-- **Documentation:** `API-REFERENCE.md`, improved `/docs` index
-- See [docs/PHASE-14.md](./docs/PHASE-14.md)
+| Layer | Stack |
+|-------|--------|
+| App | Next.js 16, TypeScript, Tailwind v4, shadcn/ui |
+| Data | Supabase (auth, Postgres, storage, RLS) |
+| AI | Google Gemini `gemini-2.5-flash`, agents, prompts |
+| Integrations | Resend email, n8n webhooks |
+| Engineering | Constitution, Cursor rules, API framework, docs |
 
 ## Scripts
 
 | Command | Description |
 |---------|-------------|
+| `npm run setup` | Copy `.env.local`, optional `--name` for app title |
 | `npm run dev` | Start development server |
 | `npm run build` | Production build |
 | `npm run lint` | ESLint |
-| `npm run format` | Prettier write |
 | `npm run test` | Vitest unit tests |
 | `npm run test:e2e` | Playwright E2E tests |
 
 ## Configuration
 
 1. Create a **new** Supabase project.
-2. Run `supabase/migrations/00001_init.sql`.
+2. Run all migrations in `supabase/migrations/` (00001 → 00003).
 3. Add keys to `.env.local` (see `.env.example`).
-4. Add `GEMINI_API_KEY` for AI routes.
+4. Optional: Resend, n8n — see [docs/PHASE-12.md](./docs/PHASE-12.md) and [docs/PHASE-13.md](./docs/PHASE-13.md).
 
-## Health checks
+## Documentation
 
-- `GET /api/health` — framework status
-- `POST /api/ai/health` — Gemini structured response (requires API key)
+| Doc | Purpose |
+|-----|---------|
+| [TEMPLATE-SETUP.md](./docs/TEMPLATE-SETUP.md) | New project from template |
+| [V0-IMPORT-GUIDE.md](./docs/V0-IMPORT-GUIDE.md) | Import v0 UI safely |
+| [API-REFERENCE.md](./docs/API-REFERENCE.md) | All HTTP routes |
+| [PROJECT_CONSTITUTION.md](./PROJECT_CONSTITUTION.md) | Rules and architecture |
+
+Phase deliverables: `docs/PHASE-6.md` through `docs/PHASE-15.md`
 
 ## Cursor workflow
 
-Start each session with:
-
 > Read PROJECT_CONSTITUTION.md and follow it.
 
-Rules in `.cursor/rules/` load automatically.
+## First consumer example
 
-## New project from template
-
-1. Use this repo as a **GitHub Template**.
-2. Create a new repository (e.g. `pakistan-disaster-ai`).
-3. `npm install`, configure `.env.local`, import UI from v0, build features.
-
-See **[docs/V0-IMPORT-GUIDE.md](./docs/V0-IMPORT-GUIDE.md)** for the full v0 import workflow.
-
-## First consumer
-
-**Pakistan Disaster Response AI Command Center** — validates multi-agent AI, OCR, vision, orchestration, uploads, and notifications.
+**Pakistan Disaster Response AI Command Center** — validates multi-agent AI, uploads, orchestration, email, and n8n for CivicAI-style systems.
 
 ## License
 

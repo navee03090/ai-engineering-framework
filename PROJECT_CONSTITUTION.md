@@ -105,9 +105,16 @@ AEF is a reusable engineering foundation for AI applications. Every new project 
 - `docs/API-REFERENCE.md` — consolidated route reference
 - `/docs` page reorganized (guides, core, phases)
 
-## Remaining roadmap
+## Phase 15 (completed) — AEF v1.0
 
-Phase 15: GitHub template publish & one-click project creation.
+- `npm run setup` one-click local bootstrap (`scripts/setup.mjs`)
+- `docs/TEMPLATE-SETUP.md` — GitHub template workflow
+- README + home page template CTAs
+- Enable **Template repository** on GitHub for `Use this template`
+
+## Status
+
+**AEF v1.0 — all 15 phases complete.** Ready for Pakistan Disaster Response AI and future products.
 
 ## Cursor instruction
 

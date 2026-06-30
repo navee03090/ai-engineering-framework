@@ -26,6 +26,8 @@ For product work (e.g. Pakistan Disaster Response AI), use a **new repo from the
 
 ## Step 1 — Create the product repository
 
+See **[TEMPLATE-SETUP.md](./TEMPLATE-SETUP.md)** for the full checklist.
+
 1. On GitHub, click **Use this template** on `ai-engineering-framework`.
 2. Name the new repo (e.g. `pakistan-disaster-ai`).
 3. Clone and install:
@@ -34,7 +36,7 @@ For product work (e.g. Pakistan Disaster Response AI), use a **new repo from the
 git clone https://github.com/YOUR_USERNAME/pakistan-disaster-ai.git
 cd pakistan-disaster-ai
 npm install
-cp .env.example .env.local
+npm run setup -- --name "Pakistan Disaster Response AI"
 ```
 
 Configure Supabase and Gemini in `.env.local` before wiring data.
