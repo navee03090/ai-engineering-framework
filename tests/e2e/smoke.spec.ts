@@ -5,6 +5,16 @@ test("home page loads", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "AI Engineering Framework" })).toBeVisible();
 });
 
+test("login page loads", async ({ page }) => {
+  await page.goto("/login");
+  await expect(page.getByRole("heading", { name: "Sign in" })).toBeVisible();
+});
+
+test("signup page loads", async ({ page }) => {
+  await page.goto("/signup");
+  await expect(page.getByRole("heading", { name: "Create account" })).toBeVisible();
+});
+
 test("health API returns ok", async ({ request }) => {
   const response = await request.get("/api/health");
   expect(response.ok()).toBeTruthy();

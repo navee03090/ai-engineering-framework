@@ -45,6 +45,11 @@ Open [http://localhost:3000](http://localhost:3000).
 - **API framework:** `createApiHandler`, validation, logging, rate limits
 - See [docs/PHASE-9.md](./docs/PHASE-9.md)
 
+## Phase 10
+
+- **Authentication UI:** `/login`, `/signup`, protected `/dashboard`
+- See [docs/PHASE-10.md](./docs/PHASE-10.md)
+
 ## Scripts
 
 | Command | Description |

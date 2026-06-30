@@ -9,6 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { SiteHeader } from "@/components/layout/site-header";
 
 const sprintFeatures = [
   {
@@ -31,11 +32,13 @@ const sprintFeatures = [
 
 export default function HomePage() {
   return (
-    <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-10 px-6 py-16">
+    <>
+      <SiteHeader />
+      <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-10 px-6 py-16">
       <section className="space-y-4">
         <div className="flex flex-wrap items-center gap-2">
           <Badge variant="secondary">AEF v1.0</Badge>
-          <Badge>Sprint 1 — Foundation</Badge>
+          <Badge>Phase 10 — Authentication</Badge>
         </div>
         <h1 className="text-4xl font-semibold tracking-tight">
           AI Engineering Framework
@@ -45,8 +48,11 @@ export default function HomePage() {
           from v0, and build features — not boilerplate.
         </p>
         <div className="flex flex-wrap gap-3">
+          <Link href="/dashboard">
+            <Button>Command center</Button>
+          </Link>
           <Link href="/docs">
-            <Button>Read the docs</Button>
+            <Button variant="outline">Read the docs</Button>
           </Link>
           <Link href="/api/health">
             <Button variant="outline">Health check</Button>
@@ -75,5 +81,6 @@ export default function HomePage() {
         </p>
       </section>
     </main>
+    </>
   );
 }

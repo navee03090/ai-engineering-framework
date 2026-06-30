@@ -1,9 +1,14 @@
 import { createServerClient } from "@supabase/ssr";
 import { type NextRequest, NextResponse } from "next/server";
 
+import {
+  AUTH_ROUTES,
+  isAuthOnlyRoute,
+  isProtectedRoute,
+} from "@/lib/auth/routes";
 import type { Database } from "@/types/database";
 
-export async function updateSession(request: NextRequest) {
+export async function handleAppMiddleware(request: NextRequest) {
   let supabaseResponse = NextResponse.next({ request });
 
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -30,7 +35,24 @@ export async function updateSession(request: NextRequest) {
     },
   });
 
-  await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const pathname = request.nextUrl.pathname;
+
+  if (isProtectedRoute(pathname) && !user) {
+    const loginUrl = new URL(AUTH_ROUTES.login, request.url);
+    loginUrl.searchParams.set("next", pathname);
+    return NextResponse.redirect(loginUrl);
+  }
+
+  if (isAuthOnlyRoute(pathname) && user) {
+    return NextResponse.redirect(new URL(AUTH_ROUTES.dashboard, request.url));
+  }
 
   return supabaseResponse;
 }
+
+/** @deprecated Use handleAppMiddleware */
+export const updateSession = handleAppMiddleware;

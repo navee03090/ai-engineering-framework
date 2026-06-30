@@ -76,9 +76,14 @@ AEF is a reusable engineering foundation for AI applications. Every new project 
 - Validation, logging, rate limits, `x-request-id` headers
 - All API routes migrated to standard handler pattern
 
+## Phase 10 (completed)
+
+- Login/signup UI, protected `/dashboard`, server actions
+- Middleware auth redirects, `SiteHeader`, `/auth/callback`
+
 ## Remaining roadmap
 
-Phases 10–15: Auth UI, file upload, email/n8n hardening, testing expansion, GitHub template publish.
+Phases 11–15: File upload, email/n8n hardening, testing expansion, GitHub template publish.
 
 ## Cursor instruction
 
