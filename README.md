@@ -50,6 +50,11 @@ Open [http://localhost:3000](http://localhost:3000).
 - **Authentication UI:** `/login`, `/signup`, protected `/dashboard`
 - See [docs/PHASE-10.md](./docs/PHASE-10.md)
 
+## Phase 11
+
+- **File uploads:** `/uploads`, Supabase Storage, incident attachments API
+- See [docs/PHASE-11.md](./docs/PHASE-11.md)
+
 ## Scripts
 
 | Command | Description |

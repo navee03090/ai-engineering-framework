@@ -21,6 +21,11 @@ export async function SiteHeader() {
           </Link>
           {user ? (
             <>
+              <Link href="/uploads">
+                <Button variant="ghost" size="sm">
+                  Uploads
+                </Button>
+              </Link>
               <Link href="/dashboard">
                 <Button variant="ghost" size="sm">
                   Dashboard

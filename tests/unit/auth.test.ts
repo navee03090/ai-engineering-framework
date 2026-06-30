@@ -10,6 +10,7 @@ describe("auth routes", () => {
   it("detects protected dashboard routes", () => {
     expect(isProtectedRoute("/dashboard")).toBe(true);
     expect(isProtectedRoute("/dashboard/incidents")).toBe(true);
+    expect(isProtectedRoute("/uploads")).toBe(true);
     expect(isProtectedRoute("/login")).toBe(false);
   });
 

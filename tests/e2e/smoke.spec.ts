@@ -15,6 +15,11 @@ test("signup page loads", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "Create account" })).toBeVisible();
 });
 
+test("uploads page redirects to login when signed out", async ({ page }) => {
+  await page.goto("/uploads");
+  await expect(page).toHaveURL(/\/login/);
+});
+
 test("health API returns ok", async ({ request }) => {
   const response = await request.get("/api/health");
   expect(response.ok()).toBeTruthy();

@@ -85,6 +85,9 @@ Never call external services directly from route handlers.
 | `GET /api/incidents` | List incidents |
 | `POST /api/incidents` | Create incident |
 | `POST /api/incidents/[id]/analyze` | AI analyze + persist |
+| `POST /api/uploads` | Upload file (multipart) |
+| `GET /api/uploads?folder=incidents` | List user uploads |
+| `POST /api/incidents/[id]/attachments` | Link file to incident |
 
 ## Logging
 

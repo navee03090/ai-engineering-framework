@@ -84,6 +84,42 @@ export type Database = {
         };
         Relationships: [];
       };
+      incident_attachments: {
+        Row: {
+          id: string;
+          incident_id: string;
+          uploader_id: string | null;
+          storage_path: string;
+          file_name: string;
+          mime_type: string;
+          file_size: number;
+          category: "image" | "pdf" | "audio" | "document" | "other";
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          incident_id: string;
+          uploader_id?: string | null;
+          storage_path: string;
+          file_name: string;
+          mime_type: string;
+          file_size: number;
+          category: "image" | "pdf" | "audio" | "document" | "other";
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          incident_id?: string;
+          uploader_id?: string | null;
+          storage_path?: string;
+          file_name?: string;
+          mime_type?: string;
+          file_size?: number;
+          category?: "image" | "pdf" | "audio" | "document" | "other";
+          created_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;

@@ -1,4 +1,5 @@
 export { aiService } from "@/services/ai.service";
+export { attachmentService } from "@/services/attachment.service";
 export { authService } from "@/services/auth.service";
 export { emailService } from "@/services/email.service";
 export { incidentService } from "@/services/incident.service";

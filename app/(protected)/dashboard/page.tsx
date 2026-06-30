@@ -18,7 +18,7 @@ export default async function DashboardPage() {
     <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-8 px-6 py-10">
       <section className="space-y-2">
         <div className="flex flex-wrap items-center gap-2">
-          <Badge>Phase 10 — Auth</Badge>
+          <Badge>Phase 11 — Uploads</Badge>
           <Badge variant="secondary">Protected route</Badge>
         </div>
         <h1 className="text-3xl font-semibold tracking-tight">Command Center</h1>
@@ -37,6 +37,19 @@ export default async function DashboardPage() {
             <Link href="/api/incidents">
               <Button variant="outline" size="sm">
                 View API
+              </Button>
+            </Link>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle>File uploads</CardTitle>
+            <CardDescription>Images, PDFs, audio, and documents for incident evidence.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Link href="/uploads">
+              <Button variant="outline" size="sm">
+                Open uploads
               </Button>
             </Link>
           </CardContent>

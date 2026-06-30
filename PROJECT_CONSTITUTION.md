@@ -81,9 +81,14 @@ AEF is a reusable engineering foundation for AI applications. Every new project 
 - Login/signup UI, protected `/dashboard`, server actions
 - Middleware auth redirects, `SiteHeader`, `/auth/callback`
 
+## Phase 11 (completed)
+
+- File upload UI (`/uploads`), Supabase Storage service, incident attachments
+- Migration `00003_incident_attachments.sql`
+
 ## Remaining roadmap
 
-Phases 11–15: File upload, email/n8n hardening, testing expansion, GitHub template publish.
+Phases 12–15: Email/n8n hardening, testing expansion, GitHub template publish.
 
 ## Cursor instruction
 
