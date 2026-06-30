@@ -1,6 +1,7 @@
 import type { GenerateContentResult } from "@google/generative-ai";
 
 import { getDefaultGeminiModel, getGeminiModel } from "@/lib/gemini";
+import { appendJsonOutputInstruction } from "@/lib/prompt-manager";
 import { parseModelJson } from "@/lib/json-parser";
 import { validateAiResponse } from "@/lib/response-validator";
 import type { z } from "zod";
@@ -35,10 +36,7 @@ export async function generateStructuredResponse<T extends z.ZodType>(
   schema: T,
   options: GenerateTextOptions = {}
 ): Promise<z.infer<T>> {
-  const jsonInstruction =
-    "Respond with valid JSON only. Do not include markdown fences or commentary.";
-
-  const raw = await generateText(`${prompt}\n\n${jsonInstruction}`, options);
+  const raw = await generateText(appendJsonOutputInstruction(prompt), options);
   const parsed = parseModelJson(raw);
   return validateAiResponse(schema, parsed);
 }

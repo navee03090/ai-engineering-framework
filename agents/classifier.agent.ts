@@ -3,8 +3,7 @@ import { z } from "zod";
 import { BaseAgent } from "@/agents/base-agent";
 import type { AgentContext } from "@/agents/types";
 import { generateStructuredResponse } from "@/lib/ai";
-import { buildSystemPrompt, buildUserPrompt } from "@/lib/prompt-manager";
-import { userPromptTemplates } from "@/prompts/user.prompt";
+import { buildAgentPromptBundle } from "@/lib/prompt-manager";
 
 export const incidentCategorySchema = z.enum([
   "flood",
@@ -41,15 +40,19 @@ export class ClassifierAgent extends BaseAgent<ClassifierInput, ClassifierOutput
     input: ClassifierInput,
     context: AgentContext
   ): Promise<ClassifierOutput> {
-    const prompt = buildUserPrompt(userPromptTemplates.classify, {
-      content: input.content,
-    });
-
-    return generateStructuredResponse(prompt, classifierOutputSchema, {
-      systemInstruction: buildSystemPrompt({
+    const { system, user } = buildAgentPromptBundle({
+      userTemplateId: "disaster.classify",
+      userContext: {
+        content: input.content,
+      },
+      systemContext: {
         projectName: context.projectName ?? "Pakistan Disaster Response AI",
         environment: context.environment ?? process.env.NODE_ENV ?? "development",
-      }),
+      },
+    });
+
+    return generateStructuredResponse(user, classifierOutputSchema, {
+      systemInstruction: system,
       temperature: 0.2,
     });
   }

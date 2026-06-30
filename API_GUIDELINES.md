@@ -43,6 +43,7 @@ return apiError("Invalid input", 400, "VALIDATION_ERROR");
 | `GET /api/agents` | List registered agents |
 | `POST /api/agents/run` | Run a single agent |
 | `POST /api/agents/pipeline` | Run sequential agent pipeline |
+| `GET /api/prompts` | List prompt template metadata (`?tag=disaster`) |
 
 ## Logging
 

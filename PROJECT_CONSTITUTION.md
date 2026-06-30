@@ -58,9 +58,15 @@ AEF is a reusable engineering foundation for AI applications. Every new project 
 - Example agents: `summarizer`, `classifier`
 - API: `GET /api/agents`, `POST /api/agents/run`, `POST /api/agents/pipeline`
 
+## Phase 7 (completed)
+
+- Prompt registry with versioning and required-variable validation
+- Disaster prompt pack (`disaster.*`) and shared templates
+- `buildAgentPromptBundle`, `resolveTemplate`, `GET /api/prompts`
+
 ## Remaining roadmap
 
-Phases 7–15: Prompt framework, service layer, API framework, auth (email/password), file upload, Resend email, n8n Cloud, testing expansion, GitHub template publish.
+Phases 8–15: Service layer, API framework, auth (email/password), file upload, Resend email, n8n Cloud, testing expansion, GitHub template publish.
 
 ## Cursor instruction
 

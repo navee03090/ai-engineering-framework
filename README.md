@@ -28,6 +28,12 @@ Open [http://localhost:3000](http://localhost:3000).
 - **API:** `/api/agents`, `/api/agents/run`, `/api/agents/pipeline`
 - See [docs/PHASE-6.md](./docs/PHASE-6.md)
 
+## Phase 7
+
+- **Prompt framework:** versioned registry, disaster template pack, `buildAgentPromptBundle`
+- **API:** `GET /api/prompts` (metadata)
+- See [docs/PHASE-7.md](./docs/PHASE-7.md)
+
 ## Scripts
 
 | Command | Description |

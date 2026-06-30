@@ -14,6 +14,7 @@ const docs = [
   "AGENT_DESIGN.md",
   "docs/V0-IMPORT-GUIDE.md",
   "docs/PHASE-6.md",
+  "docs/PHASE-7.md",
 ];
 
 export default function DocsPage() {

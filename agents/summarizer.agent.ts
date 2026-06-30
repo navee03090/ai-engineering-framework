@@ -3,12 +3,12 @@ import { z } from "zod";
 import { BaseAgent } from "@/agents/base-agent";
 import type { AgentContext } from "@/agents/types";
 import { generateText } from "@/lib/ai";
-import { buildSystemPrompt, buildUserPrompt } from "@/lib/prompt-manager";
-import { userPromptTemplates } from "@/prompts/user.prompt";
+import { buildAgentPromptBundle } from "@/lib/prompt-manager";
 
 export const summarizerInputSchema = z.object({
   content: z.string().min(1, "Content is required"),
   audience: z.string().min(1).default("emergency coordinators"),
+  maxWords: z.number().int().positive().max(500).default(150),
 });
 
 export const summarizerOutputSchema = z.object({
@@ -27,16 +27,21 @@ export class SummarizerAgent extends BaseAgent<SummarizerInput, SummarizerOutput
     input: SummarizerInput,
     context: AgentContext
   ): Promise<SummarizerOutput> {
-    const prompt = buildUserPrompt(userPromptTemplates.summarize, {
-      audience: input.audience,
-      content: input.content,
-    });
-
-    const summary = await generateText(prompt, {
-      systemInstruction: buildSystemPrompt({
+    const { system, user } = buildAgentPromptBundle({
+      userTemplateId: "disaster.summarize",
+      userContext: {
+        audience: input.audience,
+        content: input.content,
+        maxWords: input.maxWords,
+      },
+      systemContext: {
         projectName: context.projectName ?? "AEF",
         environment: context.environment ?? process.env.NODE_ENV ?? "development",
-      }),
+      },
+    });
+
+    const summary = await generateText(user, {
+      systemInstruction: system,
       temperature: 0.3,
     });
 
