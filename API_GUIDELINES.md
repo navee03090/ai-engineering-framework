@@ -88,6 +88,13 @@ Never call external services directly from route handlers.
 | `POST /api/uploads` | Upload file (multipart) |
 | `GET /api/uploads?folder=incidents` | List user uploads |
 | `POST /api/incidents/[id]/attachments` | Link file to incident |
+| `GET /api/notifications/status` | Email + n8n channel status |
+| `POST /api/notifications/test` | Test email to signed-in user |
+| `GET /api/n8n/status` | n8n webhook config + event catalog |
+| `POST /api/n8n/test` | Fire `system.test` webhook |
+| `POST /api/n8n/trigger` | Custom n8n event |
+
+See [docs/API-REFERENCE.md](./docs/API-REFERENCE.md) for the full route list.
 
 ## Logging
 

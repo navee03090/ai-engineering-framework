@@ -65,6 +65,11 @@ Open [http://localhost:3000](http://localhost:3000).
 - **n8n Cloud:** `n8nService`, event catalog, webhook APIs, expanded workflows
 - See [docs/PHASE-13.md](./docs/PHASE-13.md)
 
+## Phase 14
+
+- **Documentation:** `API-REFERENCE.md`, improved `/docs` index
+- See [docs/PHASE-14.md](./docs/PHASE-14.md)
+
 ## Scripts
 
 | Command | Description |

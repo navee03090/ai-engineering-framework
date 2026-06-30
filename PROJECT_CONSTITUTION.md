@@ -100,9 +100,14 @@ AEF is a reusable engineering foundation for AI applications. Every new project 
 - Expanded workflows + attachment upload event
 - Optional `N8N_WEBHOOK_SECRET` header
 
+## Phase 14 (completed)
+
+- `docs/API-REFERENCE.md` — consolidated route reference
+- `/docs` page reorganized (guides, core, phases)
+
 ## Remaining roadmap
 
-Phases 14–15: testing expansion, GitHub template publish.
+Phase 15: GitHub template publish & one-click project creation.
 
 ## Cursor instruction
 
