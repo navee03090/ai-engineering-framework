@@ -1,10 +1,10 @@
-import { aiService } from "@/services/ai.service";
+import { authService } from "@/services/auth.service";
 import { apiSuccess } from "@/lib/api/responses";
 import { handleServiceRoute } from "@/lib/api/handle-route";
 
 export async function GET() {
   return handleServiceRoute(async () => {
-    const agents = aiService.listAgents();
-    return apiSuccess({ agents, count: agents.length });
+    const session = await authService.getSession();
+    return apiSuccess({ session });
   });
 }

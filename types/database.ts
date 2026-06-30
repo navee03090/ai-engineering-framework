@@ -39,6 +39,51 @@ export type Database = {
         };
         Relationships: [];
       };
+      incidents: {
+        Row: {
+          id: string;
+          reporter_id: string | null;
+          title: string;
+          description: string;
+          location: string | null;
+          category: string | null;
+          severity: string | null;
+          status: "open" | "reviewed" | "closed";
+          ai_summary: string | null;
+          recommended_action: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          reporter_id?: string | null;
+          title: string;
+          description: string;
+          location?: string | null;
+          category?: string | null;
+          severity?: string | null;
+          status?: "open" | "reviewed" | "closed";
+          ai_summary?: string | null;
+          recommended_action?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          reporter_id?: string | null;
+          title?: string;
+          description?: string;
+          location?: string | null;
+          category?: string | null;
+          severity?: string | null;
+          status?: "open" | "reviewed" | "closed";
+          ai_summary?: string | null;
+          recommended_action?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;

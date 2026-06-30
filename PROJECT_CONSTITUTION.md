@@ -64,9 +64,15 @@ AEF is a reusable engineering foundation for AI applications. Every new project 
 - Disaster prompt pack (`disaster.*`) and shared templates
 - `buildAgentPromptBundle`, `resolveTemplate`, `GET /api/prompts`
 
+## Phase 8 (completed)
+
+- Service layer: `ai`, `auth`, `incident`, `storage`, `email`, `notification`
+- Incidents migration (`00002_incidents.sql`)
+- Thin API routes via `handleServiceRoute`
+
 ## Remaining roadmap
 
-Phases 8–15: Service layer, API framework, auth (email/password), file upload, Resend email, n8n Cloud, testing expansion, GitHub template publish.
+Phases 9–15: API framework, auth UI, file upload, Resend/n8n integration hardening, testing expansion, GitHub template publish.
 
 ## Cursor instruction
 

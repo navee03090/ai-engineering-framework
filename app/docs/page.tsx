@@ -15,6 +15,7 @@ const docs = [
   "docs/V0-IMPORT-GUIDE.md",
   "docs/PHASE-6.md",
   "docs/PHASE-7.md",
+  "docs/PHASE-8.md",
 ];
 
 export default function DocsPage() {

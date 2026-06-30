@@ -34,6 +34,12 @@ Open [http://localhost:3000](http://localhost:3000).
 - **API:** `GET /api/prompts` (metadata)
 - See [docs/PHASE-7.md](./docs/PHASE-7.md)
 
+## Phase 8
+
+- **Service layer:** `ai`, `auth`, `incident`, `storage`, `email`, `notification`
+- **Incidents API** for Pakistan Disaster Response workflows
+- See [docs/PHASE-8.md](./docs/PHASE-8.md)
+
 ## Scripts
 
 | Command | Description |
