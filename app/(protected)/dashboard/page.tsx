@@ -18,7 +18,7 @@ export default async function DashboardPage() {
     <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-8 px-6 py-10">
       <section className="space-y-2">
         <div className="flex flex-wrap items-center gap-2">
-          <Badge>Phase 11 — Uploads</Badge>
+          <Badge>Phase 12 — Notifications</Badge>
           <Badge variant="secondary">Protected route</Badge>
         </div>
         <h1 className="text-3xl font-semibold tracking-tight">Command Center</h1>
@@ -50,6 +50,19 @@ export default async function DashboardPage() {
             <Link href="/uploads">
               <Button variant="outline" size="sm">
                 Open uploads
+              </Button>
+            </Link>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle>Notifications</CardTitle>
+            <CardDescription>Resend email templates and n8n incident alerts.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Link href="/notifications">
+              <Button variant="outline" size="sm">
+                Open notifications
               </Button>
             </Link>
           </CardContent>

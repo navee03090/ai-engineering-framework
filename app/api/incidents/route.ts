@@ -2,6 +2,7 @@ import { apiSuccess, createApiHandler } from "@/lib/api";
 import { createIncidentSchema } from "@/lib/validations/incidents";
 import { authService } from "@/services/auth.service";
 import { incidentService } from "@/services/incident.service";
+import { notificationService } from "@/services/notification.service";
 
 export const GET = createApiHandler({
   route: "GET /api/incidents",
@@ -25,6 +26,23 @@ export const POST = createApiHandler({
     }
 
     const incident = await incidentService.create(body, reporterId);
+
+    try {
+      const user = await authService.getUser();
+
+      if (user?.email) {
+        await notificationService.notifyIncidentCreated({
+          id: incident.id,
+          title: incident.title,
+          description: incident.description,
+          location: incident.location,
+          recipientEmail: user.email,
+        });
+      }
+    } catch {
+      // Notification is best-effort.
+    }
+
     return apiSuccess({ incident }, { status: 201 });
   },
 });

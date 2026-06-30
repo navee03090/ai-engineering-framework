@@ -1,5 +1,7 @@
 import { Resend } from "resend";
 
+import { renderEmailTemplate } from "@/lib/email/templates";
+import type { EmailTemplateId } from "@/lib/email/types";
 import { AppError } from "@/lib/api/errors";
 
 export type SendEmailInput = {
@@ -7,6 +9,12 @@ export type SendEmailInput = {
   subject: string;
   html: string;
   text?: string;
+};
+
+export type SendTemplateEmailInput<T extends EmailTemplateId> = {
+  to: string | string[];
+  templateId: T;
+  context: Parameters<typeof renderEmailTemplate>[1];
 };
 
 let resendClient: Resend | null = null;
@@ -30,6 +38,14 @@ export const emailService = {
     return Boolean(process.env.RESEND_API_KEY && process.env.RESEND_FROM_EMAIL);
   },
 
+  getStatus() {
+    return {
+      configured: this.isConfigured(),
+      fromEmail: process.env.RESEND_FROM_EMAIL ?? null,
+      provider: "resend" as const,
+    };
+  },
+
   async send(input: SendEmailInput) {
     const from = process.env.RESEND_FROM_EMAIL;
 
@@ -51,5 +67,16 @@ export const emailService = {
     }
 
     return data;
+  },
+
+  async sendTemplate<T extends EmailTemplateId>(input: SendTemplateEmailInput<T>) {
+    const rendered = renderEmailTemplate(input.templateId, input.context);
+
+    return this.send({
+      to: input.to,
+      subject: rendered.subject,
+      html: rendered.html,
+      text: rendered.text,
+    });
   },
 };

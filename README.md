@@ -55,6 +55,11 @@ Open [http://localhost:3000](http://localhost:3000).
 - **File uploads:** `/uploads`, Supabase Storage, incident attachments API
 - See [docs/PHASE-11.md](./docs/PHASE-11.md)
 
+## Phase 12
+
+- **Email & notifications:** Resend templates, n8n alerts, `/notifications`
+- See [docs/PHASE-12.md](./docs/PHASE-12.md)
+
 ## Scripts
 
 | Command | Description |

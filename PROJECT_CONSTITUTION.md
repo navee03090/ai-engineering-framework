@@ -86,9 +86,16 @@ AEF is a reusable engineering foundation for AI applications. Every new project 
 - File upload UI (`/uploads`), Supabase Storage service, incident attachments
 - Migration `00003_incident_attachments.sql`
 
+## Phase 12 (completed)
+
+- Email templates (`lib/email/`), Resend `sendTemplate()`
+- Notification channels (email + n8n), incident alert helpers
+- `/notifications` UI, notification API routes
+- n8n starter workflow `incident-notification.json`
+
 ## Remaining roadmap
 
-Phases 12–15: Email/n8n hardening, testing expansion, GitHub template publish.
+Phases 13–15: n8n integration, testing expansion, GitHub template publish.
 
 ## Cursor instruction
 

@@ -4,4 +4,4 @@ Import workflows from `workflows/` into **n8n Cloud**.
 
 Set `N8N_WEBHOOK_URL` in `.env.local` to connect the framework to your workflow entrypoint.
 
-Sprint 1 includes the folder structure only. Workflow templates arrive in Phase 13.
+Starter workflow: `workflows/incident-notification.json` (Phase 12). Full n8n helpers arrive in Phase 13.

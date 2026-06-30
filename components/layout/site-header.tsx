@@ -26,6 +26,11 @@ export async function SiteHeader() {
                   Uploads
                 </Button>
               </Link>
+              <Link href="/notifications">
+                <Button variant="ghost" size="sm">
+                  Notifications
+                </Button>
+              </Link>
               <Link href="/dashboard">
                 <Button variant="ghost" size="sm">
                   Dashboard

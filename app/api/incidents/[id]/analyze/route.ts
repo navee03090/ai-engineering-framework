@@ -20,6 +20,8 @@ export const POST = createApiHandler<undefined, undefined, IncidentParams>({
           title: incident.title,
           severity: incident.severity,
           category: incident.category,
+          summary: incident.ai_summary,
+          recommendedAction: incident.recommended_action,
           recipientEmail: user.email,
         });
       }
