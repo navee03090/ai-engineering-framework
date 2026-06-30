@@ -93,9 +93,16 @@ AEF is a reusable engineering foundation for AI applications. Every new project 
 - `/notifications` UI, notification API routes
 - n8n starter workflow `incident-notification.json`
 
+## Phase 13 (completed)
+
+- Dedicated `n8nService` and `lib/n8n/` event catalog
+- Webhook APIs: status, test, trigger
+- Expanded workflows + attachment upload event
+- Optional `N8N_WEBHOOK_SECRET` header
+
 ## Remaining roadmap
 
-Phases 13–15: n8n integration, testing expansion, GitHub template publish.
+Phases 14–15: testing expansion, GitHub template publish.
 
 ## Cursor instruction
 

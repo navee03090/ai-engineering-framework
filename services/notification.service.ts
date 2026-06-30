@@ -1,15 +1,21 @@
 import { AppError } from "@/lib/api/errors";
 import {
+  buildIncidentAnalyzedPayload,
+  buildIncidentCreatedPayload,
+} from "@/lib/n8n/events";
+import {
   renderIncidentAnalyzedEmail,
   renderIncidentCreatedEmail,
 } from "@/lib/email/templates";
 import { emailService } from "@/services/email.service";
+import { n8nService } from "@/services/n8n.service";
+import type { N8nStatus } from "@/lib/n8n/types";
 
 export type NotificationChannel = "email" | "n8n";
 
 export type NotificationStatus = {
   email: ReturnType<typeof emailService.getStatus>;
-  n8n: { configured: boolean; webhookUrl: string | null };
+  n8n: N8nStatus;
   availableChannels: NotificationChannel[];
 };
 
@@ -34,7 +40,7 @@ function getAvailableChannels(): NotificationChannel[] {
     channels.push("email");
   }
 
-  if (process.env.N8N_WEBHOOK_URL) {
+  if (n8nService.isConfigured()) {
     channels.push("n8n");
   }
 
@@ -45,10 +51,7 @@ export const notificationService = {
   getStatus(): NotificationStatus {
     return {
       email: emailService.getStatus(),
-      n8n: {
-        configured: Boolean(process.env.N8N_WEBHOOK_URL),
-        webhookUrl: process.env.N8N_WEBHOOK_URL ?? null,
-      },
+      n8n: n8nService.getStatus(),
       availableChannels: getAvailableChannels(),
     };
   },
@@ -90,34 +93,12 @@ export const notificationService = {
   async triggerN8n(
     payload?: SendNotificationInput["n8n"]
   ): Promise<{ delivered: boolean; status?: number }> {
-    const webhookUrl = process.env.N8N_WEBHOOK_URL;
-
-    if (!webhookUrl) {
-      throw new AppError("N8N_WEBHOOK_URL is not configured.", 503, "N8N_UNAVAILABLE");
-    }
-
     if (!payload) {
       throw new AppError("n8n payload is required.", 400, "NOTIFICATION_INVALID");
     }
 
-    const response = await fetch(webhookUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        event: payload.event,
-        payload: payload.payload,
-        timestamp: new Date().toISOString(),
-        source: "aef",
-      }),
-    });
-
-    if (!response.ok) {
-      throw new AppError("n8n webhook call failed.", 502, "N8N_WEBHOOK_FAILED", {
-        status: response.status,
-      });
-    }
-
-    return { delivered: true, status: response.status };
+    const result = await n8nService.trigger(payload.event, payload.payload);
+    return { delivered: result.delivered, status: result.status };
   },
 
   async notifyIncidentCreated(
@@ -156,12 +137,12 @@ export const notificationService = {
       n8n: channels.includes("n8n")
         ? {
             event: "incident.created",
-            payload: {
-              incidentId: incident.id,
+            payload: buildIncidentCreatedPayload({
+              id: incident.id,
               title: incident.title,
-              location: incident.location,
               description: incident.description,
-            },
+              location: incident.location,
+            }),
           }
         : undefined,
     });
@@ -207,15 +188,14 @@ export const notificationService = {
       n8n: channels.includes("n8n")
         ? {
             event: "incident.analyzed",
-            payload: {
-              incidentId: incident.id,
+            payload: buildIncidentAnalyzedPayload({
+              id: incident.id,
               title: incident.title,
               category: incident.category,
               severity: incident.severity,
               summary: incident.summary,
               recommendedAction: incident.recommendedAction,
-              critical: ["high", "critical"].includes(incident.severity ?? ""),
-            },
+            }),
           }
         : undefined,
     });

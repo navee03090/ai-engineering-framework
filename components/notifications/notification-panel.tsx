@@ -21,7 +21,8 @@ type NotificationPanelProps = {
 export function NotificationPanel({ initialStatus }: NotificationPanelProps) {
   const [status, setStatus] = useState(initialStatus);
   const [loading, setLoading] = useState(false);
-  const [sending, setSending] = useState(false);
+  const [sendingEmail, setSendingEmail] = useState(false);
+  const [sendingWebhook, setSendingWebhook] = useState(false);
 
   async function loadStatus() {
     setLoading(true);
@@ -43,7 +44,7 @@ export function NotificationPanel({ initialStatus }: NotificationPanelProps) {
   }
 
   async function handleTestEmail() {
-    setSending(true);
+    setSendingEmail(true);
 
     try {
       const response = await fetch("/api/notifications/test", { method: "POST" });
@@ -65,7 +66,34 @@ export function NotificationPanel({ initialStatus }: NotificationPanelProps) {
     } catch {
       toast.error("Test email failed");
     } finally {
-      setSending(false);
+      setSendingEmail(false);
+    }
+  }
+
+  async function handleTestWebhook() {
+    setSendingWebhook(true);
+
+    try {
+      const response = await fetch("/api/n8n/test", { method: "POST" });
+      const body = await response.json();
+
+      if (!body.success) {
+        toast.error(body.error?.message ?? "n8n test failed");
+        return;
+      }
+
+      if (body.data.result?.skipped) {
+        toast.message("n8n skipped", {
+          description: "N8N_WEBHOOK_URL is not configured",
+        });
+        return;
+      }
+
+      toast.success(`n8n webhook delivered (${body.data.result.status})`);
+    } catch {
+      toast.error("n8n test failed");
+    } finally {
+      setSendingWebhook(false);
     }
   }
 
@@ -97,7 +125,15 @@ export function NotificationPanel({ initialStatus }: NotificationPanelProps) {
                 <Badge variant={status.n8n.configured ? "default" : "secondary"}>
                   {status.n8n.configured ? "Configured" : "Not configured"}
                 </Badge>
+                {status.n8n.hasSecret ? (
+                  <Badge variant="outline">Secret header enabled</Badge>
+                ) : null}
               </div>
+              {status.n8n.configured ? (
+                <p className="text-muted-foreground">
+                  Events: {status.n8n.events.join(", ")}
+                </p>
+              ) : null}
               <p className="text-muted-foreground">
                 Active channels:{" "}
                 {status.availableChannels.length > 0
@@ -120,9 +156,31 @@ export function NotificationPanel({ initialStatus }: NotificationPanelProps) {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <Button disabled={sending || loading} onClick={() => void handleTestEmail()}>
-            {sending ? "Sending…" : "Send test email"}
+          <Button disabled={sendingEmail || loading} onClick={() => void handleTestEmail()}>
+            {sendingEmail ? "Sending…" : "Send test email"}
           </Button>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Send test n8n webhook</CardTitle>
+          <CardDescription>
+            Fires a <code className="text-xs">system.test</code> event to your n8n Cloud workflow.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          <Button
+            variant="outline"
+            disabled={sendingWebhook || loading}
+            onClick={() => void handleTestWebhook()}
+          >
+            {sendingWebhook ? "Sending…" : "Send test webhook"}
+          </Button>
+          <p className="text-xs text-muted-foreground">
+            Import workflows from <code>n8n/workflows/</code> and set{" "}
+            <code>N8N_WEBHOOK_URL</code> in <code>.env.local</code>.
+          </p>
         </CardContent>
       </Card>
     </div>

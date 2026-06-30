@@ -60,6 +60,11 @@ Open [http://localhost:3000](http://localhost:3000).
 - **Email & notifications:** Resend templates, n8n alerts, `/notifications`
 - See [docs/PHASE-12.md](./docs/PHASE-12.md)
 
+## Phase 13
+
+- **n8n Cloud:** `n8nService`, event catalog, webhook APIs, expanded workflows
+- See [docs/PHASE-13.md](./docs/PHASE-13.md)
+
 ## Scripts
 
 | Command | Description |
