@@ -106,12 +106,39 @@ export const incidentService = {
 
     const summary = summarizeStep?.result.data as { summary?: string } | undefined;
 
-    return this.updateAiFields(id, {
+    const updated = await this.updateAiFields(id, {
       category: classification?.category,
       severity: classification?.severity,
       aiSummary: summary?.summary ?? classification?.summary,
       recommendedAction: classification?.recommendedAction,
       status: "reviewed",
     });
+
+    return { incident: updated, pipeline };
+  },
+
+  async listSortedByPriority(limit = 50) {
+    const incidents = await this.list(limit);
+    const { compareSeverity } = await import("@/lib/civic/severity");
+
+    return [...incidents].sort((a, b) => {
+      const severityDiff = compareSeverity(a.severity, b.severity);
+      if (severityDiff !== 0) {
+        return severityDiff;
+      }
+      return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+    });
+  },
+
+  async getStats() {
+    const incidents = await this.list(100);
+    const { isEscalationSeverity } = await import("@/lib/civic/severity");
+
+    return {
+      total: incidents.length,
+      open: incidents.filter((item) => item.status === "open").length,
+      reviewed: incidents.filter((item) => item.status === "reviewed").length,
+      critical: incidents.filter((item) => isEscalationSeverity(item.severity)).length,
+    };
   },
 };

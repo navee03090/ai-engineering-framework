@@ -11,29 +11,24 @@ export async function SiteHeader() {
     <header className="border-b bg-background/80 backdrop-blur">
       <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between px-6">
         <Link className="font-semibold hover:underline" href="/">
-          AEF
+          Civic AI
         </Link>
         <nav className="flex items-center gap-3">
-          <Link href="/docs">
+          <Link href="/report">
             <Button variant="ghost" size="sm">
-              Docs
+              Report
             </Button>
           </Link>
           {user ? (
             <>
-              <Link href="/uploads">
+              <Link href="/command">
                 <Button variant="ghost" size="sm">
-                  Uploads
+                  Command
                 </Button>
               </Link>
               <Link href="/notifications">
                 <Button variant="ghost" size="sm">
-                  Notifications
-                </Button>
-              </Link>
-              <Link href="/dashboard">
-                <Button variant="ghost" size="sm">
-                  Dashboard
+                  Alerts
                 </Button>
               </Link>
               <span className="hidden text-sm text-muted-foreground sm:inline">

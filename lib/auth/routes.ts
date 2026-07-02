@@ -5,7 +5,12 @@ export const AUTH_ROUTES = {
   callback: "/auth/callback",
 } as const;
 
-export const PROTECTED_ROUTE_PREFIXES = ["/dashboard", "/uploads", "/notifications"] as const;
+export const PROTECTED_ROUTE_PREFIXES = [
+  "/dashboard",
+  "/uploads",
+  "/notifications",
+  "/command",
+] as const;
 
 export const AUTH_ONLY_ROUTE_PREFIXES = ["/login", "/signup"] as const;
 

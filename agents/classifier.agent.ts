@@ -3,6 +3,7 @@ import { z } from "zod";
 import { BaseAgent } from "@/agents/base-agent";
 import type { AgentContext } from "@/agents/types";
 import { generateStructuredResponse } from "@/lib/ai";
+import { getActiveCivicPack } from "@/lib/civic/config";
 import { buildAgentPromptBundle } from "@/lib/prompt-manager";
 
 export const incidentCategorySchema = z.enum([
@@ -11,6 +12,11 @@ export const incidentCategorySchema = z.enum([
   "fire",
   "medical",
   "infrastructure",
+  "utilities",
+  "health",
+  "education",
+  "environment",
+  "governance",
   "other",
 ]);
 
@@ -40,13 +46,14 @@ export class ClassifierAgent extends BaseAgent<ClassifierInput, ClassifierOutput
     input: ClassifierInput,
     context: AgentContext
   ): Promise<ClassifierOutput> {
+    const civicPack = getActiveCivicPack();
     const { system, user } = buildAgentPromptBundle({
-      userTemplateId: "disaster.classify",
+      userTemplateId: civicPack.classifyTemplateId,
       userContext: {
         content: input.content,
       },
       systemContext: {
-        projectName: context.projectName ?? "Pakistan Disaster Response AI",
+        projectName: context.projectName ?? civicPack.headline,
         environment: context.environment ?? process.env.NODE_ENV ?? "development",
       },
     });

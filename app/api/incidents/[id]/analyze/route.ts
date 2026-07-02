@@ -9,7 +9,7 @@ export const POST = createApiHandler<undefined, undefined, IncidentParams>({
   route: "POST /api/incidents/[id]/analyze",
   rateLimit: RATE_LIMITS.ai,
   handler: async ({ params }) => {
-    const incident = await incidentService.analyzeAndPersist(params.id);
+    const { incident } = await incidentService.analyzeAndPersist(params.id);
 
     try {
       const user = await authService.getUser();

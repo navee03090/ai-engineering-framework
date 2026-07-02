@@ -16,6 +16,8 @@ const coreDocs = [
 
 const guides = [
   "docs/TEMPLATE-SETUP.md",
+  "docs/DIGTECH-2026-BEYOND-LIMITS.md",
+  "docs/DIGTECH-2026-SOLO-PLAYBOOK.md",
   "docs/API-REFERENCE.md",
   "docs/V0-IMPORT-GUIDE.md",
 ];
