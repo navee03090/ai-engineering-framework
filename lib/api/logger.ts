@@ -3,7 +3,9 @@ type ApiLogBase = {
   route: string;
 };
 
-export function logApiRequest(event: ApiLogBase & { method: string; ip: string }): void {
+export function logApiRequest(
+  event: ApiLogBase & { method: string; ip: string }
+): void {
   const payload = {
     type: "api.request",
     ...event,
@@ -38,7 +40,8 @@ export function logApiResponse(
 }
 
 export function logApiError(event: ApiLogBase & { error: unknown }): void {
-  const message = event.error instanceof Error ? event.error.message : "Unknown API error";
+  const message =
+    event.error instanceof Error ? event.error.message : "Unknown API error";
   const payload = {
     type: "api.error",
     ...event,

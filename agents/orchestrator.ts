@@ -1,5 +1,9 @@
 import { createRunContext } from "@/agents/memory";
-import { registerDefaultAgents, type AgentRegistry, agentRegistry } from "@/agents/registry";
+import {
+  registerDefaultAgents,
+  type AgentRegistry,
+  agentRegistry,
+} from "@/agents/registry";
 import type {
   AgentContext,
   AgentPipelineResult,
@@ -54,7 +58,10 @@ export class AgentOrchestrator {
       };
 
       const input =
-        step.mapInput?.(previous, runContext) ?? step.input ?? finalOutput ?? previous.data;
+        step.mapInput?.(previous, runContext) ??
+        step.input ??
+        finalOutput ??
+        previous.data;
 
       const result = await this.run(step.agent, input, runContext);
       pipelineResults.push({ agent: step.agent, result });

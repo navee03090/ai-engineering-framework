@@ -16,33 +16,33 @@ You win by **adapting a working app in 60–90 minutes**, not building from zero
 
 ### P0 — Must work before you enter the hall
 
-| # | Task | How to verify |
-|---|------|----------------|
-| 1 | New repo from [AEF template](https://github.com/navee03090/ai-engineering-framework/generate) e.g. `digtech-civic-ai` | GitHub repo exists |
-| 2 | `npm install` + `npm run setup -- --name "Your App Name"` | `.env.local` exists |
-| 3 | Supabase project + migrations 00001, 00002, 00003 | SQL ran without errors |
-| 4 | `GEMINI_API_KEY` in `.env.local` | `POST /api/ai/health` works |
-| 5 | `npm run dev` + sign up once | You can log in |
-| 6 | Create incident via API + analyze | See category/severity in DB or API response |
-| 7 | Build 3 minimal pages (see Part 2) | Golden path in browser |
-| 8 | Seed 3 demo incidents | Dashboard never empty |
-| 9 | Record 15s screen video of golden path | Backup if Wi‑Fi fails |
-| 10 | Rehearse 3-min pitch twice | Under 3:30 with demo |
+| #   | Task                                                                                                                  | How to verify                               |
+| --- | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| 1   | New repo from [AEF template](https://github.com/navee03090/ai-engineering-framework/generate) e.g. `digtech-civic-ai` | GitHub repo exists                          |
+| 2   | `npm install` + `npm run setup -- --name "Your App Name"`                                                             | `.env.local` exists                         |
+| 3   | Supabase project + migrations 00001, 00002, 00003                                                                     | SQL ran without errors                      |
+| 4   | `GEMINI_API_KEY` in `.env.local`                                                                                      | `POST /api/ai/health` works                 |
+| 5   | `npm run dev` + sign up once                                                                                          | You can log in                              |
+| 6   | Create incident via API + analyze                                                                                     | See category/severity in DB or API response |
+| 7   | Build 3 minimal pages (see Part 2)                                                                                    | Golden path in browser                      |
+| 8   | Seed 3 demo incidents                                                                                                 | Dashboard never empty                       |
+| 9   | Record 15s screen video of golden path                                                                                | Backup if Wi‑Fi fails                       |
+| 10  | Rehearse 3-min pitch twice                                                                                            | Under 3:30 with demo                        |
 
 ### P1 — Pack in your bag
 
-- Laptop + charger  
-- Phone hotspot (tested)  
-- Printed [RUN-SHEET](./DIGTECH-2026-RUN-SHEET.md)  
-- USB with: `.env.local` backup (encrypted/notes), demo video  
+- Laptop + charger
+- Phone hotspot (tested)
+- Printed [RUN-SHEET](./DIGTECH-2026-RUN-SHEET.md)
+- USB with: `.env.local` backup (encrypted/notes), demo video
 - Account logged in before presenting (no signup on stage)
 
 ### What you do NOT prep
 
-- v0 designs  
-- Mobile app / browser extension  
-- New auth system  
-- More than 3 user-facing pages  
+- v0 designs
+- Mobile app / browser extension
+- New auth system
+- More than 3 user-facing pages
 
 ---
 
@@ -50,10 +50,10 @@ You win by **adapting a working app in 60–90 minutes**, not building from zero
 
 Use existing shadcn components. All logic stays in `services/` + existing APIs.
 
-| Page | Route | Purpose |
-|------|-------|---------|
-| **Landing** | `/` | Civic problem, theme hook, CTA “Report issue” → `/report` |
-| **Report** | `/report` | Form: title, location, description → `POST /api/incidents` → redirect to analyze |
+| Page               | Route        | Purpose                                                                                |
+| ------------------ | ------------ | -------------------------------------------------------------------------------------- |
+| **Landing**        | `/`          | Civic problem, theme hook, CTA “Report issue” → `/report`                              |
+| **Report**         | `/report`    | Form: title, location, description → `POST /api/incidents` → redirect to analyze       |
 | **Command center** | `/dashboard` | List incidents (fetch `GET /api/incidents`), severity badges, “Analyze” button per row |
 
 **Optional 4th (only if MVP done early):** `/dashboard/[id]` detail view with AI summary.
@@ -66,12 +66,12 @@ Landing → Report (submit) → Auto or manual Analyze → Dashboard shows HIGH 
 
 ### APIs you already have (do not rebuild)
 
-| Action | API |
-|--------|-----|
-| Create report | `POST /api/incidents` |
-| AI analyze | `POST /api/incidents/[id]/analyze` |
-| List reports | `GET /api/incidents` |
-| Health check | `GET /api/health` |
+| Action        | API                                |
+| ------------- | ---------------------------------- |
+| Create report | `POST /api/incidents`              |
+| AI analyze    | `POST /api/incidents/[id]/analyze` |
+| List reports  | `GET /api/incidents`               |
+| Health check  | `GET /api/health`                  |
 
 ---
 
@@ -79,14 +79,14 @@ Landing → Report (submit) → Auto or manual Analyze → Dashboard shows HIGH 
 
 Assume ~3 hours total, ~110 min build (adjust if organizers change timing).
 
-| Time | Solo action |
-|------|-------------|
-| **0–10 min** | Listen. Write theme on paper. Fill ChatGPT template (Part 4). |
-| **10–15 min** | Paste Cursor prompt (Part 5). Read plan — approve scope. |
-| **15–75 min** | Cursor/build: copy, prompts, form labels only. You test after each change. |
-| **75–95 min** | Seed 3 themed examples. Run golden path 3×. Fix only crashes. |
-| **95–110 min** | **FREEZE.** Update slide 1 with theme. Rehearse pitch + demo. |
-| **110+ min** | Present. No coding. |
+| Time           | Solo action                                                                |
+| -------------- | -------------------------------------------------------------------------- |
+| **0–10 min**   | Listen. Write theme on paper. Fill ChatGPT template (Part 4).              |
+| **10–15 min**  | Paste Cursor prompt (Part 5). Read plan — approve scope.                   |
+| **15–75 min**  | Cursor/build: copy, prompts, form labels only. You test after each change. |
+| **75–95 min**  | Seed 3 themed examples. Run golden path 3×. Fix only crashes.              |
+| **95–110 min** | **FREEZE.** Update slide 1 with theme. Rehearse pitch + demo.              |
+| **110+ min**   | Present. No coding.                                                        |
 
 **Solo rule:** If something breaks at 90 min, demo **seeded dashboard** + backup video. Do not debug for 20 minutes.
 
@@ -184,15 +184,15 @@ If `/report` does not exist yet, build it **before** the event as practice; on t
 
 When theme drops, pick the closest row. Tell ChatGPT which row in the prompt.
 
-| If theme sounds like… | Product angle | Example categories |
-|----------------------|---------------|-------------------|
-| Disaster / emergency | Response command center | flood, earthquake, fire, medical, infrastructure |
-| Health / hygiene | Public health triage desk | outbreak, medicine, facility, mental health, ambulance |
-| Education | School & student issues | access, safety, facilities, bullying, scholarships |
-| Traffic / city | Urban issue reporter | roads, signals, parking, waterlogging, streetlights |
-| Environment | Eco complaint hub | pollution, waste, water, deforestation, wildlife |
-| Governance | Civic complaint intake | corruption tip, service delay, documentation, harassment |
-| Agriculture | Farmer assistance router | crop disease, weather, irrigation, pests, market |
+| If theme sounds like… | Product angle             | Example categories                                       |
+| --------------------- | ------------------------- | -------------------------------------------------------- |
+| Disaster / emergency  | Response command center   | flood, earthquake, fire, medical, infrastructure         |
+| Health / hygiene      | Public health triage desk | outbreak, medicine, facility, mental health, ambulance   |
+| Education             | School & student issues   | access, safety, facilities, bullying, scholarships       |
+| Traffic / city        | Urban issue reporter      | roads, signals, parking, waterlogging, streetlights      |
+| Environment           | Eco complaint hub         | pollution, waste, water, deforestation, wildlife         |
+| Governance            | Civic complaint intake    | corruption tip, service delay, documentation, harassment |
+| Agriculture           | Farmer assistance router  | crop disease, weather, irrigation, pests, market         |
 
 Same app shape every time — only **words and categories** change.
 
@@ -208,12 +208,13 @@ Fill blanks after ChatGPT. Practice with timer.
 **[0:40–1:20] AI**  
 “We use Google Gemini with a structured pipeline — not a generic chatbot. AI reads each report, assigns category and severity, and writes a one-paragraph summary with a recommended action. Humans stay in control; AI speeds triage.”
 
-**[1:20–2:50] Demo**  
-1. Show landing — one sentence  
-2. Open `/report` — type **demo scenario** from ChatGPT  
-3. Submit → analyze  
+**[1:20–2:50] Demo**
+
+1. Show landing — one sentence
+2. Open `/report` — type **demo scenario** from ChatGPT
+3. Submit → analyze
 4. Open dashboard — point at **severity badge** and **summary**  
-“This would go to [WHO ACTS] next.”
+   “This would go to [WHO ACTS] next.”
 
 **[2:50–3:10] Close**  
 “Built solo at DigTech 2026 at CECOS. Next steps: SMS alerts, Urdu voice input, partnership with [local stakeholder]. Thank you.”
@@ -222,46 +223,46 @@ Fill blanks after ChatGPT. Practice with timer.
 
 ## Part 8 — Judges Q&A (prepare one-liners)
 
-| Question | Answer |
-|----------|--------|
-| Is this copied? | “New product for today’s theme; I used my own framework for speed, like using Next.js.” |
-| Why AI? | “Manual triage is slow; AI standardizes category and severity in seconds.” |
-| Real deployment? | “Pilot with university/community volunteers; Supabase + Vercel ready.” |
-| Wrong AI output? | “Human reviewer always approves; AI suggests, doesn’t decide.” |
-| Solo? | “I scoped to one workflow that works end-to-end.” |
+| Question         | Answer                                                                                  |
+| ---------------- | --------------------------------------------------------------------------------------- |
+| Is this copied?  | “New product for today’s theme; I used my own framework for speed, like using Next.js.” |
+| Why AI?          | “Manual triage is slow; AI standardizes category and severity in seconds.”              |
+| Real deployment? | “Pilot with university/community volunteers; Supabase + Vercel ready.”                  |
+| Wrong AI output? | “Human reviewer always approves; AI suggests, doesn’t decide.”                          |
+| Solo?            | “I scoped to one workflow that works end-to-end.”                                       |
 
 ---
 
 ## Part 9 — Failure recovery
 
-| Problem | Fix in 30 seconds |
-|---------|-------------------|
-| Wi‑Fi dead | Hotspot → if still dead, play backup video |
-| Gemini slow | Show pre-seeded analyzed incident on dashboard |
-| Login fails | Use browser profile already logged in; incognito breaks session |
-| Build error | Demo last known `npm run dev` tab; don’t pull new code on stage |
-| Blank dashboard | Refresh; fall back to 3 seeded incidents |
+| Problem         | Fix in 30 seconds                                               |
+| --------------- | --------------------------------------------------------------- |
+| Wi‑Fi dead      | Hotspot → if still dead, play backup video                      |
+| Gemini slow     | Show pre-seeded analyzed incident on dashboard                  |
+| Login fails     | Use browser profile already logged in; incognito breaks session |
+| Build error     | Demo last known `npm run dev` tab; don’t pull new code on stage |
+| Blank dashboard | Refresh; fall back to 3 seeded incidents                        |
 
 ---
 
 ## Part 10 — Night before checklist
 
-- [ ] `npm run dev` works  
-- [ ] Golden path once more  
-- [ ] Laptop charged  
-- [ ] Hotspot tested  
-- [ ] Logged in to demo account  
-- [ ] Slides on USB + Google Drive  
-- [ ] RUN-SHEET printed  
-- [ ] ChatGPT + Cursor accessible  
-- [ ] Sleep — solo fatigue loses demos  
+- [ ] `npm run dev` works
+- [ ] Golden path once more
+- [ ] Laptop charged
+- [ ] Hotspot tested
+- [ ] Logged in to demo account
+- [ ] Slides on USB + Google Drive
+- [ ] RUN-SHEET printed
+- [ ] ChatGPT + Cursor accessible
+- [ ] Sleep — solo fatigue loses demos
 
 ---
 
 ## Related
 
-- [TEMPLATE-SETUP.md](./TEMPLATE-SETUP.md) — repo bootstrap  
-- [API-REFERENCE.md](./API-REFERENCE.md) — routes for debugging  
-- [DIGTECH-2026-RUN-SHEET.md](./DIGTECH-2026-RUN-SHEET.md) — one-page printout  
+- [TEMPLATE-SETUP.md](./TEMPLATE-SETUP.md) — repo bootstrap
+- [API-REFERENCE.md](./API-REFERENCE.md) — routes for debugging
+- [DIGTECH-2026-RUN-SHEET.md](./DIGTECH-2026-RUN-SHEET.md) — one-page printout
 
 **Good luck. Scope beats ambition. A working demo beats a beautiful plan.**

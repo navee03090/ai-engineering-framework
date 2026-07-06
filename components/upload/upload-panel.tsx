@@ -29,7 +29,11 @@ export function UploadPanel() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <FileUpload folder="incidents" label="Choose file" onUploaded={handleUploaded} />
+          <FileUpload
+            folder="incidents"
+            label="Choose file"
+            onUploaded={handleUploaded}
+          />
         </CardContent>
       </Card>
 

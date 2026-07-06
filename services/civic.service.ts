@@ -7,7 +7,6 @@ import { isEscalationSeverity } from "@/lib/civic/severity";
 import { attachmentService } from "@/services/attachment.service";
 import { incidentService } from "@/services/incident.service";
 import { notificationService } from "@/services/notification.service";
-import { n8nService } from "@/services/n8n.service";
 
 export const civicService = {
   getBranding() {
@@ -65,31 +64,19 @@ export const civicService = {
       throw new AppError(insertError.message, 500, "ATTACHMENT_CREATE_FAILED");
     }
 
-    try {
-      await n8nService.notifyAttachmentUploaded({
-        incidentId,
-        attachmentId: incidentId,
-        fileName: file.name,
-        mimeType: file.type,
-        category: getFileCategory(file.type),
-        fileSize: file.size,
-      });
-    } catch {
-      // Best-effort automation hook.
-    }
   },
 
   async analyzeWithEscalation(incidentId: string, alertEmail?: string | null) {
     const { incident, pipeline } = await incidentService.analyzeAndPersist(incidentId);
 
     let escalated = false;
-    let escalation: Record<string, unknown> = { skipped: true, reason: "below_threshold" };
+    let escalation: Record<string, unknown> = {
+      skipped: true,
+      reason: "below_threshold",
+    };
 
     if (isEscalationSeverity(incident.severity)) {
-      const recipient =
-        alertEmail ??
-        process.env.CIVIC_ALERT_EMAIL ??
-        null;
+      const recipient = alertEmail ?? process.env.CIVIC_ALERT_EMAIL ?? null;
 
       if (recipient) {
         try {
@@ -107,21 +94,7 @@ export const civicService = {
           escalation = { skipped: true, reason: "notification_failed" };
         }
       } else {
-        try {
-          escalation = await n8nService.notifyIncidentAnalyzed({
-            id: incident.id,
-            title: incident.title,
-            category: incident.category,
-            severity: incident.severity,
-            summary: incident.ai_summary,
-            recommendedAction: incident.recommended_action,
-          });
-          escalated = Boolean(
-            escalation && typeof escalation === "object" && !("skipped" in escalation)
-          );
-        } catch {
-          escalation = { skipped: true, reason: "n8n_failed" };
-        }
+        escalation = { skipped: true, reason: "no_alert_email" };
       }
     }
 

@@ -72,7 +72,9 @@ export function CommandBoard({ incidents }: CommandBoardProps) {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
-            <p className="text-sm text-muted-foreground line-clamp-2">{incident.description}</p>
+            <p className="text-sm text-muted-foreground line-clamp-2">
+              {incident.description}
+            </p>
             {incident.ai_summary ? (
               <p className="text-sm">
                 <span className="font-medium">AI summary:</span> {incident.ai_summary}

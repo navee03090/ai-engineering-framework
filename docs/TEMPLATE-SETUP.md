@@ -24,24 +24,24 @@ npm run setup -- --name "Pakistan Disaster Response AI"
 npm run setup
 ```
 
-| What it does | |
-|--------------|---|
-| Copies `.env.example` → `.env.local` | Only if `.env.local` does not exist |
-| `--name "Product Name"` | Sets `NEXT_PUBLIC_APP_NAME` in `.env.local` |
-| Prints checklist | Supabase migrations, dev server, Cursor |
+| What it does                         |                                             |
+| ------------------------------------ | ------------------------------------------- |
+| Copies `.env.example` → `.env.local` | Only if `.env.local` does not exist         |
+| `--name "Product Name"`              | Sets `NEXT_PUBLIC_APP_NAME` in `.env.local` |
+| Prints checklist                     | Supabase migrations, dev server, Cursor     |
 
 ## Configuration checklist
 
 ### 1. Environment (`.env.local`)
 
-| Variable | Required for |
-|----------|----------------|
-| `NEXT_PUBLIC_SUPABASE_URL` | Auth, database, storage |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Client-side Supabase |
-| `SUPABASE_SERVICE_ROLE_KEY` | Server-only admin operations |
-| `GEMINI_API_KEY` | AI agents and analysis |
-| `RESEND_API_KEY` + `RESEND_FROM_EMAIL` | Email notifications |
-| `N8N_WEBHOOK_URL` | n8n automation (optional) |
+| Variable                               | Required for                 |
+| -------------------------------------- | ---------------------------- |
+| `NEXT_PUBLIC_SUPABASE_URL`             | Auth, database, storage      |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY`        | Client-side Supabase         |
+| `SUPABASE_SERVICE_ROLE_KEY`            | Server-only admin operations |
+| `GEMINI_API_KEY`                       | AI agents and analysis       |
+| `RESEND_API_KEY` + `RESEND_FROM_EMAIL` | Email notifications          |
+| `N8N_WEBHOOK_URL`                      | n8n automation (optional)    |
 
 See `.env.example` for the full list.
 
@@ -62,11 +62,11 @@ See `.env.example` for the full list.
 npm run dev
 ```
 
-| Check | URL |
-|-------|-----|
-| App | http://localhost:3000 |
-| Health | http://localhost:3000/api/health |
-| Docs index | http://localhost:3000/docs |
+| Check      | URL                              |
+| ---------- | -------------------------------- |
+| App        | http://localhost:3000            |
+| Health     | http://localhost:3000/api/health |
+| Docs index | http://localhost:3000/docs       |
 
 ### 4. Cursor workflow
 
@@ -86,11 +86,11 @@ See **[DEPLOYMENT.md](../DEPLOYMENT.md)** — Vercel + Supabase env vars + produ
 
 ## Rename branding (optional)
 
-| Item | Where |
-|------|--------|
-| App title | `NEXT_PUBLIC_APP_NAME` in `.env.local` |
-| Package name | `package.json` → `name` field |
-| README | Product-specific intro at the top |
+| Item         | Where                                            |
+| ------------ | ------------------------------------------------ |
+| App title    | `NEXT_PUBLIC_APP_NAME` in `.env.local`           |
+| Package name | `package.json` → `name` field                    |
+| README       | Product-specific intro at the top                |
 | Constitution | Update "First consumer" section for your product |
 
 Keep `PROJECT_CONSTITUTION.md` principles — customize mission and consumer project sections only.

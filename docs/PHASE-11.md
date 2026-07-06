@@ -9,15 +9,15 @@ Upload incident evidence (images, PDFs, audio, documents) to Supabase Storage wi
 
 ## Delivered
 
-| Area | Implementation |
-|------|----------------|
-| Storage service | Upload, list, signed URL, delete (`storage.service.ts`) |
-| Attachment service | Link files to incidents (`attachment.service.ts`) |
-| Migration | `00003_incident_attachments.sql` |
-| API | `POST/GET/DELETE /api/uploads` |
-| API | `GET/POST /api/incidents/[id]/attachments` |
-| UI | `/uploads` page + `FileUpload` component |
-| Validation | MIME allowlist, 10 MB max (`lib/validations/uploads.ts`) |
+| Area               | Implementation                                           |
+| ------------------ | -------------------------------------------------------- |
+| Storage service    | Upload, list, signed URL, delete (`storage.service.ts`)  |
+| Attachment service | Link files to incidents (`attachment.service.ts`)        |
+| Migration          | `00003_incident_attachments.sql`                         |
+| API                | `POST/GET/DELETE /api/uploads`                           |
+| API                | `GET/POST /api/incidents/[id]/attachments`               |
+| UI                 | `/uploads` page + `FileUpload` component                 |
+| Validation         | MIME allowlist, 10 MB max (`lib/validations/uploads.ts`) |
 
 ## Allowed file types
 

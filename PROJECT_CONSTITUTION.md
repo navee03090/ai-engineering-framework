@@ -22,27 +22,27 @@ AEF is a reusable engineering foundation for AI applications. Every new project 
 
 ## Non-negotiable principles
 
-| Principle | Rule |
-|-----------|------|
-| Modularity | Business logic in `services/`, not in React components or route handlers |
-| AI isolation | Prompts in `prompts/`, agents in `agents/`, Gemini access via `lib/ai.ts` |
-| Type safety | Zod at boundaries; typed Supabase client |
-| Security | Service role key server-only; RLS enabled on all tables |
-| Incremental delivery | One phase at a time — complete, test, document, commit |
-| Production mindset | Error handling, logging, and validation from day one |
+| Principle            | Rule                                                                      |
+| -------------------- | ------------------------------------------------------------------------- |
+| Modularity           | Business logic in `services/`, not in React components or route handlers  |
+| AI isolation         | Prompts in `prompts/`, agents in `agents/`, Gemini access via `lib/ai.ts` |
+| Type safety          | Zod at boundaries; typed Supabase client                                  |
+| Security             | Service role key server-only; RLS enabled on all tables                   |
+| Incremental delivery | One phase at a time — complete, test, document, commit                    |
+| Production mindset   | Error handling, logging, and validation from day one                      |
 
 ## Documentation map
 
-| Document | Purpose |
-|----------|---------|
-| [CODING_STANDARDS.md](./CODING_STANDARDS.md) | TypeScript, React, and file conventions |
-| [AI_RULES.md](./AI_RULES.md) | How Cursor and agents should use AI |
-| [ARCHITECTURE.md](./ARCHITECTURE.md) | System design and folder responsibilities |
-| [API_GUIDELINES.md](./API_GUIDELINES.md) | Route handlers and response contracts |
-| [DATABASE_GUIDELINES.md](./DATABASE_GUIDELINES.md) | Supabase schema, RLS, migrations |
-| [DEPLOYMENT.md](./DEPLOYMENT.md) | Vercel, Supabase, env vars |
-| [PROMPT_ENGINEERING.md](./PROMPT_ENGINEERING.md) | Prompt templates and composition |
-| [AGENT_DESIGN.md](./AGENT_DESIGN.md) | Multi-agent patterns and orchestration |
+| Document                                           | Purpose                                   |
+| -------------------------------------------------- | ----------------------------------------- |
+| [CODING_STANDARDS.md](./CODING_STANDARDS.md)       | TypeScript, React, and file conventions   |
+| [AI_RULES.md](./AI_RULES.md)                       | How Cursor and agents should use AI       |
+| [ARCHITECTURE.md](./ARCHITECTURE.md)               | System design and folder responsibilities |
+| [API_GUIDELINES.md](./API_GUIDELINES.md)           | Route handlers and response contracts     |
+| [DATABASE_GUIDELINES.md](./DATABASE_GUIDELINES.md) | Supabase schema, RLS, migrations          |
+| [DEPLOYMENT.md](./DEPLOYMENT.md)                   | Vercel, Supabase, env vars                |
+| [PROMPT_ENGINEERING.md](./PROMPT_ENGINEERING.md)   | Prompt templates and composition          |
+| [AGENT_DESIGN.md](./AGENT_DESIGN.md)               | Multi-agent patterns and orchestration    |
 
 ## Sprint 1 scope (completed)
 

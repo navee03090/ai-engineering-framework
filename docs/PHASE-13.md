@@ -9,26 +9,26 @@ Extract n8n into a dedicated service layer with typed events, webhook helpers, e
 
 ## Delivered
 
-| Area | Implementation |
-|------|----------------|
-| n8n client | `lib/n8n/client.ts` — webhook delivery, optional secret header |
-| Event catalog | `lib/n8n/events.ts` — payload builders + `N8N_EVENT_CATALOG` |
-| n8n service | `services/n8n.service.ts` — status, trigger, incident/attachment helpers |
-| Notification refactor | `notification.service.ts` delegates webhooks to `n8nService` |
-| API | `GET /api/n8n/status`, `POST /api/n8n/test`, `POST /api/n8n/trigger` |
-| Wiring | Attachment upload fires `incident.attachment.uploaded` (best-effort) |
-| Workflows | `critical-incident-alert.json`, `attachment-received.json` |
-| UI | Test webhook button on `/notifications` |
-| Docs | `n8n/templates/README.md` |
+| Area                  | Implementation                                                           |
+| --------------------- | ------------------------------------------------------------------------ |
+| n8n client            | `lib/n8n/client.ts` — webhook delivery, optional secret header           |
+| Event catalog         | `lib/n8n/events.ts` — payload builders + `N8N_EVENT_CATALOG`             |
+| n8n service           | `services/n8n.service.ts` — status, trigger, incident/attachment helpers |
+| Notification refactor | `notification.service.ts` delegates webhooks to `n8nService`             |
+| API                   | `GET /api/n8n/status`, `POST /api/n8n/test`, `POST /api/n8n/trigger`     |
+| Wiring                | Attachment upload fires `incident.attachment.uploaded` (best-effort)     |
+| Workflows             | `critical-incident-alert.json`, `attachment-received.json`               |
+| UI                    | Test webhook button on `/notifications`                                  |
+| Docs                  | `n8n/templates/README.md`                                                |
 
 ## Events
 
-| Event | When |
-|-------|------|
-| `incident.created` | New incident submitted |
-| `incident.analyzed` | AI analysis complete |
+| Event                          | When                        |
+| ------------------------------ | --------------------------- |
+| `incident.created`             | New incident submitted      |
+| `incident.analyzed`            | AI analysis complete        |
 | `incident.attachment.uploaded` | Evidence linked to incident |
-| `system.test` | Manual connectivity check |
+| `system.test`                  | Manual connectivity check   |
 
 ## Webhook envelope
 

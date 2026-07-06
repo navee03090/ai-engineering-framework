@@ -36,7 +36,10 @@ const phaseDocs = [
 ];
 
 function DocCard({ doc }: { doc: string }) {
-  const label = doc.replace(".md", "").replace(/^docs\//, "").replace(/_/g, " ");
+  const label = doc
+    .replace(".md", "")
+    .replace(/^docs\//, "")
+    .replace(/_/g, " ");
 
   return (
     <Card>
@@ -54,8 +57,8 @@ export default function DocsPage() {
       <div className="space-y-2">
         <h1 className="text-3xl font-semibold">Engineering Documentation</h1>
         <p className="text-muted-foreground">
-          Files live in the repository root and <code className="text-xs">docs/</code>. Open them
-          in Cursor or your editor.
+          Files live in the repository root and <code className="text-xs">docs/</code>.
+          Open them in Cursor or your editor.
         </p>
       </div>
 

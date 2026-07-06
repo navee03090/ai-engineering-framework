@@ -4,11 +4,11 @@ How to bring a **v0** frontend design into an **AI Engineering Framework (AEF)**
 
 ## Mental model
 
-| Layer | Source | Location |
-|-------|--------|----------|
-| Framework (Next.js, Supabase, Gemini, rules) | AEF template | `lib/`, `services/`, `agents/`, `prompts/` |
-| Visual design (layouts, screens, widgets) | v0 | `app/`, `components/<feature>/` |
-| Business logic & integrations | You (or Cursor) | `services/`, `app/api/`, Server Actions |
+| Layer                                        | Source          | Location                                   |
+| -------------------------------------------- | --------------- | ------------------------------------------ |
+| Framework (Next.js, Supabase, Gemini, rules) | AEF template    | `lib/`, `services/`, `agents/`, `prompts/` |
+| Visual design (layouts, screens, widgets)    | v0              | `app/`, `components/<feature>/`            |
+| Business logic & integrations                | You (or Cursor) | `services/`, `app/api/`, Server Actions    |
 
 **v0 = UI only.** AEF = engine. Never replace the whole repository with a v0 export.
 
@@ -101,13 +101,13 @@ components/
 
 ### Merge rules
 
-| v0 file | Action |
-|---------|--------|
-| New page under `app/` | Add in route group, e.g. `app/(dashboard)/...` |
-| New feature component | `components/<feature>/` |
-| Duplicate `components/ui/*` | **Keep AEF version** unless you intentionally need v0’s variant |
-| New npm package | Add with `npm install <pkg>` — don’t paste v0’s whole `package.json` |
-| `globals.css` changes | Merge tokens carefully into `app/globals.css` |
+| v0 file                     | Action                                                               |
+| --------------------------- | -------------------------------------------------------------------- |
+| New page under `app/`       | Add in route group, e.g. `app/(dashboard)/...`                       |
+| New feature component       | `components/<feature>/`                                              |
+| Duplicate `components/ui/*` | **Keep AEF version** unless you intentionally need v0’s variant      |
+| New npm package             | Add with `npm install <pkg>` — don’t paste v0’s whole `package.json` |
+| `globals.css` changes       | Merge tokens carefully into `app/globals.css`                        |
 
 ---
 
@@ -146,14 +146,14 @@ v0 Component (UI)
 
 ### Wiring checklist
 
-| UI element | Connect to |
-|------------|------------|
-| Login / signup form | `services/auth.service.ts` + Supabase Auth (Phase 10) |
-| Data tables / dashboards | Server Components loading from `services/` |
-| Submit incident form | `services/incident.service.ts` → Supabase |
-| “Analyze with AI” button | `services/ai.service.ts` → `lib/ai.ts` / `agents/` |
-| File upload dropzone | `services/storage.service.ts` → Supabase Storage |
-| Send notification | `services/notification.service.ts` → Resend / n8n |
+| UI element               | Connect to                                            |
+| ------------------------ | ----------------------------------------------------- |
+| Login / signup form      | `services/auth.service.ts` + Supabase Auth (Phase 10) |
+| Data tables / dashboards | Server Components loading from `services/`            |
+| Submit incident form     | `services/incident.service.ts` → Supabase             |
+| “Analyze with AI” button | `services/ai.service.ts` → `lib/ai.ts` / `agents/`    |
+| File upload dropzone     | `services/storage.service.ts` → Supabase Storage      |
+| Send notification        | `services/notification.service.ts` → Resend / n8n     |
 
 ### Do not
 
@@ -205,36 +205,36 @@ Manual checks:
 
 ## Pakistan Disaster Response AI — example map
 
-| v0 screen | AEF path | Backend (phases) |
-|-----------|----------|------------------|
-| Command center dashboard | `app/(dashboard)/command-center/page.tsx` | Incident service + Supabase |
-| Incident report form | `components/disaster/IncidentForm.tsx` | `incident.service.ts` |
-| Media upload | `components/disaster/MediaUpload.tsx` | Storage + vision agent |
-| AI summary panel | `components/disaster/AiSummary.tsx` | `agents/orchestrator.ts` + Gemini |
-| Alert / toast feedback | Use AEF `sonner` in layout | `notification.service.ts` |
+| v0 screen                | AEF path                                  | Backend (phases)                  |
+| ------------------------ | ----------------------------------------- | --------------------------------- |
+| Command center dashboard | `app/(dashboard)/command-center/page.tsx` | Incident service + Supabase       |
+| Incident report form     | `components/disaster/IncidentForm.tsx`    | `incident.service.ts`             |
+| Media upload             | `components/disaster/MediaUpload.tsx`     | Storage + vision agent            |
+| AI summary panel         | `components/disaster/AiSummary.tsx`       | `agents/orchestrator.ts` + Gemini |
+| Alert / toast feedback   | Use AEF `sonner` in layout                | `notification.service.ts`         |
 
 ---
 
 ## Common problems
 
-| Problem | Fix |
-|---------|-----|
-| “Module not found” for UI component | Import from `@/components/ui/...` (AEF already has it) |
-| Styles look wrong | Merge `globals.css` tokens; avoid replacing entire file |
-| Two Button/Card implementations | Delete v0 duplicate; keep `components/ui/` |
-| Build fails on `"use client"` | Add directive only where hooks/events are used |
-| v0 used Pages Router | Convert to App Router `app/` structure |
+| Problem                             | Fix                                                     |
+| ----------------------------------- | ------------------------------------------------------- |
+| “Module not found” for UI component | Import from `@/components/ui/...` (AEF already has it)  |
+| Styles look wrong                   | Merge `globals.css` tokens; avoid replacing entire file |
+| Two Button/Card implementations     | Delete v0 duplicate; keep `components/ui/`              |
+| Build fails on `"use client"`       | Add directive only where hooks/events are used          |
+| v0 used Pages Router                | Convert to App Router `app/` structure                  |
 
 ---
 
 ## Quick reference — safe vs unsafe overwrite
 
-| Safe to add/overwrite | Never overwrite from v0 |
-|-----------------------|-------------------------|
-| `app/(feature)/**` | `lib/**` |
-| `components/<feature>/**` | `services/**`, `agents/**`, `prompts/**` |
-| New static assets in `public/` | `supabase/**`, `middleware.ts` |
-| Feature-specific `types/` | `.cursor/rules/**`, `PROJECT_CONSTITUTION.md` |
+| Safe to add/overwrite          | Never overwrite from v0                       |
+| ------------------------------ | --------------------------------------------- |
+| `app/(feature)/**`             | `lib/**`                                      |
+| `components/<feature>/**`      | `services/**`, `agents/**`, `prompts/**`      |
+| New static assets in `public/` | `supabase/**`, `middleware.ts`                |
+| Feature-specific `types/`      | `.cursor/rules/**`, `PROJECT_CONSTITUTION.md` |
 
 ---
 

@@ -5,13 +5,13 @@
 
 ## Phases delivered
 
-| Phase | Status | Summary |
-|-------|--------|---------|
-| 1 — Foundation | Done | Next.js 16, Tailwind v4, shadcn/ui, Prettier, Husky, Vercel |
-| 2 — Constitution & Rules | Done | 9 engineering docs + 6 Cursor rules |
-| 3 — Folder structure | Done | services, agents, prompts, database, n8n, tests, etc. |
-| 4 — Supabase | Done | Browser/server/admin clients, migration, seed, types |
-| 5 — Gemini | Done | gemini-2.5-flash, ai.ts, prompt manager, validators |
+| Phase                    | Status | Summary                                                     |
+| ------------------------ | ------ | ----------------------------------------------------------- |
+| 1 — Foundation           | Done   | Next.js 16, Tailwind v4, shadcn/ui, Prettier, Husky, Vercel |
+| 2 — Constitution & Rules | Done   | 9 engineering docs + 6 Cursor rules                         |
+| 3 — Folder structure     | Done   | services, agents, prompts, database, n8n, tests, etc.       |
+| 4 — Supabase             | Done   | Browser/server/admin clients, migration, seed, types        |
+| 5 — Gemini               | Done   | gemini-2.5-flash, ai.ts, prompt manager, validators         |
 
 ## Verification
 

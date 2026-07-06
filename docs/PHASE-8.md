@@ -9,29 +9,29 @@ Move business logic into `services/` so API routes stay thin and reusable across
 
 ## Delivered services
 
-| Service | File | Responsibility |
-|---------|------|----------------|
-| AI | `services/ai.service.ts` | Agent runs, pipelines, incident analysis |
-| Auth | `services/auth.service.ts` | Email/password via Supabase Auth |
-| Incident | `services/incident.service.ts` | Incident CRUD + AI persistence |
-| Storage | `services/storage.service.ts` | Supabase Storage uploads |
-| Email | `services/email.service.ts` | Resend transactional email |
-| Notification | `services/notification.service.ts` | Email + n8n webhook notifications |
+| Service      | File                               | Responsibility                           |
+| ------------ | ---------------------------------- | ---------------------------------------- |
+| AI           | `services/ai.service.ts`           | Agent runs, pipelines, incident analysis |
+| Auth         | `services/auth.service.ts`         | Email/password via Supabase Auth         |
+| Incident     | `services/incident.service.ts`     | Incident CRUD + AI persistence           |
+| Storage      | `services/storage.service.ts`      | Supabase Storage uploads                 |
+| Email        | `services/email.service.ts`        | Resend transactional email               |
+| Notification | `services/notification.service.ts` | Email + n8n webhook notifications        |
 
 ## API routes (thin handlers)
 
-| Method | Route | Service |
-|--------|-------|---------|
-| `GET` | `/api/agents` | `aiService.listAgents` |
-| `POST` | `/api/agents/run` | `aiService.runAgent` |
-| `POST` | `/api/agents/pipeline` | `aiService.runPipeline` |
-| `POST` | `/api/auth/signup` | `authService.signUp` |
-| `POST` | `/api/auth/signin` | `authService.signIn` |
-| `POST` | `/api/auth/signout` | `authService.signOut` |
-| `GET` | `/api/auth/session` | `authService.getSession` |
-| `GET` | `/api/incidents` | `incidentService.list` |
-| `POST` | `/api/incidents` | `incidentService.create` |
-| `GET` | `/api/incidents/[id]` | `incidentService.getById` |
+| Method | Route                         | Service                             |
+| ------ | ----------------------------- | ----------------------------------- |
+| `GET`  | `/api/agents`                 | `aiService.listAgents`              |
+| `POST` | `/api/agents/run`             | `aiService.runAgent`                |
+| `POST` | `/api/agents/pipeline`        | `aiService.runPipeline`             |
+| `POST` | `/api/auth/signup`            | `authService.signUp`                |
+| `POST` | `/api/auth/signin`            | `authService.signIn`                |
+| `POST` | `/api/auth/signout`           | `authService.signOut`               |
+| `GET`  | `/api/auth/session`           | `authService.getSession`            |
+| `GET`  | `/api/incidents`              | `incidentService.list`              |
+| `POST` | `/api/incidents`              | `incidentService.create`            |
+| `GET`  | `/api/incidents/[id]`         | `incidentService.getById`           |
 | `POST` | `/api/incidents/[id]/analyze` | `incidentService.analyzeAndPersist` |
 
 Shared route helper: `lib/api/handle-route.ts` maps `AppError` and Zod errors to API responses.

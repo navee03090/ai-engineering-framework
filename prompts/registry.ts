@@ -91,7 +91,9 @@ export const promptRegistry = new PromptRegistry();
 
 let defaultsRegistered = false;
 
-export function registerDefaultPrompts(registry: PromptRegistry = promptRegistry): void {
+export function registerDefaultPrompts(
+  registry: PromptRegistry = promptRegistry
+): void {
   if (defaultsRegistered && registry === promptRegistry) {
     return;
   }
@@ -111,7 +113,9 @@ export function registerDefaultPrompts(registry: PromptRegistry = promptRegistry
   }
 }
 
-export function ensurePromptRegistry(registry: PromptRegistry = promptRegistry): PromptRegistry {
+export function ensurePromptRegistry(
+  registry: PromptRegistry = promptRegistry
+): PromptRegistry {
   registerDefaultPrompts(registry);
   return registry;
 }

@@ -2,13 +2,13 @@
 
 ## Stack
 
-| Service | Host |
-|---------|------|
-| Next.js app | Vercel |
-| Database + Auth + Storage | Supabase |
-| AI | Google Gemini API |
-| Email | Resend |
-| Automation | n8n Cloud |
+| Service                   | Host              |
+| ------------------------- | ----------------- |
+| Next.js app               | Vercel            |
+| Database + Auth + Storage | Supabase          |
+| AI                        | Google Gemini API |
+| Email                     | Resend            |
+| Automation                | n8n Cloud         |
 
 ## New project from template
 
@@ -33,14 +33,14 @@ Copy every key from `.env.example` into:
 - **Local:** `.env.local`
 - **Vercel:** Project Settings → Environment Variables
 
-| Variable | Purpose |
-|----------|---------|
-| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Public anon key |
-| `SUPABASE_SERVICE_ROLE_KEY` | Server only — never expose to client |
-| `GEMINI_API_KEY` | AI routes |
-| `RESEND_API_KEY` / `RESEND_FROM_EMAIL` | Email (optional) |
-| `N8N_WEBHOOK_URL` | n8n automation (optional) |
+| Variable                               | Purpose                              |
+| -------------------------------------- | ------------------------------------ |
+| `NEXT_PUBLIC_SUPABASE_URL`             | Supabase project URL                 |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY`        | Public anon key                      |
+| `SUPABASE_SERVICE_ROLE_KEY`            | Server only — never expose to client |
+| `GEMINI_API_KEY`                       | AI routes                            |
+| `RESEND_API_KEY` / `RESEND_FROM_EMAIL` | Email (optional)                     |
+| `N8N_WEBHOOK_URL`                      | n8n automation (optional)            |
 
 ## Supabase setup
 

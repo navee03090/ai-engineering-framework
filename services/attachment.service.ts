@@ -31,7 +31,11 @@ export const attachmentService = {
     const supabase = await createClient();
 
     if (!input.storagePath.startsWith(`${uploaderId}/`)) {
-      throw new AppError("Invalid storage path for uploader.", 403, "ATTACHMENT_FORBIDDEN");
+      throw new AppError(
+        "Invalid storage path for uploader.",
+        403,
+        "ATTACHMENT_FORBIDDEN"
+      );
     }
 
     const { data, error } = await supabase
@@ -69,7 +73,11 @@ export const attachmentService = {
     }
 
     if (attachment.uploader_id !== uploaderId) {
-      throw new AppError("Not allowed to delete this attachment.", 403, "ATTACHMENT_FORBIDDEN");
+      throw new AppError(
+        "Not allowed to delete this attachment.",
+        403,
+        "ATTACHMENT_FORBIDDEN"
+      );
     }
 
     const { error: deleteMetaError } = await supabase

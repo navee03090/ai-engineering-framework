@@ -1,7 +1,11 @@
 import { PromptRegistry, registerDefaultPrompts } from "@/prompts/registry";
 
 export { baseSystemPrompt } from "@/prompts/base.prompt";
-export { ensurePromptRegistry, promptRegistry, registerDefaultPrompts } from "@/prompts/registry";
+export {
+  ensurePromptRegistry,
+  promptRegistry,
+  registerDefaultPrompts,
+} from "@/prompts/registry";
 export { systemPrompt } from "@/prompts/system.prompt";
 export { userPromptTemplates } from "@/prompts/user.prompt";
 export { promptTemplatePacks } from "@/prompts/templates";

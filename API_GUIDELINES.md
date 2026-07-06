@@ -49,12 +49,12 @@ Every successful `createApiHandler` response includes `x-request-id`.
 
 ## Rate limiting
 
-| Preset | Use for |
-|--------|---------|
-| `RATE_LIMITS.default` | General CRUD |
-| `RATE_LIMITS.ai` | Agent/AI/analyze routes |
-| `RATE_LIMITS.auth` | Signup/signin/signout |
-| `rateLimit: false` | Health checks |
+| Preset                | Use for                 |
+| --------------------- | ----------------------- |
+| `RATE_LIMITS.default` | General CRUD            |
+| `RATE_LIMITS.ai`      | Agent/AI/analyze routes |
+| `RATE_LIMITS.auth`    | Signup/signin/signout   |
+| `rateLimit: false`    | Health checks           |
 
 ## Service layer
 
@@ -72,27 +72,27 @@ Never call external services directly from route handlers.
 
 ## Health endpoints
 
-| Route | Purpose |
-|-------|---------|
-| `GET /api/health` | Framework + env configuration status |
-| `POST /api/ai/health` | Live Gemini structured response test |
-| `GET /api/agents` | List registered agents |
-| `POST /api/agents/run` | Run a single agent |
-| `POST /api/agents/pipeline` | Run sequential agent pipeline |
-| `GET /api/prompts` | List prompt template metadata (`?tag=disaster`) |
-| `POST /api/auth/signup` | Register with email/password |
-| `POST /api/auth/signin` | Sign in |
-| `GET /api/incidents` | List incidents |
-| `POST /api/incidents` | Create incident |
-| `POST /api/incidents/[id]/analyze` | AI analyze + persist |
-| `POST /api/uploads` | Upload file (multipart) |
-| `GET /api/uploads?folder=incidents` | List user uploads |
-| `POST /api/incidents/[id]/attachments` | Link file to incident |
-| `GET /api/notifications/status` | Email + n8n channel status |
-| `POST /api/notifications/test` | Test email to signed-in user |
-| `GET /api/n8n/status` | n8n webhook config + event catalog |
-| `POST /api/n8n/test` | Fire `system.test` webhook |
-| `POST /api/n8n/trigger` | Custom n8n event |
+| Route                                  | Purpose                                         |
+| -------------------------------------- | ----------------------------------------------- |
+| `GET /api/health`                      | Framework + env configuration status            |
+| `POST /api/ai/health`                  | Live Gemini structured response test            |
+| `GET /api/agents`                      | List registered agents                          |
+| `POST /api/agents/run`                 | Run a single agent                              |
+| `POST /api/agents/pipeline`            | Run sequential agent pipeline                   |
+| `GET /api/prompts`                     | List prompt template metadata (`?tag=disaster`) |
+| `POST /api/auth/signup`                | Register with email/password                    |
+| `POST /api/auth/signin`                | Sign in                                         |
+| `GET /api/incidents`                   | List incidents                                  |
+| `POST /api/incidents`                  | Create incident                                 |
+| `POST /api/incidents/[id]/analyze`     | AI analyze + persist                            |
+| `POST /api/uploads`                    | Upload file (multipart)                         |
+| `GET /api/uploads?folder=incidents`    | List user uploads                               |
+| `POST /api/incidents/[id]/attachments` | Link file to incident                           |
+| `GET /api/notifications/status`        | Email + n8n channel status                      |
+| `POST /api/notifications/test`         | Test email to signed-in user                    |
+| `GET /api/n8n/status`                  | n8n webhook config + event catalog              |
+| `POST /api/n8n/test`                   | Fire `system.test` webhook                      |
+| `POST /api/n8n/trigger`                | Custom n8n event                                |
 
 See [docs/API-REFERENCE.md](./docs/API-REFERENCE.md) for the full route list.
 

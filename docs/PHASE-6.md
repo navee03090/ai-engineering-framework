@@ -9,24 +9,24 @@ Extensible multi-agent architecture with typed I/O, orchestration, memory, and A
 
 ## Delivered
 
-| Module | Purpose |
-|--------|---------|
-| `agents/base-agent.ts` | Abstract agent with Zod validation, logging, memory hooks |
-| `agents/types.ts` | Agent, pipeline, and memory types |
-| `agents/memory.ts` | Per-run execution memory store |
-| `agents/registry.ts` | Agent registration (`summarizer`, `classifier`) |
-| `agents/orchestrator.ts` | Single-agent runs and multi-step pipelines |
-| `agents/summarizer.agent.ts` | Text summarization via Gemini |
-| `agents/classifier.agent.ts` | Structured incident classification (JSON) |
-| `agents/echo.agent.ts` | Test-only agent (no Gemini) |
-| `agents/index.ts` | Public exports + `createAgentRuntime()` |
+| Module                       | Purpose                                                   |
+| ---------------------------- | --------------------------------------------------------- |
+| `agents/base-agent.ts`       | Abstract agent with Zod validation, logging, memory hooks |
+| `agents/types.ts`            | Agent, pipeline, and memory types                         |
+| `agents/memory.ts`           | Per-run execution memory store                            |
+| `agents/registry.ts`         | Agent registration (`summarizer`, `classifier`)           |
+| `agents/orchestrator.ts`     | Single-agent runs and multi-step pipelines                |
+| `agents/summarizer.agent.ts` | Text summarization via Gemini                             |
+| `agents/classifier.agent.ts` | Structured incident classification (JSON)                 |
+| `agents/echo.agent.ts`       | Test-only agent (no Gemini)                               |
+| `agents/index.ts`            | Public exports + `createAgentRuntime()`                   |
 
 ## API endpoints
 
-| Method | Route | Description |
-|--------|-------|-------------|
-| `GET` | `/api/agents` | List registered agents |
-| `POST` | `/api/agents/run` | Run one agent |
+| Method | Route                  | Description             |
+| ------ | ---------------------- | ----------------------- |
+| `GET`  | `/api/agents`          | List registered agents  |
+| `POST` | `/api/agents/run`      | Run one agent           |
 | `POST` | `/api/agents/pipeline` | Run sequential pipeline |
 
 Requires `GEMINI_API_KEY` for `run` and `pipeline` (except unit tests using `EchoAgent`).

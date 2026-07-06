@@ -1,4 +1,5 @@
 import { GEMINI_MODEL } from "@/lib/gemini";
+import { CIVICAI_FULL_TITLE } from "@/lib/civicai/brand";
 import { apiSuccess, createApiHandler } from "@/lib/api";
 
 export const GET = createApiHandler({
@@ -12,6 +13,7 @@ export const GET = createApiHandler({
 
     return apiSuccess({
       status: "ok",
+      product: CIVICAI_FULL_TITLE,
       framework: "AI Engineering Framework",
       version: "1.0.0",
       phase: 15,

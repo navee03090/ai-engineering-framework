@@ -1,82 +1,112 @@
-# AI Engineering Framework (AEF) v1.0
+# CivicAI — Pakistan Citizen Assistant
 
-[![Use this template](https://img.shields.io/badge/Use%20this%20template-2ea44f?style=for-the-badge)](https://github.com/navee03090/ai-engineering-framework/generate)
+**AI-powered Civic Navigation for Transparent Government Services**
 
-Reusable foundation for AI applications — Next.js, Supabase, Gemini, shadcn/ui, multi-agent architecture, and engineering docs built in.
+CivicAI is an AI **Decision Assistant** that helps Pakistani citizens navigate government procedures — documents, fees, timelines, scam warnings, office locations, and document verification — without relying on middlemen.
 
-**All 15 phases complete.** Use as your GitHub template for hackathons, SaaS, civic tech, and disaster response projects.
+Built on the [AI Engineering Framework (AEF) v1.0](https://github.com/navee03090/ai-engineering-framework) template.
 
-## New project (one-click)
+---
 
-1. Click **[Use this template](https://github.com/navee03090/ai-engineering-framework/generate)** on GitHub.
-2. Clone your new repo, then:
-
-```bash
-npm install
-npm run setup -- --name "Your Product Name"
-```
-
-3. Configure `.env.local`, run Supabase migrations, `npm run dev`.
-
-Full checklist: **[docs/TEMPLATE-SETUP.md](./docs/TEMPLATE-SETUP.md)**
-
-## Quick start (this repo)
+## Quick start
 
 ```bash
-cp .env.example .env.local   # or: npm run setup
+cp .env.example .env.local   # add your API keys
 npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000)
+
+---
 
 ## What's included
 
-| Layer | Stack |
-|-------|--------|
-| App | Next.js 16, TypeScript, Tailwind v4, shadcn/ui |
-| Data | Supabase (auth, Postgres, storage, RLS) |
-| AI | Google Gemini `gemini-2.5-flash`, agents, prompts |
-| Integrations | Resend email, n8n webhooks |
-| Engineering | Constitution, Cursor rules, API framework, docs |
+| Layer | Technology |
+| --- | --- |
+| **Frontend** | Next.js 16, React 19, TypeScript, Tailwind v4, shadcn/ui, Framer Motion |
+| **Backend** | Next.js API Routes, Zod validation, service layer |
+| **Database** | Supabase (Postgres, Auth, Storage, RLS) |
+| **AI** | Google Gemini (6-agent pipeline with Zod schemas) |
+| **Email** | Resend (report PDF delivery) |
+| **Maps** | Google Maps (`@vis.gl/react-google-maps`) |
+| **Voice** | Web Speech API (browser-native, free) |
+| **PDF** | jsPDF |
+| **Testing** | Vitest, Playwright, ESLint, Prettier, Husky |
+
+---
+
+## Core features
+
+- **AI Assistant** — Ask about government services in English or Urdu (type or speak)
+- **Document Verification** — Upload officer notes; OCR + compliance comparison
+- **Structured Reports** — Checklists, fees, timelines, scam warnings
+- **Google Maps** — Office locations based on service and city
+- **PDF + Email** — Downloadable report and email with PDF attachment
+- **Dashboard & History** — Track past queries and verifications
+- **Bilingual UI** — English and Urdu throughout
+
+---
+
+## Documentation
+
+| Document | Description |
+| --- | --- |
+| **[HACKATHON-CONTEXT.md](./HACKATHON-CONTEXT.md)** | **Tomorrow's hackathon — paste theme + pivot plan** |
+| **[CIVICAI-PROJECT-DOCUMENTATION.md](./docs/CIVICAI-PROJECT-DOCUMENTATION.md)** | Complete project docs — tools, architecture, setup, APIs |
+| [CIVICAI-AGENT-ARCHITECTURE.md](./docs/CIVICAI-AGENT-ARCHITECTURE.md) | Six-agent system deep dive |
+| [CIVICAI-WORKFLOWS.md](./docs/CIVICAI-WORKFLOWS.md) | Query & upload pipeline flows |
+| [CIVICAI-PROMPTS.md](./docs/CIVICAI-PROMPTS.md) | Prompt engineering reference |
+| [CIVICAI-EXAMPLES.md](./docs/CIVICAI-EXAMPLES.md) | Sample queries and outputs |
+| [API-REFERENCE.md](./docs/API-REFERENCE.md) | Full HTTP API reference |
+| [PHASE_1_PROJECT_SPEC.md](./PHASE_1_PROJECT_SPEC.md) | Original product specification |
+
+---
+
+## Environment variables
+
+See [`.env.example`](./.env.example). Minimum required:
+
+- `NEXT_PUBLIC_SUPABASE_URL` + keys
+- `GEMINI_API_KEY`
+- `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` (for maps)
+
+Optional: `RESEND_API_KEY` + `RESEND_FROM_EMAIL` for email delivery.
+
+---
 
 ## Scripts
 
 | Command | Description |
-|---------|-------------|
-| `npm run setup` | Copy `.env.local`, optional `--name` for app title |
+| --- | --- |
 | `npm run dev` | Start development server |
 | `npm run build` | Production build |
 | `npm run lint` | ESLint |
 | `npm run test` | Vitest unit tests |
 | `npm run test:e2e` | Playwright E2E tests |
 
-## Configuration
+---
 
-1. Create a **new** Supabase project.
-2. Run all migrations in `supabase/migrations/` (00001 → 00003).
-3. Add keys to `.env.local` (see `.env.example`).
-4. Optional: Resend, n8n — see [docs/PHASE-12.md](./docs/PHASE-12.md) and [docs/PHASE-13.md](./docs/PHASE-13.md).
+## Supabase setup
 
-## Documentation
+Run migrations in order from `supabase/migrations/`:
 
-| Doc | Purpose |
-|-----|---------|
-| [TEMPLATE-SETUP.md](./docs/TEMPLATE-SETUP.md) | New project from template |
-| [V0-IMPORT-GUIDE.md](./docs/V0-IMPORT-GUIDE.md) | Import v0 UI safely |
-| [API-REFERENCE.md](./docs/API-REFERENCE.md) | All HTTP routes |
-| [PROJECT_CONSTITUTION.md](./PROJECT_CONSTITUTION.md) | Rules and architecture |
+1. `00001` – `00003` — Base schema
+2. `00004_civicai.sql` — CivicAI tables
+3. `00005_civicai_seed.sql` — Government services seed data
 
-Phase deliverables: `docs/PHASE-6.md` through `docs/PHASE-15.md`
+---
 
-## Cursor workflow
+## Demo flow
 
-> Read PROJECT_CONSTITUTION.md and follow it.
+1. Sign up → `/assistant`
+2. Ask: *"I want to renew my driving license"*
+3. View checklist, map, and report
+4. Check email for PDF attachment
+5. Optional: upload officer note at `/upload`
 
-## First consumer example
-
-**Pakistan Disaster Response AI Command Center** — validates multi-agent AI, uploads, orchestration, email, and n8n for CivicAI-style systems.
+---
 
 ## License
 
-Private template — adjust for your organization.
+MIT (inherited from AEF template)

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const notificationChannelSchema = z.enum(["email", "n8n"]);
+export const notificationChannelSchema = z.enum(["email"]);
 
 export const sendNotificationSchema = z.object({
   channels: z.array(notificationChannelSchema).optional(),
@@ -10,12 +10,6 @@ export const sendNotificationSchema = z.object({
       subject: z.string().min(1).max(200),
       html: z.string().min(1),
       text: z.string().optional(),
-    })
-    .optional(),
-  n8n: z
-    .object({
-      event: z.string().min(1),
-      payload: z.record(z.string(), z.unknown()),
     })
     .optional(),
 });

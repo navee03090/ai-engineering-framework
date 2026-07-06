@@ -9,6 +9,10 @@ export type SendEmailInput = {
   subject: string;
   html: string;
   text?: string;
+  attachments?: Array<{
+    filename: string;
+    content: Buffer | string;
+  }>;
 };
 
 export type SendTemplateEmailInput<T extends EmailTemplateId> = {
@@ -60,6 +64,7 @@ export const emailService = {
       subject: input.subject,
       html: input.html,
       text: input.text,
+      attachments: input.attachments,
     });
 
     if (error) {

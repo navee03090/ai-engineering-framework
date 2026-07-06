@@ -20,7 +20,9 @@ export default async function CommandPage() {
           <Badge>Civic Command Center</Badge>
           <Badge variant="secondary">{civic.label}</Badge>
         </div>
-        <h1 className="text-3xl font-semibold tracking-tight">Priority command board</h1>
+        <h1 className="text-3xl font-semibold tracking-tight">
+          Priority command board
+        </h1>
         <p className="text-muted-foreground">
           Signed in as <span className="font-medium text-foreground">{user.email}</span>
         </p>

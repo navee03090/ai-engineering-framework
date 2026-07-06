@@ -6,7 +6,11 @@ import { API_ERROR_CODES } from "@/lib/api/error-codes";
 import { AppError } from "@/lib/api/errors";
 import { handleServiceRoute } from "@/lib/api/handle-route";
 import { logApiError, logApiRequest, logApiResponse } from "@/lib/api/logger";
-import { checkRateLimit, RATE_LIMITS, type RateLimitConfig } from "@/lib/api/rate-limit";
+import {
+  checkRateLimit,
+  RATE_LIMITS,
+  type RateLimitConfig,
+} from "@/lib/api/rate-limit";
 import { parseJsonBody } from "@/lib/api/validation/parse-json";
 import { parseQueryParams } from "@/lib/api/validation/parse-query";
 import { authService } from "@/services/auth.service";
@@ -90,13 +94,15 @@ export function createApiHandler<
         }
 
         if (!user) {
-          throw new AppError("Authentication required", 401, API_ERROR_CODES.UNAUTHORIZED);
+          throw new AppError(
+            "Authentication required",
+            401,
+            API_ERROR_CODES.UNAUTHORIZED
+          );
         }
       }
 
-      const params = routeContext?.params
-        ? await routeContext.params
-        : ({} as TParams);
+      const params = routeContext?.params ? await routeContext.params : ({} as TParams);
 
       const body = config.bodySchema
         ? await parseJsonBody(request, config.bodySchema)

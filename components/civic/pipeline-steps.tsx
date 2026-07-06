@@ -21,7 +21,9 @@ export function PipelineSteps({ steps, runId }: PipelineStepsProps) {
     <Card>
       <CardHeader>
         <CardTitle className="text-base">AI agent pipeline</CardTitle>
-        {runId ? <p className="text-xs text-muted-foreground font-mono">{runId}</p> : null}
+        {runId ? (
+          <p className="text-xs text-muted-foreground font-mono">{runId}</p>
+        ) : null}
       </CardHeader>
       <CardContent className="space-y-3">
         {steps.map((step, index) => (

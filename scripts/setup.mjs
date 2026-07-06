@@ -59,7 +59,7 @@ function main() {
   console.log(`
 Next steps
 ----------
-1. Fill in .env.local (Supabase, Gemini, Resend, n8n)
+1. Fill in .env.local (Supabase, Gemini, Resend)
 2. Run Supabase migrations:
    - supabase/migrations/00001_init.sql
    - supabase/migrations/00002_incidents.sql

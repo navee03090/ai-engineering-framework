@@ -7,6 +7,13 @@ export const AUTH_ROUTES = {
 
 export const PROTECTED_ROUTE_PREFIXES = [
   "/dashboard",
+  "/assistant",
+  "/upload",
+  "/checklist",
+  "/history",
+  "/settings",
+  "/reports",
+  "/services",
   "/uploads",
   "/notifications",
   "/command",

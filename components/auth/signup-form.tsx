@@ -26,7 +26,9 @@ export function SignupForm() {
     <Card>
       <CardHeader>
         <CardTitle>Create account</CardTitle>
-        <CardDescription>Register for Pakistan Disaster Response AI workflows.</CardDescription>
+        <CardDescription>
+          Register for Pakistan Disaster Response AI workflows.
+        </CardDescription>
       </CardHeader>
       <form action={formAction}>
         <CardContent className="space-y-4">

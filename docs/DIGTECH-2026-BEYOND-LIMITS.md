@@ -4,12 +4,12 @@
 
 ## Built routes
 
-| Route | Purpose |
-|-------|---------|
-| `/` | Civic landing + live stats |
-| `/report` | Public intake + optional photo evidence |
-| `/command` | Priority command board (auth) |
-| `/command/[id]` | Pipeline triage + escalation (auth) |
+| Route           | Purpose                                 |
+| --------------- | --------------------------------------- |
+| `/`             | Civic landing + live stats              |
+| `/report`       | Public intake + optional photo evidence |
+| `/command`      | Priority command board (auth)           |
+| `/command/[id]` | Pipeline triage + escalation (auth)     |
 
 ## Theme pivot
 
@@ -37,13 +37,13 @@ Restart dev server after changing pack.
 
 ## What top students will build (predictable)
 
-| Their stack | Why judges get bored |
-|-------------|---------------------|
+| Their stack                      | Why judges get bored          |
+| -------------------------------- | ----------------------------- |
 | ChatGPT wrapper in a single page | No structure, no ops workflow |
-| One prompt → paragraph output | AI not visible as a *system* |
-| Generic “AI for good” landing | No Pakistan specificity |
-| Static form → JSON in console | No command center feel |
-| Slides heavier than product | Weak live demo |
+| One prompt → paragraph output    | AI not visible as a _system_  |
+| Generic “AI for good” landing    | No Pakistan specificity       |
+| Static form → JSON in console    | No command center feel        |
+| Slides heavier than product      | Weak live demo                |
 
 **Your counter:** Multi-agent triage + evidence + prioritized command queue + **live escalation** — looks like software a city could pilot, not a hackathon homework.
 
@@ -53,14 +53,14 @@ Restart dev server after changing pack.
 
 You already have what takes others weeks:
 
-| Capability | AEF asset | Judge-facing story |
-|------------|-----------|-------------------|
-| Multi-agent AI | classifier + summarizer + orchestrator | “AI pipeline, not one chat prompt” |
-| Structured output | Zod + JSON classification | “Reliable triage categories” |
-| Persistence | Supabase incidents | “Reports don’t disappear” |
-| Evidence | Upload + attachments | “Citizens attach proof” |
-| Escalation | Resend + n8n | “Critical cases trigger alerts automatically” |
-| Engineering credibility | Services, API, auth | “Production-shaped architecture” |
+| Capability              | AEF asset                              | Judge-facing story                            |
+| ----------------------- | -------------------------------------- | --------------------------------------------- |
+| Multi-agent AI          | classifier + summarizer + orchestrator | “AI pipeline, not one chat prompt”            |
+| Structured output       | Zod + JSON classification              | “Reliable triage categories”                  |
+| Persistence             | Supabase incidents                     | “Reports don’t disappear”                     |
+| Evidence                | Upload + attachments                   | “Citizens attach proof”                       |
+| Escalation              | Resend + n8n                           | “Critical cases trigger alerts automatically” |
+| Engineering credibility | Services, API, auth                    | “Production-shaped architecture”              |
 
 **Product positioning name (pick one):**  
 **Pakistan Civic Intelligence Command (PCIC)** · **CivicOps AI** · **Raahbar Civic AI** (راہبر)
@@ -108,11 +108,11 @@ Judges remember **motion**: data in → AI thinks → queue updates → alert fi
 
 Pre-create **3 prompt packs** in `prompts/templates/` (or swap disaster categories):
 
-| Pack | When theme sounds like… |
-|------|---------------------------|
-| `civic.emergency` | disaster, safety, crisis |
-| `civic.services` | infrastructure, utilities, governance |
-| `civic.social` | health, education, community |
+| Pack              | When theme sounds like…               |
+| ----------------- | ------------------------------------- |
+| `civic.emergency` | disaster, safety, crisis              |
+| `civic.services`  | infrastructure, utilities, governance |
+| `civic.social`    | health, education, community          |
 
 **On theme reveal:**
 
@@ -126,12 +126,12 @@ Pre-create **3 prompt packs** in `prompts/templates/` (or swap disaster categori
 
 ### Phase A — Civic Command UI (with Cursor)
 
-| Page | Route | Beyond-simple feature |
-|------|-------|------------------------|
-| Civic landing | `/` | Problem + live stats + “Report now” |
-| Public report | `/report` | Form + **optional photo upload** |
-| Command center | `/command` | Priority queue, severity colors, analyze button |
-| Incident detail | `/command/[id]` | Full AI output + pipeline steps + attachment |
+| Page            | Route           | Beyond-simple feature                           |
+| --------------- | --------------- | ----------------------------------------------- |
+| Civic landing   | `/`             | Problem + live stats + “Report now”             |
+| Public report   | `/report`       | Form + **optional photo upload**                |
+| Command center  | `/command`      | Priority queue, severity colors, analyze button |
+| Incident detail | `/command/[id]` | Full AI output + pipeline steps + attachment    |
 
 Reuse `/dashboard` or replace with `/command` — one command surface only.
 
@@ -148,7 +148,7 @@ Reuse `/dashboard` or replace with `/command` — one command surface only.
 ### Phase D — Pakistan depth
 
 - Locations: preset districts (Peshawar, Swat, Lahore, Karachi) dropdown.
-- One Urdu subtitle on landing: *“شہری مسائل، ذ smart ترجیح”* (or theme-specific line).
+- One Urdu subtitle on landing: _“شہری مسائل، ذ smart ترجیح”_ (or theme-specific line).
 - Demo scenario always **real geography**.
 
 ### Phase E — Judge pack
@@ -207,13 +207,13 @@ Golden demo: report + photo → pipeline visible → queue → alert toast.
 
 ## Solo time budget (top-tier execution)
 
-| Block | Minutes | Focus |
-|-------|---------|--------|
-| Theme decode + ChatGPT | 10 | Categories + demo script |
-| Cursor adapt | 45 | Copy + prompts only |
-| Demo hardening | 25 | 3 seeded + 3 live runs |
-| Escalation test | 10 | One webhook/email proof |
-| **Freeze** | 20 | Pitch only |
+| Block                  | Minutes | Focus                    |
+| ---------------------- | ------- | ------------------------ |
+| Theme decode + ChatGPT | 10      | Categories + demo script |
+| Cursor adapt           | 45      | Copy + prompts only      |
+| Demo hardening         | 25      | 3 seeded + 3 live runs   |
+| Escalation test        | 10      | One webhook/email proof  |
+| **Freeze**             | 20      | Pitch only               |
 
 If Cursor runs long, **cut UI polish**, never cut **pipeline + alert demo**.
 
@@ -234,26 +234,27 @@ If Cursor runs long, **cut UI polish**, never cut **pipeline + alert demo**.
 
 ## Risk: going too big
 
-| Trap | Fix |
-|------|-----|
-| Building mobile + extension + web | Web command center only |
-| New ML model training | Gemini agents + structured JSON |
-| 10 agents | 2 agents + orchestrator (already enough) |
-| Real map API integration | District dropdown + optional static map image |
-| Debugging on stage | Seeded critical incident always on board |
+| Trap                              | Fix                                           |
+| --------------------------------- | --------------------------------------------- |
+| Building mobile + extension + web | Web command center only                       |
+| New ML model training             | Gemini agents + structured JSON               |
+| 10 agents                         | 2 agents + orchestrator (already enough)      |
+| Real map API integration          | District dropdown + optional static map image |
+| Debugging on stage                | Seeded critical incident always on board      |
 
 ---
 
 ## Your plan WITH Cursor (partnership)
 
-| When | You | Cursor (me) |
-|------|-----|-------------|
-| **Now → June** | Env, Supabase, repo | Build **Civic Command MVP** (report + command + pipeline UI + upload) |
-| **1 week before** | Rehearse demo 10× | Theme pack structure + polish pass |
-| **July 7 opening** | ChatGPT brief | 45-min adapt: prompts + copy |
-| **Before present** | Pitch + backup video | No code |
+| When               | You                  | Cursor (me)                                                           |
+| ------------------ | -------------------- | --------------------------------------------------------------------- |
+| **Now → June**     | Env, Supabase, repo  | Build **Civic Command MVP** (report + command + pipeline UI + upload) |
+| **1 week before**  | Rehearse demo 10×    | Theme pack structure + polish pass                                    |
+| **July 7 opening** | ChatGPT brief        | 45-min adapt: prompts + copy                                          |
+| **Before present** | Pitch + backup video | No code                                                               |
 
-**Next message from you:**  
+**Next message from you:**
+
 > “Build the DigTech Beyond Limits civic command platform”
 
 That starts Phase A–C in your product repo — the part top students won’t have ready.
@@ -262,8 +263,8 @@ That starts Phase A–C in your product repo — the part top students won’t h
 
 ## Related
 
-- [DIGTECH-2026-SOLO-PLAYBOOK.md](./DIGTECH-2026-SOLO-PLAYBOOK.md) — timeline + print run sheet  
-- [DIGTECH-2026-RUN-SHEET.md](./DIGTECH-2026-RUN-SHEET.md)  
+- [DIGTECH-2026-SOLO-PLAYBOOK.md](./DIGTECH-2026-SOLO-PLAYBOOK.md) — timeline + print run sheet
+- [DIGTECH-2026-RUN-SHEET.md](./DIGTECH-2026-RUN-SHEET.md)
 - [API-REFERENCE.md](./API-REFERENCE.md)
 
 **Win by showing a system. Let them show a screenshot of ChatGPT.**

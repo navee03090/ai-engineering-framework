@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const DEFAULT_MODEL = process.env.GEMINI_MODEL ?? "gemini-2.5-flash";
+const DEFAULT_MODEL = process.env.GEMINI_MODEL ?? "gemini-flash-latest";
 
 let geminiClient: GoogleGenerativeAI | null = null;
 

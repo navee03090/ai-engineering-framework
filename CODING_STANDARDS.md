@@ -15,14 +15,14 @@
 
 ## File naming
 
-| Kind | Convention | Example |
-|------|------------|---------|
-| Components | PascalCase | `IncidentCard.tsx` |
-| Hooks | camelCase with `use` prefix | `useIncidents.ts` |
-| Services | `*.service.ts` | `auth.service.ts` |
-| Agents | camelCase | `orchestrator.ts` |
-| Prompts | `*.prompt.ts` | `system.prompt.ts` |
-| API routes | `route.ts` in folder | `app/api/health/route.ts` |
+| Kind       | Convention                  | Example                   |
+| ---------- | --------------------------- | ------------------------- |
+| Components | PascalCase                  | `IncidentCard.tsx`        |
+| Hooks      | camelCase with `use` prefix | `useIncidents.ts`         |
+| Services   | `*.service.ts`              | `auth.service.ts`         |
+| Agents     | camelCase                   | `orchestrator.ts`         |
+| Prompts    | `*.prompt.ts`               | `system.prompt.ts`        |
+| API routes | `route.ts` in folder        | `app/api/health/route.ts` |
 
 ## Styling
 

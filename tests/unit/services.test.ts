@@ -47,11 +47,9 @@ describe("notificationService", () => {
   it("skips incident email when no channels are configured", async () => {
     const originalKey = process.env.RESEND_API_KEY;
     const originalFrom = process.env.RESEND_FROM_EMAIL;
-    const originalN8n = process.env.N8N_WEBHOOK_URL;
 
     delete process.env.RESEND_API_KEY;
     delete process.env.RESEND_FROM_EMAIL;
-    delete process.env.N8N_WEBHOOK_URL;
 
     const result = await notificationService.notifyIncidentAnalyzed({
       id: "inc-1",
@@ -65,17 +63,14 @@ describe("notificationService", () => {
 
     process.env.RESEND_API_KEY = originalKey;
     process.env.RESEND_FROM_EMAIL = originalFrom;
-    process.env.N8N_WEBHOOK_URL = originalN8n;
   });
 
   it("reports available notification channels", () => {
     const originalKey = process.env.RESEND_API_KEY;
     const originalFrom = process.env.RESEND_FROM_EMAIL;
-    const originalN8n = process.env.N8N_WEBHOOK_URL;
 
     delete process.env.RESEND_API_KEY;
     delete process.env.RESEND_FROM_EMAIL;
-    delete process.env.N8N_WEBHOOK_URL;
 
     expect(notificationService.getStatus().availableChannels).toEqual([]);
 
@@ -83,12 +78,8 @@ describe("notificationService", () => {
     process.env.RESEND_FROM_EMAIL = "noreply@example.com";
     expect(notificationService.getStatus().availableChannels).toEqual(["email"]);
 
-    process.env.N8N_WEBHOOK_URL = "https://n8n.example.com/webhook";
-    expect(notificationService.getStatus().availableChannels).toEqual(["email", "n8n"]);
-
     process.env.RESEND_API_KEY = originalKey;
     process.env.RESEND_FROM_EMAIL = originalFrom;
-    process.env.N8N_WEBHOOK_URL = originalN8n;
   });
 });
 

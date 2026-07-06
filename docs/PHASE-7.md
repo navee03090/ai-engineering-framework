@@ -9,25 +9,25 @@ Professional prompt management with versioned templates, feature packs, validati
 
 ## Delivered
 
-| Module | Purpose |
-|--------|---------|
-| `prompts/types.ts` | Template, context, and bundle types |
-| `prompts/registry.ts` | Versioned template registry |
-| `prompts/templates/disaster/` | Disaster-response prompt pack |
-| `prompts/templates/shared/` | Shared instructions (JSON output) |
-| `lib/prompt-manager.ts` | `resolveTemplate`, `buildAgentPromptBundle`, validation |
-| `app/api/prompts` | List prompt metadata (no secrets) |
+| Module                        | Purpose                                                 |
+| ----------------------------- | ------------------------------------------------------- |
+| `prompts/types.ts`            | Template, context, and bundle types                     |
+| `prompts/registry.ts`         | Versioned template registry                             |
+| `prompts/templates/disaster/` | Disaster-response prompt pack                           |
+| `prompts/templates/shared/`   | Shared instructions (JSON output)                       |
+| `lib/prompt-manager.ts`       | `resolveTemplate`, `buildAgentPromptBundle`, validation |
+| `app/api/prompts`             | List prompt metadata (no secrets)                       |
 
 ## Template IDs (disaster pack)
 
-| ID | Version | Use |
-|----|---------|-----|
-| `disaster.summarize` | 1.0.0 | Summarizer agent |
-| `disaster.classify` | 1.0.0 | Classifier agent |
-| `disaster.incident-intake` | 1.0.0 | Raw intake normalization (future) |
-| `disaster.vision` | 1.0.0 | Image analysis (Phase 11+) |
-| `disaster.ocr` | 1.0.0 | Document extraction (Phase 11+) |
-| `shared.json-output` | 1.0.0 | Structured JSON responses |
+| ID                         | Version | Use                               |
+| -------------------------- | ------- | --------------------------------- |
+| `disaster.summarize`       | 1.0.0   | Summarizer agent                  |
+| `disaster.classify`        | 1.0.0   | Classifier agent                  |
+| `disaster.incident-intake` | 1.0.0   | Raw intake normalization (future) |
+| `disaster.vision`          | 1.0.0   | Image analysis (Phase 11+)        |
+| `disaster.ocr`             | 1.0.0   | Document extraction (Phase 11+)   |
+| `shared.json-output`       | 1.0.0   | Structured JSON responses         |
 
 ## Usage
 

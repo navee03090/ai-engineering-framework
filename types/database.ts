@@ -1,10 +1,5 @@
 export type Json =
-  | string
-  | number
-  | boolean
-  | null
-  | { [key: string]: Json | undefined }
-  | Json[];
+  string | number | boolean | null | { [key: string]: Json | undefined } | Json[];
 
 export type Database = {
   public: {
@@ -16,6 +11,7 @@ export type Database = {
           full_name: string | null;
           avatar_url: string | null;
           role: "user" | "admin";
+          preferred_language: string;
           created_at: string;
           updated_at: string;
         };
@@ -25,6 +21,7 @@ export type Database = {
           full_name?: string | null;
           avatar_url?: string | null;
           role?: "user" | "admin";
+          preferred_language?: string;
           created_at?: string;
           updated_at?: string;
         };
@@ -34,6 +31,7 @@ export type Database = {
           full_name?: string | null;
           avatar_url?: string | null;
           role?: "user" | "admin";
+          preferred_language?: string;
           created_at?: string;
           updated_at?: string;
         };
@@ -116,6 +114,228 @@ export type Database = {
           mime_type?: string;
           file_size?: number;
           category?: "image" | "pdf" | "audio" | "document" | "other";
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      government_services: {
+        Row: {
+          id: string;
+          slug: string;
+          name: string;
+          category: string;
+          department: string;
+          office_name: string | null;
+          office_address: string | null;
+          description: string;
+          fee: string;
+          processing_time: string;
+          instructions: Json;
+          documents: Json;
+          warnings: Json;
+          icon: string | null;
+          popular: boolean;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          slug: string;
+          name: string;
+          category: string;
+          department: string;
+          office_name?: string | null;
+          office_address?: string | null;
+          description: string;
+          fee: string;
+          processing_time: string;
+          instructions?: Json;
+          documents?: Json;
+          warnings?: Json;
+          icon?: string | null;
+          popular?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          slug?: string;
+          name?: string;
+          category?: string;
+          department?: string;
+          office_name?: string | null;
+          office_address?: string | null;
+          description?: string;
+          fee?: string;
+          processing_time?: string;
+          instructions?: Json;
+          documents?: Json;
+          warnings?: Json;
+          icon?: string | null;
+          popular?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      citizen_requests: {
+        Row: {
+          id: string;
+          user_id: string;
+          query: string;
+          language: string;
+          detected_intent: string | null;
+          service_slug: string | null;
+          confidence: number | null;
+          status: string;
+          pipeline_result: Json | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          query: string;
+          language?: string;
+          detected_intent?: string | null;
+          service_slug?: string | null;
+          confidence?: number | null;
+          status?: string;
+          pipeline_result?: Json | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          query?: string;
+          language?: string;
+          detected_intent?: string | null;
+          service_slug?: string | null;
+          confidence?: number | null;
+          status?: string;
+          pipeline_result?: Json | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      document_verifications: {
+        Row: {
+          id: string;
+          user_id: string;
+          service_slug: string | null;
+          storage_path: string | null;
+          file_name: string | null;
+          mime_type: string | null;
+          ocr_result: Json | null;
+          compliance_result: Json | null;
+          confidence: number | null;
+          status: string;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          service_slug?: string | null;
+          storage_path?: string | null;
+          file_name?: string | null;
+          mime_type?: string | null;
+          ocr_result?: Json | null;
+          compliance_result?: Json | null;
+          confidence?: number | null;
+          status?: string;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          service_slug?: string | null;
+          storage_path?: string | null;
+          file_name?: string | null;
+          mime_type?: string | null;
+          ocr_result?: Json | null;
+          compliance_result?: Json | null;
+          confidence?: number | null;
+          status?: string;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      citizen_reports: {
+        Row: {
+          id: string;
+          user_id: string;
+          request_id: string | null;
+          verification_id: string | null;
+          service_slug: string | null;
+          summary: string;
+          report_json: Json;
+          qr_data: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          request_id?: string | null;
+          verification_id?: string | null;
+          service_slug?: string | null;
+          summary: string;
+          report_json: Json;
+          qr_data?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          request_id?: string | null;
+          verification_id?: string | null;
+          service_slug?: string | null;
+          summary?: string;
+          report_json?: Json;
+          qr_data?: string | null;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      agent_runs: {
+        Row: {
+          id: string;
+          user_id: string;
+          parent_type: string;
+          parent_id: string;
+          agent_name: string;
+          input: Json | null;
+          output: Json | null;
+          success: boolean;
+          duration_ms: number | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          parent_type: string;
+          parent_id: string;
+          agent_name: string;
+          input?: Json | null;
+          output?: Json | null;
+          success?: boolean;
+          duration_ms?: number | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          parent_type?: string;
+          parent_id?: string;
+          agent_name?: string;
+          input?: Json | null;
+          output?: Json | null;
+          success?: boolean;
+          duration_ms?: number | null;
           created_at?: string;
         };
         Relationships: [];

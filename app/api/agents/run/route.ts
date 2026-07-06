@@ -11,7 +11,12 @@ export const POST = createApiHandler({
     const result = await aiService.runAgent(agent, input, context);
 
     if (!result.success) {
-      return apiError(result.error ?? "Agent run failed", 422, "AGENT_RUN_FAILED", result);
+      return apiError(
+        result.error ?? "Agent run failed",
+        422,
+        "AGENT_RUN_FAILED",
+        result
+      );
     }
 
     return apiSuccess(result);

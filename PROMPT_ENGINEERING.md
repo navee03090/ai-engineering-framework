@@ -4,14 +4,14 @@
 
 All prompts live in `prompts/`:
 
-| File / folder | Role |
-|---------------|------|
-| `base.prompt.ts` | Framework-wide AI behavior |
-| `system.prompt.ts` | Project context with `{{variables}}` |
-| `user.prompt.ts` | Legacy template ID aliases |
-| `registry.ts` | Versioned template registry |
+| File / folder         | Role                                   |
+| --------------------- | -------------------------------------- |
+| `base.prompt.ts`      | Framework-wide AI behavior             |
+| `system.prompt.ts`    | Project context with `{{variables}}`   |
+| `user.prompt.ts`      | Legacy template ID aliases             |
+| `registry.ts`         | Versioned template registry            |
 | `templates/disaster/` | Pakistan Disaster Response prompt pack |
-| `templates/shared/` | Cross-feature instructions |
+| `templates/shared/`   | Cross-feature instructions             |
 
 ## Template IDs (preferred)
 
@@ -36,10 +36,10 @@ const { system, user } = buildAgentPromptBundle({
 
 Legacy keys in `user.prompt.ts` map to IDs:
 
-| Legacy key | Template ID |
-|------------|-------------|
-| `summarize` | `disaster.summarize` |
-| `classify` | `disaster.classify` |
+| Legacy key       | Template ID                |
+| ---------------- | -------------------------- |
+| `summarize`      | `disaster.summarize`       |
+| `classify`       | `disaster.classify`        |
 | `incidentIntake` | `disaster.incident-intake` |
 
 ## Variables

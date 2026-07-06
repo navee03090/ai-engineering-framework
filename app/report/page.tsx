@@ -18,7 +18,9 @@ export default function ReportPage() {
             <Badge>DigTech Civic OS</Badge>
             <Badge variant="secondary">{civic.label}</Badge>
           </div>
-          <h1 className="text-3xl font-semibold tracking-tight">Report a civic issue</h1>
+          <h1 className="text-3xl font-semibold tracking-tight">
+            Report a civic issue
+          </h1>
           <p className="text-muted-foreground">
             No account required. Coordinators triage reports in the command center with
             multi-agent AI.

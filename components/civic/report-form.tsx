@@ -57,7 +57,9 @@ export function CivicReportForm({
         setIsSubmitting(false);
         return;
       }
-      if (!ALLOWED_MIME_TYPES.includes(file.type as (typeof ALLOWED_MIME_TYPES)[number])) {
+      if (
+        !ALLOWED_MIME_TYPES.includes(file.type as (typeof ALLOWED_MIME_TYPES)[number])
+      ) {
         toast.error("Evidence file type not allowed.");
         setIsSubmitting(false);
         return;

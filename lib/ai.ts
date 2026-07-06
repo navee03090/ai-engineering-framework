@@ -1,6 +1,7 @@
-import type { GenerateContentResult } from "@google/generative-ai";
+import type { GenerateContentResult, Part } from "@google/generative-ai";
 
-import { getDefaultGeminiModel, getGeminiModel } from "@/lib/gemini";
+import { getGeminiModel } from "@/lib/gemini";
+import { withGeminiRetry } from "@/lib/gemini-retry";
 import { appendJsonOutputInstruction } from "@/lib/prompt-manager";
 import { parseModelJson } from "@/lib/json-parser";
 import { validateAiResponse } from "@/lib/response-validator";
@@ -12,23 +13,66 @@ export type GenerateTextOptions = {
   model?: string;
 };
 
+export type VisionInput = {
+  imageBase64: string;
+  mimeType: string;
+};
+
 export async function generateText(
   prompt: string,
   options: GenerateTextOptions = {}
 ): Promise<string> {
-  const model = options.model
-    ? getGeminiModel(options.model)
-    : getDefaultGeminiModel();
+  const run = async (modelName: string) => {
+    const model = getGeminiModel(options.model ?? modelName);
+    const result = await model.generateContent({
+      contents: [{ role: "user", parts: [{ text: prompt }] }],
+      generationConfig: {
+        temperature: options.temperature ?? 0.4,
+      },
+      systemInstruction: options.systemInstruction,
+    });
+    return extractText(result);
+  };
 
-  const result = await model.generateContent({
-    contents: [{ role: "user", parts: [{ text: prompt }] }],
-    generationConfig: {
-      temperature: options.temperature ?? 0.4,
+  if (options.model) {
+    return run(options.model);
+  }
+
+  return withGeminiRetry(run);
+}
+
+export async function generateVisionText(
+  prompt: string,
+  image: VisionInput,
+  options: GenerateTextOptions = {}
+): Promise<string> {
+  const parts: Part[] = [
+    { text: prompt },
+    {
+      inlineData: {
+        data: image.imageBase64,
+        mimeType: image.mimeType,
+      },
     },
-    systemInstruction: options.systemInstruction,
-  });
+  ];
 
-  return extractText(result);
+  const run = async (modelName: string) => {
+    const model = getGeminiModel(options.model ?? modelName);
+    const result = await model.generateContent({
+      contents: [{ role: "user", parts }],
+      generationConfig: {
+        temperature: options.temperature ?? 0.2,
+      },
+      systemInstruction: options.systemInstruction,
+    });
+    return extractText(result);
+  };
+
+  if (options.model) {
+    return run(options.model);
+  }
+
+  return withGeminiRetry(run);
 }
 
 export async function generateStructuredResponse<T extends z.ZodType>(
@@ -37,6 +81,21 @@ export async function generateStructuredResponse<T extends z.ZodType>(
   options: GenerateTextOptions = {}
 ): Promise<z.infer<T>> {
   const raw = await generateText(appendJsonOutputInstruction(prompt), options);
+  const parsed = parseModelJson(raw);
+  return validateAiResponse(schema, parsed);
+}
+
+export async function generateVisionStructuredResponse<T extends z.ZodType>(
+  prompt: string,
+  image: VisionInput,
+  schema: T,
+  options: GenerateTextOptions = {}
+): Promise<z.infer<T>> {
+  const raw = await generateVisionText(
+    appendJsonOutputInstruction(prompt),
+    image,
+    options
+  );
   const parsed = parseModelJson(raw);
   return validateAiResponse(schema, parsed);
 }

@@ -9,26 +9,26 @@ Harden Resend email delivery with reusable templates, expand the notification se
 
 ## Delivered
 
-| Area | Implementation |
-|------|----------------|
-| Email templates | `lib/email/templates.ts` — analyzed, created, test |
-| Email service | `sendTemplate()`, `getStatus()` |
+| Area                 | Implementation                                                        |
+| -------------------- | --------------------------------------------------------------------- |
+| Email templates      | `lib/email/templates.ts` — analyzed, created, test                    |
+| Email service        | `sendTemplate()`, `getStatus()`                                       |
 | Notification service | Channel auto-detection, incident created/analyzed alerts, n8n payload |
-| API | `GET /api/notifications/status` |
-| API | `POST /api/notifications/test` |
-| API | `POST /api/notifications/send` |
-| API | `POST /api/incidents/[id]/notify` |
-| UI | `/notifications` + `NotificationPanel` |
-| n8n starter | `n8n/workflows/incident-notification.json` |
-| Wiring | Create/analyze incident routes send best-effort notifications |
+| API                  | `GET /api/notifications/status`                                       |
+| API                  | `POST /api/notifications/test`                                        |
+| API                  | `POST /api/notifications/send`                                        |
+| API                  | `POST /api/incidents/[id]/notify`                                     |
+| UI                   | `/notifications` + `NotificationPanel`                                |
+| n8n starter          | `n8n/workflows/incident-notification.json`                            |
+| Wiring               | Create/analyze incident routes send best-effort notifications         |
 
 ## Email templates
 
-| Template ID | Use case |
-|-------------|----------|
+| Template ID         | Use case                                                |
+| ------------------- | ------------------------------------------------------- |
 | `incident.analyzed` | After AI analysis (category, severity, summary, action) |
-| `incident.created` | New incident submitted |
-| `system.test` | Resend configuration check |
+| `incident.created`  | New incident submitted                                  |
+| `system.test`       | Resend configuration check                              |
 
 ## Environment
 

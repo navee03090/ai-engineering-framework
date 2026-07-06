@@ -3,7 +3,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
-import { PipelineSteps, type PipelineStepView } from "@/components/civic/pipeline-steps";
+import {
+  PipelineSteps,
+  type PipelineStepView,
+} from "@/components/civic/pipeline-steps";
 import { SeverityBadge } from "@/components/civic/severity-badge";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -98,7 +101,9 @@ export function CommandIncidentPanel({
         <CardHeader>
           <div className="flex flex-wrap items-center gap-2">
             <SeverityBadge severity={current.severity} />
-            {current.category ? <Badge variant="outline">{current.category}</Badge> : null}
+            {current.category ? (
+              <Badge variant="outline">{current.category}</Badge>
+            ) : null}
             <Badge variant="secondary">{current.status}</Badge>
             {escalated ? <Badge variant="destructive">Alert sent</Badge> : null}
             {isEscalationSeverity(current.severity) && !escalated ? (
@@ -107,7 +112,8 @@ export function CommandIncidentPanel({
           </div>
           <CardTitle>{current.title}</CardTitle>
           <CardDescription>
-            {current.location ?? "Location n/a"} · {new Date(current.created_at).toLocaleString()}
+            {current.location ?? "Location n/a"} ·{" "}
+            {new Date(current.created_at).toLocaleString()}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -139,7 +145,10 @@ export function CommandIncidentPanel({
           </CardHeader>
           <CardContent className="space-y-2 text-sm">
             {attachments.map((file) => (
-              <div key={file.id} className="flex items-center justify-between rounded border p-2">
+              <div
+                key={file.id}
+                className="flex items-center justify-between rounded border p-2"
+              >
                 <span>{file.file_name}</span>
                 <Badge variant="secondary">{file.category}</Badge>
               </div>

@@ -7,7 +7,7 @@
 ```json
 {
   "success": true,
-  "data": { }
+  "data": {}
 }
 ```
 
@@ -26,25 +26,28 @@ All `createApiHandler` responses include header `x-request-id`.
 
 ## Health & framework
 
-| Method | Path | Auth | Description |
-|--------|------|------|-------------|
-| GET | `/api/health` | No | Framework status, env configuration |
+| Method | Path          | Auth | Description                         |
+| ------ | ------------- | ---- | ----------------------------------- |
+| GET    | `/api/health` | No   | Framework status, env configuration |
 
 ---
 
 ## AI & agents
 
-| Method | Path | Auth | Rate limit | Description |
-|--------|------|------|------------|-------------|
-| POST | `/api/ai/health` | No | AI | Live Gemini structured response test |
-| GET | `/api/agents` | No | default | List registered agents |
-| POST | `/api/agents/run` | No | AI | Run single agent |
-| POST | `/api/agents/pipeline` | No | AI | Run agent pipeline |
+| Method | Path                   | Auth | Rate limit | Description                          |
+| ------ | ---------------------- | ---- | ---------- | ------------------------------------ |
+| POST   | `/api/ai/health`       | No   | AI         | Live Gemini structured response test |
+| GET    | `/api/agents`          | No   | default    | List registered agents               |
+| POST   | `/api/agents/run`      | No   | AI         | Run single agent                     |
+| POST   | `/api/agents/pipeline` | No   | AI         | Run agent pipeline                   |
 
 ### POST `/api/agents/run`
 
 ```json
-{ "agent": "summarizer", "input": { "content": "...", "audience": "ops", "maxWords": 100 } }
+{
+  "agent": "summarizer",
+  "input": { "content": "...", "audience": "ops", "maxWords": 100 }
+}
 ```
 
 ### POST `/api/agents/pipeline`
@@ -57,9 +60,9 @@ All `createApiHandler` responses include header `x-request-id`.
 
 ## Prompts
 
-| Method | Path | Auth | Description |
-|--------|------|------|-------------|
-| GET | `/api/prompts` | No | List prompt template metadata |
+| Method | Path           | Auth | Description                   |
+| ------ | -------------- | ---- | ----------------------------- |
+| GET    | `/api/prompts` | No   | List prompt template metadata |
 
 Query: `?tag=disaster`
 
@@ -67,12 +70,12 @@ Query: `?tag=disaster`
 
 ## Authentication
 
-| Method | Path | Auth | Rate limit | Description |
-|--------|------|------|------------|-------------|
-| POST | `/api/auth/signup` | No | auth | Register email/password |
-| POST | `/api/auth/signin` | No | auth | Sign in |
-| POST | `/api/auth/signout` | No | auth | Sign out |
-| GET | `/api/auth/session` | No | default | Current session |
+| Method | Path                | Auth | Rate limit | Description             |
+| ------ | ------------------- | ---- | ---------- | ----------------------- |
+| POST   | `/api/auth/signup`  | No   | auth       | Register email/password |
+| POST   | `/api/auth/signin`  | No   | auth       | Sign in                 |
+| POST   | `/api/auth/signout` | No   | auth       | Sign out                |
+| GET    | `/api/auth/session` | No   | default    | Current session         |
 
 ### POST `/api/auth/signin`
 
@@ -84,15 +87,15 @@ Query: `?tag=disaster`
 
 ## Incidents
 
-| Method | Path | Auth | Description |
-|--------|------|------|-------------|
-| GET | `/api/incidents` | No | List incidents |
-| POST | `/api/incidents` | No | Create incident (notifies if signed in) |
-| GET | `/api/incidents/[id]` | No | Get incident by ID |
-| POST | `/api/incidents/[id]/analyze` | No | AI analyze + persist + notify |
-| POST | `/api/incidents/[id]/notify` | Yes | Manual notification |
-| GET | `/api/incidents/[id]/attachments` | Yes | List attachments |
-| POST | `/api/incidents/[id]/attachments` | Yes | Link upload to incident |
+| Method | Path                              | Auth | Description                             |
+| ------ | --------------------------------- | ---- | --------------------------------------- |
+| GET    | `/api/incidents`                  | No   | List incidents                          |
+| POST   | `/api/incidents`                  | No   | Create incident (notifies if signed in) |
+| GET    | `/api/incidents/[id]`             | No   | Get incident by ID                      |
+| POST   | `/api/incidents/[id]/analyze`     | No   | AI analyze + persist + notify           |
+| POST   | `/api/incidents/[id]/notify`      | Yes  | Manual notification                     |
+| GET    | `/api/incidents/[id]/attachments` | Yes  | List attachments                        |
+| POST   | `/api/incidents/[id]/attachments` | Yes  | Link upload to incident                 |
 
 ### POST `/api/incidents`
 
@@ -119,11 +122,11 @@ Query: `?tag=disaster`
 
 ## Uploads
 
-| Method | Path | Auth | Description |
-|--------|------|------|-------------|
-| POST | `/api/uploads` | Yes | Multipart file upload |
-| GET | `/api/uploads` | Yes | List folder or signed URL |
-| DELETE | `/api/uploads` | Yes | Delete file by path |
+| Method | Path           | Auth | Description               |
+| ------ | -------------- | ---- | ------------------------- |
+| POST   | `/api/uploads` | Yes  | Multipart file upload     |
+| GET    | `/api/uploads` | Yes  | List folder or signed URL |
+| DELETE | `/api/uploads` | Yes  | Delete file by path       |
 
 ### POST `/api/uploads`
 
@@ -138,11 +141,11 @@ Query: `?tag=disaster`
 
 ## Notifications (email)
 
-| Method | Path | Auth | Description |
-|--------|------|------|-------------|
-| GET | `/api/notifications/status` | Yes | Email + n8n channel status |
-| POST | `/api/notifications/test` | Yes | Send test email to signed-in user |
-| POST | `/api/notifications/send` | Yes | Custom multi-channel notification |
+| Method | Path                        | Auth | Description                       |
+| ------ | --------------------------- | ---- | --------------------------------- |
+| GET    | `/api/notifications/status` | Yes  | Email + n8n channel status        |
+| POST   | `/api/notifications/test`   | Yes  | Send test email to signed-in user |
+| POST   | `/api/notifications/send`   | Yes  | Custom multi-channel notification |
 
 ### POST `/api/notifications/send`
 
@@ -161,11 +164,11 @@ Query: `?tag=disaster`
 
 ## n8n automation
 
-| Method | Path | Auth | Description |
-|--------|------|------|-------------|
-| GET | `/api/n8n/status` | Yes | Webhook config + event catalog |
-| POST | `/api/n8n/test` | Yes | Fire `system.test` event |
-| POST | `/api/n8n/trigger` | Yes | Custom webhook event |
+| Method | Path               | Auth | Description                    |
+| ------ | ------------------ | ---- | ------------------------------ |
+| GET    | `/api/n8n/status`  | Yes  | Webhook config + event catalog |
+| POST   | `/api/n8n/test`    | Yes  | Fire `system.test` event       |
+| POST   | `/api/n8n/trigger` | Yes  | Custom webhook event           |
 
 ### POST `/api/n8n/trigger`
 
@@ -195,25 +198,25 @@ Query: `?tag=disaster`
 
 ## Protected pages
 
-| Path | Description |
-|------|-------------|
-| `/dashboard` | Command center |
-| `/uploads` | File upload UI |
-| `/notifications` | Email + n8n test panel |
+| Path                | Description                    |
+| ------------------- | ------------------------------ |
+| `/dashboard`        | Command center                 |
+| `/uploads`          | File upload UI                 |
+| `/notifications`    | Email + n8n test panel         |
 | `/login`, `/signup` | Auth (redirect when signed in) |
 
 ---
 
 ## Error codes
 
-| Code | HTTP | Meaning |
-|------|------|---------|
-| `VALIDATION_ERROR` | 400 | Zod / input failed |
-| `UNAUTHORIZED` | 401 | Auth required |
-| `RATE_LIMITED` | 429 | Too many requests |
-| `AI_UNAVAILABLE` | 503 | Missing `GEMINI_API_KEY` |
-| `EMAIL_UNAVAILABLE` | 503 | Missing Resend config |
-| `N8N_UNAVAILABLE` | 503 | Missing `N8N_WEBHOOK_URL` |
+| Code                | HTTP | Meaning                   |
+| ------------------- | ---- | ------------------------- |
+| `VALIDATION_ERROR`  | 400  | Zod / input failed        |
+| `UNAUTHORIZED`      | 401  | Auth required             |
+| `RATE_LIMITED`      | 429  | Too many requests         |
+| `AI_UNAVAILABLE`    | 503  | Missing `GEMINI_API_KEY`  |
+| `EMAIL_UNAVAILABLE` | 503  | Missing Resend config     |
+| `N8N_UNAVAILABLE`   | 503  | Missing `N8N_WEBHOOK_URL` |
 
 See `lib/api/error-codes.ts` for the full list.
 

@@ -1,3 +1,11 @@
+import { IntentAgent } from "@/agents/intent.agent";
+import { KnowledgeAgent } from "@/agents/knowledge.agent";
+import { OcrAgent } from "@/agents/ocr.agent";
+import { ComplianceAgent } from "@/agents/compliance.agent";
+import { RecommendationAgent } from "@/agents/recommendation.agent";
+import { ReportAgent } from "@/agents/report.agent";
+import { ProcedureAgent } from "@/agents/procedure.agent";
+import { DocumentVerifyAgent } from "@/agents/document-verify.agent";
 import { ClassifierAgent } from "@/agents/classifier.agent";
 import { SummarizerAgent } from "@/agents/summarizer.agent";
 import type { BaseAgent } from "@/agents/base-agent";
@@ -43,13 +51,16 @@ export function registerDefaultAgents(registry: AgentRegistry = agentRegistry): 
     return;
   }
 
-  if (!registry.has("summarizer")) {
-    registry.register(new SummarizerAgent());
-  }
-
-  if (!registry.has("classifier")) {
-    registry.register(new ClassifierAgent());
-  }
+  if (!registry.has("summarizer")) registry.register(new SummarizerAgent());
+  if (!registry.has("classifier")) registry.register(new ClassifierAgent());
+  if (!registry.has("intent")) registry.register(new IntentAgent());
+  if (!registry.has("knowledge")) registry.register(new KnowledgeAgent());
+  if (!registry.has("ocr")) registry.register(new OcrAgent());
+  if (!registry.has("compliance")) registry.register(new ComplianceAgent());
+  if (!registry.has("recommendation")) registry.register(new RecommendationAgent());
+  if (!registry.has("report")) registry.register(new ReportAgent());
+  if (!registry.has("procedure")) registry.register(new ProcedureAgent());
+  if (!registry.has("document-verify")) registry.register(new DocumentVerifyAgent());
 
   if (registry === agentRegistry) {
     defaultsRegistered = true;

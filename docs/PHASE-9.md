@@ -9,14 +9,14 @@ Standardize every API route with shared validation, logging, rate limiting, auth
 
 ## Delivered
 
-| Module | Purpose |
-|--------|---------|
-| `lib/api/create-handler.ts` | `createApiHandler()` route factory |
-| `lib/api/validation/` | `parseJsonBody`, `parseQueryParams` |
-| `lib/api/rate-limit.ts` | Per-IP in-memory rate limits |
-| `lib/api/logger.ts` | Structured API request/response logs |
-| `lib/api/error-codes.ts` | Shared error code constants |
-| `lib/api/index.ts` | Single import surface for API utilities |
+| Module                      | Purpose                                 |
+| --------------------------- | --------------------------------------- |
+| `lib/api/create-handler.ts` | `createApiHandler()` route factory      |
+| `lib/api/validation/`       | `parseJsonBody`, `parseQueryParams`     |
+| `lib/api/rate-limit.ts`     | Per-IP in-memory rate limits            |
+| `lib/api/logger.ts`         | Structured API request/response logs    |
+| `lib/api/error-codes.ts`    | Shared error code constants             |
+| `lib/api/index.ts`          | Single import surface for API utilities |
 
 ## `createApiHandler` features
 
@@ -45,11 +45,11 @@ export const POST = createApiHandler({
 
 ## Rate limits (per IP + route)
 
-| Preset | Window | Max |
-|--------|--------|-----|
-| `default` | 60s | 60 |
-| `ai` | 60s | 10 |
-| `auth` | 60s | 20 |
+| Preset    | Window | Max |
+| --------- | ------ | --- |
+| `default` | 60s    | 60  |
+| `ai`      | 60s    | 10  |
+| `auth`    | 60s    | 20  |
 
 Returns `429 RATE_LIMITED` when exceeded.
 

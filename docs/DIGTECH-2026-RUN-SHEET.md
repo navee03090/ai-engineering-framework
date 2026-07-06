@@ -24,13 +24,13 @@ PRODUCT NAME: _________________________________________
 
 ## Timeline
 
-| When | Do |
-|------|-----|
-| 0–10 min | Hear theme → ChatGPT (playbook Part 4) |
-| 10–75 min | Cursor adapt only (playbook Part 5) |
-| 75–95 min | Test 3× + seed data |
-| 95+ min | **STOP CODING** → rehearse |
-| Present | Problem → AI → demo → impact |
+| When      | Do                                     |
+| --------- | -------------------------------------- |
+| 0–10 min  | Hear theme → ChatGPT (playbook Part 4) |
+| 10–75 min | Cursor adapt only (playbook Part 5)    |
+| 75–95 min | Test 3× + seed data                    |
+| 95+ min   | **STOP CODING** → rehearse             |
+| Present   | Problem → AI → demo → impact           |
 
 ---
 
@@ -42,19 +42,19 @@ Theme → paste playbook **Part 4** → save output → paste **Part 5** to Curs
 
 ## Demo script (90 sec)
 
-1. Landing — one line problem  
-2. Report — type prepared scenario  
-3. Dashboard — show severity + AI summary  
+1. Landing — one line problem
+2. Report — type prepared scenario
+3. Dashboard — show severity + AI summary
 4. “Human approves; AI triages.”
 
 ---
 
 ## Backup
 
-- [ ] Seeded incidents in DB  
-- [ ] 15s video on phone  
-- [ ] Hotspot on  
-- [ ] Already logged in  
+- [ ] Seeded incidents in DB
+- [ ] 15s video on phone
+- [ ] Hotspot on
+- [ ] Already logged in
 
 ---
 

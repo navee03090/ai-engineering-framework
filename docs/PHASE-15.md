@@ -9,15 +9,15 @@ Polish the repository as a publishable GitHub template with a local setup script
 
 ## Delivered
 
-| Area | Implementation |
-|------|----------------|
-| Setup script | `npm run setup` → `scripts/setup.mjs` |
+| Area           | Implementation                                                      |
+| -------------- | ------------------------------------------------------------------- |
+| Setup script   | `npm run setup` → `scripts/setup.mjs`                               |
 | Template guide | `docs/TEMPLATE-SETUP.md` — GitHub generate, env, migrations, deploy |
-| README | Template badge + quick path for new repos |
-| Home page | v1.0 complete, template CTA, feature grid updated |
-| Deployment | `DEPLOYMENT.md` updated for all migrations + template enable |
-| Docs UI | `/docs` lists template setup + Phase 15 |
-| Health | `GET /api/health` reports `phase: 15` |
+| README         | Template badge + quick path for new repos                           |
+| Home page      | v1.0 complete, template CTA, feature grid updated                   |
+| Deployment     | `DEPLOYMENT.md` updated for all migrations + template enable        |
+| Docs UI        | `/docs` lists template setup + Phase 15                             |
+| Health         | `GET /api/health` reports `phase: 15`                               |
 
 ## One-click workflow
 

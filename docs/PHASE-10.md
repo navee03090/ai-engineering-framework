@@ -9,25 +9,25 @@ Email/password authentication with Supabase — login/signup UI, protected route
 
 ## Delivered
 
-| Area | Implementation |
-|------|----------------|
-| Login UI | `/login` + `LoginForm` |
-| Signup UI | `/signup` + `SignupForm` |
-| Protected area | `/dashboard` under `(protected)` layout |
-| Server actions | `signInAction`, `signUpAction`, `signOutAction` |
+| Area            | Implementation                                          |
+| --------------- | ------------------------------------------------------- |
+| Login UI        | `/login` + `LoginForm`                                  |
+| Signup UI       | `/signup` + `SignupForm`                                |
+| Protected area  | `/dashboard` under `(protected)` layout                 |
+| Server actions  | `signInAction`, `signUpAction`, `signOutAction`         |
 | Session helpers | `getServerUser`, `requireUser` in `lib/auth/session.ts` |
-| Middleware | Redirect unauthenticated users from `/dashboard` |
-| Auth callback | `/auth/callback` for Supabase email confirmation |
-| Header | `SiteHeader` with session-aware nav |
+| Middleware      | Redirect unauthenticated users from `/dashboard`        |
+| Auth callback   | `/auth/callback` for Supabase email confirmation        |
+| Header          | `SiteHeader` with session-aware nav                     |
 
 ## Routes
 
-| Path | Access |
-|------|--------|
-| `/login` | Public (redirects if signed in) |
-| `/signup` | Public (redirects if signed in) |
-| `/dashboard` | Authenticated only |
-| `/auth/callback` | Supabase OAuth/email callback |
+| Path             | Access                          |
+| ---------------- | ------------------------------- |
+| `/login`         | Public (redirects if signed in) |
+| `/signup`        | Public (redirects if signed in) |
+| `/dashboard`     | Authenticated only              |
+| `/auth/callback` | Supabase OAuth/email callback   |
 
 ## Server action flow
 

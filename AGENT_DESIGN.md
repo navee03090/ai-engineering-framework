@@ -29,14 +29,14 @@ agents/
 
 ## Pakistan Disaster Response AI patterns
 
-| Agent | Role |
-|-------|------|
-| Intake | Parse incident reports, normalize fields |
-| Vision | Analyze images/video frames |
-| OCR | Extract text from documents |
-| Classifier | Severity and category assignment |
-| Orchestrator | Route incidents through the pipeline |
-| Notifier | Trigger email/n8n when thresholds met |
+| Agent        | Role                                     |
+| ------------ | ---------------------------------------- |
+| Intake       | Parse incident reports, normalize fields |
+| Vision       | Analyze images/video frames              |
+| OCR          | Extract text from documents              |
+| Classifier   | Severity and category assignment         |
+| Orchestrator | Route incidents through the pipeline     |
+| Notifier     | Trigger email/n8n when thresholds met    |
 
 ## Sprint 1 status
 

@@ -28,10 +28,14 @@ export const aiService = {
   },
 
   async classifyIncident(content: string, context?: AgentContext) {
-    return this.runAgent("classifier", { content }, {
-      projectName: "Pakistan Disaster Response AI",
-      ...context,
-    });
+    return this.runAgent(
+      "classifier",
+      { content },
+      {
+        projectName: "Pakistan Disaster Response AI",
+        ...context,
+      }
+    );
   },
 
   async summarizeIncident(

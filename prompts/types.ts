@@ -17,7 +17,10 @@ export type PromptTemplateMeta = Pick<
   requiredVariables: string[];
 };
 
-export type PromptContext = Record<string, string | number | boolean | null | undefined>;
+export type PromptContext = Record<
+  string,
+  string | number | boolean | null | undefined
+>;
 
 export type ResolvedPrompt = {
   id: string;

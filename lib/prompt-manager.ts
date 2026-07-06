@@ -61,7 +61,9 @@ export function resolveTemplate(
 }
 
 export function buildSystemPrompt(context?: PromptContext): string {
-  return [baseSystemPrompt, systemPrompt].map((part) => interpolate(part, context)).join("\n\n");
+  return [baseSystemPrompt, systemPrompt]
+    .map((part) => interpolate(part, context))
+    .join("\n\n");
 }
 
 /** @deprecated Use resolveTemplate(templateId, context).text */

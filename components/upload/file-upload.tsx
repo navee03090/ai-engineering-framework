@@ -47,7 +47,9 @@ export function FileUpload({
       return;
     }
 
-    if (!ALLOWED_MIME_TYPES.includes(file.type as (typeof ALLOWED_MIME_TYPES)[number])) {
+    if (
+      !ALLOWED_MIME_TYPES.includes(file.type as (typeof ALLOWED_MIME_TYPES)[number])
+    ) {
       toast.error(`File type not allowed: ${file.type || "unknown"}`);
       return;
     }

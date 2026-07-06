@@ -1,11 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { type NextRequest, NextResponse } from "next/server";
 
-import {
-  AUTH_ROUTES,
-  isAuthOnlyRoute,
-  isProtectedRoute,
-} from "@/lib/auth/routes";
+import { AUTH_ROUTES, isAuthOnlyRoute, isProtectedRoute } from "@/lib/auth/routes";
 import type { Database } from "@/types/database";
 
 export async function handleAppMiddleware(request: NextRequest) {
