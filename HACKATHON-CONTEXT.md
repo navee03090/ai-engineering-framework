@@ -6,11 +6,11 @@
 
 ## Event
 
-| Field | Value |
-| --- | --- |
-| **Event** | AI Hackathon — CECOS University |
-| **Theme** | Waste & Environment |
-| **Product** | EcoMind AI (pivoted from CivicAI) |
+| Field       | Value                                                                                |
+| ----------- | ------------------------------------------------------------------------------------ |
+| **Event**   | AI Hackathon — CECOS University                                                      |
+| **Theme**   | Waste & Environment                                                                  |
+| **Product** | EcoMind AI (pivoted from CivicAI)                                                    |
 | **Tagline** | AI that doesn't just report waste—it predicts, prioritizes, and coordinates cleanup. |
 
 ---
@@ -23,14 +23,14 @@
 
 ## What's reused (do NOT rebuild)
 
-| Integration | Status | Purpose |
-| --- | --- | --- |
-| **Supabase** | ✅ | Auth, Postgres, RLS, storage |
-| **Google Gemini** | ✅ | 6-agent AI pipeline |
-| **Resend** | ✅ | Report emails with PDF |
-| **Google Maps** | ✅ | Municipal offices, hotspots |
-| **Web Speech API** | ✅ | Voice input |
-| **jsPDF** | ✅ | Environmental incident reports |
+| Integration        | Status | Purpose                        |
+| ------------------ | ------ | ------------------------------ |
+| **Supabase**       | ✅     | Auth, Postgres, RLS, storage   |
+| **Google Gemini**  | ✅     | 6-agent AI pipeline            |
+| **Resend**         | ✅     | Report emails with PDF         |
+| **Google Maps**    | ✅     | Municipal offices, hotspots    |
+| **Web Speech API** | ✅     | Voice input                    |
+| **jsPDF**          | ✅     | Environmental incident reports |
 
 ---
 
@@ -38,7 +38,7 @@
 
 1. Landing → Cleaner Cities Through AI
 2. Sign in → `/assistant`
-3. Voice: *"There is illegal dumping near Ring Road."*
+3. Voice: _"There is illegal dumping near Ring Road."_
 4. Intent → Illegal Dumping → LWMC authority → Map
 5. `/upload` → waste photo → OCR → Compliance
 6. PDF + Email → Dashboard history

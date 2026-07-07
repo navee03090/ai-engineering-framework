@@ -13,6 +13,7 @@ import {
   Send,
   Sparkles,
   Upload,
+  X,
 } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
@@ -80,6 +81,11 @@ export function AssistantChat() {
     useState<AssistantApiResponse["officeLocation"]>();
   const initialQueryHandled = useRef(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [pendingImage, setPendingImage] = useState<{
+    file: File;
+    previewUrl: string;
+  } | null>(null);
   const services = getPopularServices();
   const suggestions = language === "ur" ? SUGGESTIONS_UR : SUGGESTIONS_EN;
 
@@ -117,7 +123,37 @@ export function AssistantChat() {
 
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, streamingText, isTyping, partials, agentSteps]);
+  }, [messages, streamingText, isTyping, partials, agentSteps, pendingImage]);
+
+  function clearPendingImage() {
+    setPendingImage((current) => {
+      if (current) {
+        URL.revokeObjectURL(current.previewUrl);
+      }
+      return null;
+    });
+  }
+
+  function handleImageSelect(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    event.target.value = "";
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      toast.error(
+        language === "ur"
+          ? "براہ کرم تصویر اپ لوڈ کریں"
+          : "Please attach an image file"
+      );
+      return;
+    }
+
+    clearPendingImage();
+    setPendingImage({
+      file,
+      previewUrl: URL.createObjectURL(file),
+    });
+  }
 
   function applyPartialToSidebar(data: AssistantPartialPayload) {
     if (data.stage === "intent") {
@@ -172,20 +208,32 @@ export function AssistantChat() {
 
   async function handleSend(text?: string) {
     const content = (text ?? input).trim();
-    if (!content || isTyping) return;
+    if ((!content && !pendingImage) || isTyping) return;
 
     if (isListening) {
       stopListening();
     }
 
+    const attachedImage = pendingImage;
+    const queryText =
+      content ||
+      (language === "ur"
+        ? "میں نے کچرے یا ماحولیاتی مسئلے کی تصویر منسلک کی ہے۔ براہ کرم تجزیہ کریں۔"
+        : "I have attached a photo of a waste or environmental issue. Please analyze and guide me.");
+
     const userMsg: ChatMessage = {
       id: crypto.randomUUID(),
       role: "user",
-      content,
+      content: queryText,
       timestamp: new Date().toISOString(),
+      imageUrl: attachedImage?.previewUrl,
+      imageName: attachedImage?.file.name,
     };
     setMessages((prev) => [...prev, userMsg]);
     setInput("");
+    if (attachedImage) {
+      setPendingImage(null);
+    }
     setIsTyping(true);
     setStreamingText("");
     setConfidence(null);
@@ -196,7 +244,7 @@ export function AssistantChat() {
     setPartials([]);
 
     try {
-      const result = await askCivicAssistantStream(content, language, handleStreamEvent);
+      const result = await askCivicAssistantStream(queryText, language, handleStreamEvent);
       applyAssistantResult(result);
 
       await streamTextEffect(result.answer, setStreamingText);
@@ -298,8 +346,8 @@ export function AssistantChat() {
                   </div>
                   <p className="mt-6 text-xs text-muted-foreground">
                     {language === "ur"
-                      ? "مائیک دبائیں یا ٹائپ کریں — 6 AI ایجنٹس آپ کی مدد کریں گے"
-                      : "Use the mic or type — 6 AI agents will classify and guide you"}
+                      ? "مائیک دبائیں، ٹائپ کریں، یا 📎 سے تصویر منسلک کریں"
+                      : "Use the mic, type, or attach a photo with 📎"}
                   </p>
                 </div>
               )}
@@ -322,19 +370,31 @@ export function AssistantChat() {
                       )}
                       <div
                         className={cn(
-                          "max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed",
+                          "max-w-[85%] overflow-hidden rounded-2xl text-sm leading-relaxed",
                           msg.role === "user"
                             ? "bg-primary text-primary-foreground"
                             : "bg-muted"
                         )}
                       >
-                        <p className="whitespace-pre-wrap">{msg.content}</p>
-                        {msg.confidence !== undefined && (
-                          <div className="mt-2 flex items-center gap-2 text-xs opacity-80">
-                            <CheckCircle2 className="size-3" />
-                            {msg.confidence}% confidence
+                        {msg.imageUrl ? (
+                          <div className="border-b border-white/10 bg-black/10">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={msg.imageUrl}
+                              alt={msg.imageName ?? "Report evidence"}
+                              className="max-h-52 w-full object-cover"
+                            />
                           </div>
-                        )}
+                        ) : null}
+                        <div className="px-4 py-3">
+                          <p className="whitespace-pre-wrap">{msg.content}</p>
+                          {msg.confidence !== undefined && (
+                            <div className="mt-2 flex items-center gap-2 text-xs opacity-80">
+                              <CheckCircle2 className="size-3" />
+                              {msg.confidence}% confidence
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </motion.div>
                   ))}
@@ -371,6 +431,36 @@ export function AssistantChat() {
             )}
 
             <div className="shrink-0 border-t border-border/60 p-4">
+              {pendingImage ? (
+                <div className="mb-3 flex items-start gap-3 rounded-xl border border-primary/20 bg-primary/5 p-2">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={pendingImage.previewUrl}
+                    alt="Attachment preview"
+                    className="size-16 rounded-lg object-cover"
+                  />
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-xs font-medium">
+                      {pendingImage.file.name}
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      {language === "ur"
+                        ? "تصویر رپورٹ کے ساتھ بھیجی جائے گی"
+                        : "Photo will appear in your report message"}
+                    </p>
+                  </div>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon"
+                    className="shrink-0"
+                    onClick={clearPendingImage}
+                    aria-label="Remove attachment"
+                  >
+                    <X className="size-4" />
+                  </Button>
+                </div>
+              ) : null}
               {isListening && (
                 <p className="mb-2 flex items-center gap-2 text-xs text-primary">
                   <span className="relative flex size-2">
@@ -383,11 +473,26 @@ export function AssistantChat() {
                 </p>
               )}
               <div className="flex gap-2">
-                <Link href="/upload">
-                  <Button variant="outline" size="icon" aria-label="Upload document">
-                    <Paperclip className="size-4" />
-                  </Button>
-                </Link>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={handleImageSelect}
+                  aria-hidden
+                />
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="icon"
+                  aria-label={
+                    language === "ur" ? "تصویر منسلک کریں" : "Attach photo"
+                  }
+                  disabled={isTyping}
+                  onClick={() => fileInputRef.current?.click()}
+                >
+                  <Paperclip className="size-4" />
+                </Button>
                 <Button
                   variant={isListening ? "default" : "outline"}
                   size="icon"
@@ -439,7 +544,7 @@ export function AssistantChat() {
                 />
                 <Button
                   onClick={() => handleSend()}
-                  disabled={isTyping || !input.trim()}
+                  disabled={isTyping || (!input.trim() && !pendingImage)}
                 >
                   <Send className="size-4" />
                 </Button>

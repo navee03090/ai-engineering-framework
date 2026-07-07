@@ -22,17 +22,17 @@ Open [http://localhost:3000](http://localhost:3000)
 
 ## What's included
 
-| Layer | Technology |
-| --- | --- |
+| Layer        | Technology                                                              |
+| ------------ | ----------------------------------------------------------------------- |
 | **Frontend** | Next.js 16, React 19, TypeScript, Tailwind v4, shadcn/ui, Framer Motion |
-| **Backend** | Next.js API Routes, Zod validation, service layer |
-| **Database** | Supabase (Postgres, Auth, Storage, RLS) |
-| **AI** | Google Gemini (6-agent pipeline with Zod schemas) |
-| **Email** | Resend (report PDF delivery) |
-| **Maps** | Google Maps (`@vis.gl/react-google-maps`) |
-| **Voice** | Web Speech API (browser-native, free) |
-| **PDF** | jsPDF |
-| **Testing** | Vitest, Playwright, ESLint, Prettier, Husky |
+| **Backend**  | Next.js API Routes, Zod validation, service layer                       |
+| **Database** | Supabase (Postgres, Auth, Storage, RLS)                                 |
+| **AI**       | Google Gemini (6-agent pipeline with Zod schemas)                       |
+| **Email**    | Resend (report PDF delivery)                                            |
+| **Maps**     | Google Maps (`@vis.gl/react-google-maps`)                               |
+| **Voice**    | Web Speech API (browser-native, free)                                   |
+| **PDF**      | jsPDF                                                                   |
+| **Testing**  | Vitest, Playwright, ESLint, Prettier, Husky                             |
 
 ---
 
@@ -50,15 +50,15 @@ Open [http://localhost:3000](http://localhost:3000)
 
 ## Documentation
 
-| Document | Description |
-| --- | --- |
-| **[HACKATHON-CONTEXT.md](./HACKATHON-CONTEXT.md)** | Hackathon theme + pivot plan |
+| Document                                                                        | Description                                              |
+| ------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| **[HACKATHON-CONTEXT.md](./HACKATHON-CONTEXT.md)**                              | Hackathon theme + pivot plan                             |
 | **[CIVICAI-PROJECT-DOCUMENTATION.md](./docs/CIVICAI-PROJECT-DOCUMENTATION.md)** | Complete project docs — tools, architecture, setup, APIs |
-| [CIVICAI-AGENT-ARCHITECTURE.md](./docs/CIVICAI-AGENT-ARCHITECTURE.md) | Six-agent system deep dive |
-| [CIVICAI-WORKFLOWS.md](./docs/CIVICAI-WORKFLOWS.md) | Query & upload pipeline flows |
-| [CIVICAI-PROMPTS.md](./docs/CIVICAI-PROMPTS.md) | Prompt engineering reference |
-| [CIVICAI-EXAMPLES.md](./docs/CIVICAI-EXAMPLES.md) | Sample queries and outputs |
-| [API-REFERENCE.md](./docs/API-REFERENCE.md) | Full HTTP API reference |
+| [CIVICAI-AGENT-ARCHITECTURE.md](./docs/CIVICAI-AGENT-ARCHITECTURE.md)           | Six-agent system deep dive                               |
+| [CIVICAI-WORKFLOWS.md](./docs/CIVICAI-WORKFLOWS.md)                             | Query & upload pipeline flows                            |
+| [CIVICAI-PROMPTS.md](./docs/CIVICAI-PROMPTS.md)                                 | Prompt engineering reference                             |
+| [CIVICAI-EXAMPLES.md](./docs/CIVICAI-EXAMPLES.md)                               | Sample queries and outputs                               |
+| [API-REFERENCE.md](./docs/API-REFERENCE.md)                                     | Full HTTP API reference                                  |
 
 ---
 
@@ -76,13 +76,13 @@ Optional: `RESEND_API_KEY` + `RESEND_FROM_EMAIL` for email delivery.
 
 ## Scripts
 
-| Command | Description |
-| --- | --- |
-| `npm run dev` | Start development server |
-| `npm run build` | Production build |
-| `npm run lint` | ESLint |
-| `npm run test` | Vitest unit tests |
-| `npm run test:e2e` | Playwright E2E tests |
+| Command            | Description              |
+| ------------------ | ------------------------ |
+| `npm run dev`      | Start development server |
+| `npm run build`    | Production build         |
+| `npm run lint`     | ESLint                   |
+| `npm run test`     | Vitest unit tests        |
+| `npm run test:e2e` | Playwright E2E tests     |
 
 ---
 
@@ -102,7 +102,7 @@ Run migrations in order from `supabase/migrations/`:
 
 1. Landing → show tagline + six-agent architecture
 2. Sign in → `/assistant`
-3. Voice: *"There is illegal dumping near Ring Road."*
+3. Voice: _"There is illegal dumping near Ring Road."_
 4. View checklist, map (LWMC), and incident report
 5. Check email for PDF attachment
 6. Optional: upload waste photo at `/upload` for OCR + compliance

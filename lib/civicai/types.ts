@@ -94,6 +94,8 @@ export type ChatMessage = {
   timestamp: string;
   confidence?: number;
   sources?: { title: string; url: string }[];
+  imageUrl?: string;
+  imageName?: string;
 };
 
 export type HistoryItem = {
