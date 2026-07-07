@@ -44,6 +44,10 @@ export async function handleAppMiddleware(request: NextRequest) {
   }
 
   if (isAuthOnlyRoute(pathname) && user) {
+    const next = request.nextUrl.searchParams.get("next");
+    if (next && next.startsWith("/") && !next.startsWith("//")) {
+      return NextResponse.redirect(new URL(next, request.url));
+    }
     return NextResponse.redirect(new URL(AUTH_ROUTES.dashboard, request.url));
   }
 

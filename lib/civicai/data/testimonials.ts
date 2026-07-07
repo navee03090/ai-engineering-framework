@@ -5,9 +5,9 @@ export const TESTIMONIALS: Testimonial[] = [
     id: "1",
     name: "Ayesha Khan",
     city: "Lahore",
-    role: "Small Business Owner",
+    role: "Community Volunteer",
     quote:
-      "I renewed my driving license without a middleman. CivicAI told me exactly which documents to bring and the real fee. Saved me PKR 3,000.",
+      "I reported illegal dumping near Ring Road and EcoMind AI told me exactly which authority to contact. LWMC cleaned it up within 48 hours.",
     rating: 5,
   },
   {
@@ -16,7 +16,7 @@ export const TESTIMONIALS: Testimonial[] = [
     city: "Islamabad",
     role: "University Student",
     quote:
-      "The document checker compared my officer's handwritten note against the official list. I knew what was actually required before visiting again.",
+      "The OCR feature read a municipal warning sign from my photo and matched it against the reporting checklist. Incredibly useful for evidence.",
     rating: 5,
   },
   {
@@ -25,16 +25,16 @@ export const TESTIMONIALS: Testimonial[] = [
     city: "Peshawar",
     role: "Homemaker",
     quote:
-      "For the first time I understood the NADRA CNIC process in plain language. The checklist made our family application simple.",
+      "For the first time I knew who to call when garbage wasn't collected on my street. The citizen checklist made reporting simple.",
     rating: 5,
   },
   {
     id: "4",
     name: "Imran Shah",
     city: "Karachi",
-    role: "IT Professional",
+    role: "Environmental Activist",
     quote:
-      "CivicAI feels like a premium product, not a government website. Fast answers, clear steps, and scam warnings that actually help.",
+      "EcoMind AI feels like a command center for waste management — voice input, maps, PDF reports, and six AI agents working together.",
     rating: 5,
   },
   {
@@ -43,7 +43,7 @@ export const TESTIMONIALS: Testimonial[] = [
     city: "Multan",
     role: "Teacher",
     quote:
-      "I used it for domicile certificate guidance. The timeline and department info were accurate. My colleagues now use it too.",
+      "I used it to report water pollution in a local canal. The timeline and EPA contact info were accurate. My students now use it too.",
     rating: 4,
   },
 ];

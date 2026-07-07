@@ -27,7 +27,12 @@ export type AssistantApiResponse = {
 };
 
 export type ServiceCategory =
-  "identity" | "transport" | "property" | "tax" | "utilities" | "legal" | "records";
+  | "waste"
+  | "recycling"
+  | "pollution"
+  | "infrastructure"
+  | "green"
+  | "general";
 
 export type GovernmentService = {
   id: string;

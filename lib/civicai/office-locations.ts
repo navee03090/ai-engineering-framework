@@ -22,12 +22,18 @@ const PAKISTAN_CITIES: Record<string, { lat: number; lng: number; label: string 
 };
 
 const SERVICE_OFFICE_LABELS: Record<string, string> = {
-  "driving-license": "Traffic Police Licensing Center",
-  passport: "Regional Passport Office",
-  cnic: "NADRA Registration Center",
-  "birth-certificate": "Union Council Office",
-  "vehicle-registration": "Excise & Taxation Office",
-  "property-transfer": "Sub-Registrar Office",
+  "garbage-collection": "LWMC Waste Collection Office",
+  "illegal-dumping": "LWMC Enforcement Unit",
+  "recycling-center": "Recycling Drop-off Center",
+  "industrial-waste": "EPA Industrial Compliance Office",
+  "hazardous-waste": "EPA Hazardous Waste Unit",
+  "blocked-drain": "WASA Complaint Cell",
+  "plastic-pollution": "Environmental Protection Office",
+  "air-pollution": "EPA Air Quality Monitoring",
+  "water-pollution": "EPA Water Quality Unit",
+  "tree-plantation": "Parks & Horticulture Office",
+  "public-cleaning": "LWMC Sanitation Division",
+  "environmental-complaint": "EPA Complaint Center",
 };
 
 function slugOffset(slug: string): { lat: number; lng: number } {
@@ -48,10 +54,14 @@ export function detectCityFromText(...parts: string[]): string | null {
     }
   }
 
+  if (combined.includes("ring road")) {
+    return "lahore";
+  }
+
   return null;
 }
 
-/** Resolve office map pin from service + spoken/written location. No extra API calls. */
+/** Resolve facility map pin from service + spoken/written location. No extra API calls. */
 export function resolveOfficeLocation(
   serviceSlug: string,
   options?: { entities?: string[]; query?: string }
@@ -73,105 +83,98 @@ export function resolveOfficeLocation(
 
   return {
     officeName: `${officeLabel} — ${city.label}`,
-    officeAddress: `District office, ${city.label}, Pakistan`,
+    officeAddress: `District facility, ${city.label}, Pakistan`,
     lat: city.lat + offset.lat,
     lng: city.lng + offset.lng,
     city: city.label,
   };
 }
 
-/** Mock office coordinates for demo — default Islamabad */
+/** Mock facility coordinates for demo — default Islamabad */
 export const OFFICE_LOCATIONS: Record<string, OfficeLocation> = {
-  "driving-license": {
-    officeName: "Islamabad Traffic Police Licensing Center",
-    officeAddress: "H-9, Islamabad Traffic Police HQ, Islamabad",
-    lat: 33.6498,
-    lng: 73.0672,
-    city: "Islamabad",
+  "garbage-collection": {
+    officeName: "LWMC Waste Collection Office",
+    officeAddress: "LWMC HQ, Ferozepur Road, Lahore",
+    lat: 31.5204,
+    lng: 74.3587,
+    city: "Lahore",
   },
-  passport: {
-    officeName: "Regional Passport Office Islamabad",
-    officeAddress: "G-8/1, Immigration & Passports Office, Islamabad",
-    lat: 33.7077,
-    lng: 73.0553,
-    city: "Islamabad",
+  "illegal-dumping": {
+    officeName: "LWMC Enforcement Unit — Ring Road Hotspot",
+    officeAddress: "Ring Road, near Niazi Chowk, Lahore",
+    lat: 31.485,
+    lng: 74.32,
+    city: "Lahore",
   },
-  cnic: {
-    officeName: "NADRA Registration Center Islamabad",
-    officeAddress: "NADRA HQ, State Life Building, Blue Area, Islamabad",
-    lat: 33.6844,
-    lng: 73.0479,
-    city: "Islamabad",
+  "recycling-center": {
+    officeName: "Lahore Recycling Drop-off Center",
+    officeAddress: "Gulberg III, Recycling Facility, Lahore",
+    lat: 31.5105,
+    lng: 74.3447,
+    city: "Lahore",
   },
-  "birth-certificate": {
-    officeName: "Union Council Office (Islamabad)",
-    officeAddress: "Sector G-6, Union Council Office, Islamabad",
-    lat: 33.7157,
-    lng: 73.0753,
-    city: "Islamabad",
+  "industrial-waste": {
+    officeName: "EPA Punjab Industrial Compliance Office",
+    officeAddress: "EPA Punjab HQ, 38-E/1, Gulberg III, Lahore",
+    lat: 31.5123,
+    lng: 74.3456,
+    city: "Lahore",
   },
-  "death-certificate": {
-    officeName: "Union Council Office (Islamabad)",
-    officeAddress: "Sector G-6, Union Council Office, Islamabad",
-    lat: 33.7157,
-    lng: 73.0753,
-    city: "Islamabad",
+  "hazardous-waste": {
+    officeName: "EPA Hazardous Waste Unit",
+    officeAddress: "EPA Punjab HQ, Gulberg III, Lahore",
+    lat: 31.5125,
+    lng: 74.346,
+    city: "Lahore",
   },
-  "marriage-certificate": {
-    officeName: "Union Council / NADRA Office",
-    officeAddress: "Sector F-8, Islamabad",
-    lat: 33.6996,
-    lng: 73.0362,
-    city: "Islamabad",
+  "blocked-drain": {
+    officeName: "WASA Complaint Cell Lahore",
+    officeAddress: "WASA HQ, 37-Ferozepur Road, Lahore",
+    lat: 31.5497,
+    lng: 74.3436,
+    city: "Lahore",
   },
-  domicile: {
-    officeName: "Deputy Commissioner Office",
-    officeAddress: "DC Office, G-11 Markaz, Islamabad",
-    lat: 33.6678,
-    lng: 72.9889,
-    city: "Islamabad",
+  "plastic-pollution": {
+    officeName: "Canal Pollution Hotspot — BRB Canal",
+    officeAddress: "BRB Canal, Gulberg, Lahore",
+    lat: 31.505,
+    lng: 74.335,
+    city: "Lahore",
   },
-  "tax-registration": {
-    officeName: "FBR Regional Tax Office",
-    officeAddress: "FBR House, Constitution Avenue, Islamabad",
-    lat: 33.7234,
-    lng: 73.0589,
-    city: "Islamabad",
+  "air-pollution": {
+    officeName: "EPA Air Quality Monitoring Station",
+    officeAddress: "Township, Lahore",
+    lat: 31.47,
+    lng: 74.29,
+    city: "Lahore",
   },
-  "vehicle-registration": {
-    officeName: "Excise & Taxation Office Islamabad",
-    officeAddress: "Excise Department, G-9/4, Islamabad",
-    lat: 33.6599,
-    lng: 73.0546,
-    city: "Islamabad",
+  "water-pollution": {
+    officeName: "EPA Water Quality Unit — Ravi River",
+    officeAddress: "Ravi River monitoring point, Lahore",
+    lat: 31.58,
+    lng: 74.38,
+    city: "Lahore",
   },
-  "property-transfer": {
-    officeName: "Sub-Registrar Office Islamabad",
-    officeAddress: "District Courts, F-8 Markaz, Islamabad",
-    lat: 33.71,
-    lng: 73.058,
-    city: "Islamabad",
+  "tree-plantation": {
+    officeName: "Parks & Horticulture Authority",
+    officeAddress: "Lawrence Gardens, Lahore",
+    lat: 31.568,
+    lng: 74.312,
+    city: "Lahore",
   },
-  "utility-complaints": {
-    officeName: "IESCO Customer Service Center",
-    officeAddress: "IESCO HQ, WAPDA House, Islamabad",
-    lat: 33.7074,
-    lng: 73.0551,
-    city: "Islamabad",
+  "public-cleaning": {
+    officeName: "LWMC Sanitation Division",
+    officeAddress: "LWMC HQ, Ferozepur Road, Lahore",
+    lat: 31.521,
+    lng: 74.359,
+    city: "Lahore",
   },
-  "police-complaint": {
-    officeName: "Islamabad Police Station",
-    officeAddress: "F-6 Markaz Police Station, Islamabad",
-    lat: 33.7294,
-    lng: 73.0931,
-    city: "Islamabad",
-  },
-  "land-records": {
-    officeName: "Patwari / Revenue Office",
-    officeAddress: "Revenue Department, G-10 Markaz, Islamabad",
-    lat: 33.6789,
-    lng: 73.0123,
-    city: "Islamabad",
+  "environmental-complaint": {
+    officeName: "EPA Punjab Complaint Center",
+    officeAddress: "EPA Punjab HQ, Gulberg III, Lahore",
+    lat: 31.512,
+    lng: 74.345,
+    city: "Lahore",
   },
 };
 

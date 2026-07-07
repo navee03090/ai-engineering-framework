@@ -3,7 +3,8 @@ import { Suspense } from "react";
 import { ServicesBrowser } from "@/components/civicai/services/services-browser";
 
 export const metadata = {
-  title: "Government Services",
+  title: "Environmental Services",
+  description: "Browse waste and environmental services with authority guidance.",
 };
 
 export default function ServicesPage() {

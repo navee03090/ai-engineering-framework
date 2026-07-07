@@ -4,33 +4,33 @@ import { Badge } from "@/components/ui/badge";
 const STEPS = [
   {
     step: "01",
-    title: "Ask Your Question",
+    title: "Report the Issue",
     description:
-      'Tell CivicAI what you need — e.g. "I want to renew my driving license."',
+      'Tell EcoMind AI what you see — e.g. "There is illegal dumping near Ring Road."',
   },
   {
     step: "02",
-    title: "AI Understands Intent",
+    title: "AI Classifies Intent",
     description:
-      "Our decision assistant identifies the service, department, and official procedure.",
+      "Intent Agent identifies the environmental issue type and responsible authority.",
   },
   {
     step: "03",
-    title: "Get Structured Guidance",
+    title: "Get Cleanup Guidance",
     description:
-      "Receive documents, fees, timeline, checklist, and scam warnings — all in one report.",
+      "Receive citizen checklist, safety tips, map location, and estimated response time.",
   },
   {
     step: "04",
-    title: "Verify Documents (Optional)",
+    title: "Upload Evidence (Optional)",
     description:
-      "Upload an officer's handwritten note. OCR compares requested docs against the official list.",
+      "Upload a waste photo or municipal notice. OCR extracts text and Compliance verifies evidence.",
   },
   {
     step: "05",
-    title: "Visit with Confidence",
+    title: "Generate Incident Report",
     description:
-      "Arrive prepared with the right documents and knowledge of official fees. No middleman needed.",
+      "Download PDF, email report to authorities, and track status on your dashboard.",
   },
 ];
 
@@ -43,7 +43,7 @@ export function HowItWorksTimeline() {
             How It Works
           </Badge>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            From Confusion to Confidence in 5 Steps
+            From Report to Cleanup in 5 Steps
           </h2>
         </div>
         <div className="relative mt-14">

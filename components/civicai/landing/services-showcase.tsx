@@ -1,18 +1,9 @@
 import Link from "next/link";
 import {
-  Baby,
-  BookOpen,
-  Building2,
-  Car,
+  AlertTriangle,
   FileText,
-  Heart,
-  IdCard,
-  Landmark,
-  MapPin,
-  Receipt,
-  Shield,
-  Truck,
-  Zap,
+  Trash2,
+  Waves,
   type LucideIcon,
 } from "lucide-react";
 
@@ -29,19 +20,18 @@ import {
 import { getPopularServices } from "@/lib/civicai/data/services";
 
 const ICON_MAP: Record<string, LucideIcon> = {
-  Car,
-  BookOpen,
-  IdCard,
-  Baby,
-  FileText,
-  Heart,
-  MapPin,
-  Receipt,
-  Truck,
-  Building2,
-  Zap,
-  Shield,
-  Landmark,
+  Trash2,
+  AlertTriangle,
+  Waves,
+  Recycle: FileText,
+  Factory: FileText,
+  Biohazard: FileText,
+  Droplets: FileText,
+  Package: FileText,
+  Wind: FileText,
+  TreePine: FileText,
+  Sparkles: FileText,
+  MessageSquare: FileText,
 };
 
 export function ServicesShowcase() {
@@ -53,10 +43,10 @@ export function ServicesShowcase() {
         <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
           <div>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-              Supported Government Services
+              Environmental Services
             </h2>
             <p className="mt-4 max-w-xl text-lg text-muted-foreground">
-              13 essential services with official document checklists and fee guidance.
+              12 waste and environmental services with evidence checklists and authority guidance.
             </p>
           </div>
           <Link href="/services">
@@ -81,11 +71,11 @@ export function ServicesShowcase() {
                   </CardHeader>
                   <CardContent className="space-y-2 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Fee</span>
+                      <span className="text-muted-foreground">Cost</span>
                       <span className="font-medium">{service.fee}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Processing</span>
+                      <span className="text-muted-foreground">Response</span>
                       <span className="font-medium">{service.processingTime}</span>
                     </div>
                   </CardContent>

@@ -5,7 +5,7 @@ import { CtaSection } from "@/components/civicai/landing/cta-section";
 export const metadata = {
   title: "Features",
   description:
-    "Explore CivicAI features — AI guidance, document verification, and scam warnings.",
+    "Explore EcoMind AI features — incident classification, OCR evidence, maps, and PDF reports.",
 };
 
 export default function FeaturesPage() {
@@ -15,10 +15,10 @@ export default function FeaturesPage() {
         <div className="mx-auto max-w-3xl">
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
             Everything You Need for{" "}
-            <span className="civic-gradient-text">Civic Navigation</span>
+            <span className="civic-gradient-text">Environmental Action</span>
           </h1>
           <p className="mt-4 text-lg text-muted-foreground">
-            Premium government technology designed for Pakistani citizens.
+            AI that predicts, prioritizes, and coordinates cleanup across Pakistan.
           </p>
         </div>
       </section>

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useActionState } from "react";
 
 import { signInAction, type AuthActionState } from "@/app/(auth)/actions";
@@ -21,6 +22,8 @@ const initialState: AuthActionState = {};
 
 export function LoginForm() {
   const [state, formAction, isPending] = useActionState(signInAction, initialState);
+  const searchParams = useSearchParams();
+  const next = searchParams.get("next");
 
   return (
     <Card>
@@ -30,6 +33,7 @@ export function LoginForm() {
       </CardHeader>
       <form action={formAction}>
         <CardContent className="space-y-4">
+          {next ? <input type="hidden" name="redirectTo" value={next} /> : null}
           {state.error ? (
             <Alert variant="destructive">
               <AlertDescription>{state.error}</AlertDescription>
@@ -69,6 +73,22 @@ export function LoginForm() {
               href="/signup"
             >
               Create one
+            </Link>
+          </p>
+          <p className="text-center text-sm text-muted-foreground">
+            Municipal staff?{" "}
+            <Link
+              className="font-medium text-foreground hover:underline"
+              href="/login?next=/authority/dashboard"
+            >
+              Authority sign in
+            </Link>
+            {" · "}
+            <Link
+              className="font-medium text-foreground hover:underline"
+              href="/signup?next=/authority/dashboard"
+            >
+              Create authority account
             </Link>
           </p>
         </CardFooter>

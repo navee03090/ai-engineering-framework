@@ -56,7 +56,7 @@ export function generateCivicReportPdf(report: CivicReport): jsPDF {
   if (report.summary) {
     doc.setFontSize(12);
     doc.setFont("helvetica", "bold");
-    doc.text("Citizen Summary", MARGIN, y);
+    doc.text("Environmental Incident Summary", MARGIN, y);
     y += 8;
     doc.setFont("helvetica", "normal");
     y = ensureSpace(doc, y, 30);
@@ -126,7 +126,7 @@ export function generateCivicReportPdf(report: CivicReport): jsPDF {
     if (report.ocrIntelligence.documents?.length) {
       y = ensureSpace(doc, y, 10);
       doc.setFont("helvetica", "bold");
-      doc.text("Detected Documents:", MARGIN, y);
+      doc.text("Detected Evidence:", MARGIN, y);
       y += 6;
       doc.setFont("helvetica", "normal");
       for (const doc_item of report.ocrIntelligence.documents) {
@@ -177,7 +177,7 @@ export function generateCivicReportPdf(report: CivicReport): jsPDF {
     y = ensureSpace(doc, y, 20);
     doc.setFontSize(12);
     doc.setFont("helvetica", "bold");
-    doc.text("Document Checklist", MARGIN, y);
+    doc.text("Citizen Checklist", MARGIN, y);
     y += 8;
     doc.setFont("helvetica", "normal");
     doc.setFontSize(10);
@@ -195,7 +195,7 @@ export function generateCivicReportPdf(report: CivicReport): jsPDF {
     doc.setFontSize(11);
     doc.setFont("helvetica", "bold");
     doc.setTextColor(200, 50, 50);
-    doc.text("Missing Documents", MARGIN, y);
+    doc.text("Missing Evidence", MARGIN, y);
     doc.setTextColor(30, 30, 30);
     y += 7;
     doc.setFont("helvetica", "normal");
@@ -283,7 +283,7 @@ export function generateCivicReportPdfBuffer(report: CivicReport): Buffer {
 
 export function downloadCivicReportPdf(report: CivicReport): void {
   const doc = generateCivicReportPdf(report);
-  const filename = `civicai-${report.serviceId}-${report.id.slice(0, 8)}.pdf`;
+  const filename = `ecomind-${report.serviceId}-${report.id.slice(0, 8)}.pdf`;
   doc.save(filename);
 }
 
@@ -296,14 +296,14 @@ export function printCivicReportPdf(report: CivicReport): void {
 export async function shareCivicReportPdf(report: CivicReport): Promise<void> {
   const doc = generateCivicReportPdf(report);
   const blob = doc.output("blob");
-  const file = new File([blob], `civicai-${report.serviceId}.pdf`, {
+  const file = new File([blob], `ecomind-${report.serviceId}.pdf`, {
     type: "application/pdf",
   });
 
   if (navigator.share && navigator.canShare?.({ files: [file] })) {
     await navigator.share({
       title: report.pdfTitle ?? report.serviceName,
-      text: report.summary ?? "CivicAI Government Service Report",
+      text: report.summary ?? "EcoMind AI Environmental Incident Report",
       files: [file],
     });
     return;

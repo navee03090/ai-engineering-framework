@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-import { Building2, Menu, Moon, Sparkles, Sun, X } from "lucide-react";
+import { Leaf, Menu, Moon, Sparkles, Sun, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useState } from "react";
 
@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
 const NAV_LINKS = [
   { href: "/features", label: "Features" },
   { href: "/how-it-works", label: "How It Works" },
-  { href: "/services", label: "Services" },
+  { href: "/services", label: "Environmental Services" },
   { href: "/about", label: "About" },
   { href: "/faq", label: "FAQ" },
 ];
@@ -30,12 +30,12 @@ export function MarketingNavbar() {
       <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-2.5">
           <div className="flex size-9 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm">
-            <Building2 className="size-5" aria-hidden />
+            <Leaf className="size-5" aria-hidden />
           </div>
           <div className="flex flex-col leading-none">
-            <span className="text-lg font-bold tracking-tight">CivicAI</span>
+            <span className="text-lg font-bold tracking-tight">EcoMind AI</span>
             <span className="hidden text-[10px] text-muted-foreground sm:block">
-              Pakistan Citizen Assistant
+              Waste Command Center
             </span>
           </div>
         </Link>
@@ -75,11 +75,11 @@ export function MarketingNavbar() {
           <Link href="/assistant" className="hidden sm:block">
             <Button variant="ghost" size="sm">
               <Sparkles className="size-4" />
-              AI Assistant
+              Report Issue
             </Button>
           </Link>
           <Link href="/dashboard" className="hidden sm:block">
-            <Button size="sm">Get Started</Button>
+            <Button size="sm">Open Dashboard</Button>
           </Link>
           <Button
             variant="ghost"

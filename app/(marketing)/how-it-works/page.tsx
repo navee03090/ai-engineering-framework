@@ -5,7 +5,7 @@ import { ServicesShowcase } from "@/components/civicai/landing/services-showcase
 export const metadata = {
   title: "How It Works",
   description:
-    "See how CivicAI guides you through Pakistan government services in 5 simple steps.",
+    "See how EcoMind AI turns environmental reports into actionable incident reports in 5 steps.",
 };
 
 export default function HowItWorksPage() {
@@ -14,10 +14,10 @@ export default function HowItWorksPage() {
       <section className="px-4 pb-8 pt-16 text-center sm:px-6 lg:px-8">
         <div className="mx-auto max-w-3xl">
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-            How CivicAI Works
+            How EcoMind AI Works
           </h1>
           <p className="mt-4 text-lg text-muted-foreground">
-            From your question to a complete government service report in minutes.
+            From your report to a complete environmental incident PDF in minutes.
           </p>
         </div>
       </section>

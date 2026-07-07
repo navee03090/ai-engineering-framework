@@ -37,7 +37,7 @@ export class DocumentVerifyAgent extends BaseAgent<
 > {
   readonly name = "document-verify";
   readonly description =
-    "OCR officer notes and compare requested documents against official checklists.";
+    "OCR waste/evidence images and compare against environmental reporting checklists.";
   readonly inputSchema = documentVerifyInputSchema;
 
   protected async run(
@@ -46,8 +46,8 @@ export class DocumentVerifyAgent extends BaseAgent<
   ): Promise<DocumentVerifyOutput> {
     const language = (input.language ?? "en") as CivicLanguage;
     const service =
-      getServiceById(input.serviceId ?? "driving-license") ??
-      getServiceById("driving-license")!;
+      getServiceById(input.serviceId ?? "illegal-dumping") ??
+      getServiceById("illegal-dumping")!;
 
     const { system, user } = buildAgentPromptBundle({
       userTemplateId: "civic.document-verify",
@@ -57,11 +57,11 @@ export class DocumentVerifyAgent extends BaseAgent<
         languageInstruction: getLanguageInstruction(language),
       },
       systemContext: {
-        projectName: context.projectName ?? "CivicAI",
+        projectName: context.projectName ?? "EcoMind AI",
         environment: context.environment ?? process.env.NODE_ENV ?? "development",
       },
       extraSystemParts: [
-        "Extract text from the image using vision. Compare documents politely. Never accuse government officials.",
+        "Extract text from the image using vision. Compare evidence politely. Never accuse individuals; use careful environmental advisory language.",
       ],
     });
 

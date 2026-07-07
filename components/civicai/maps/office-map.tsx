@@ -67,7 +67,7 @@ function MapFallback({ location, title, height = 240 }: OfficeMapProps) {
 
 export function OfficeMap({
   location,
-  title = "Office Location",
+  title = "Facility / Hotspot Location",
   className,
   height = 240,
 }: OfficeMapProps) {

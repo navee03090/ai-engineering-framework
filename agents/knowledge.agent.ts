@@ -15,7 +15,7 @@ export class KnowledgeAgent extends BaseAgent<
 > {
   readonly name = "knowledge";
   readonly description =
-    "Retrieves structured government knowledge from verified database (no hallucination).";
+    "Retrieves structured environmental knowledge from verified database (no hallucination).";
   readonly inputSchema = knowledgeInputSchema;
 
   protected async run(

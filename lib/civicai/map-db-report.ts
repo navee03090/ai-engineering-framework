@@ -110,7 +110,7 @@ export function mapDbReport(row: DbCitizenReportRow): CivicReport {
     missingDocuments: compliance?.missingDocuments ?? [],
     warnings: recommendation?.warnings ?? [],
     tips: recommendation?.preparationTips ?? [],
-    sources: [{ title: "CivicAI Verified Knowledge", url: "#" }],
+    sources: [{ title: "EcoMind AI Verified Knowledge", url: "#" }],
     reportType: isVerification ? "verification" : "query",
     summary: row.summary ?? reportAgent?.citizenSummary,
     pdfTitle: reportAgent?.pdfTitle,

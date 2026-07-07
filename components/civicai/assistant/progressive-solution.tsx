@@ -23,7 +23,7 @@ export function ProgressiveSolution({ partial, language }: ProgressiveSolutionPr
         <Card className="border-primary/20">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm">
-              {language === "ur" ? "سروس کی شناخت" : "Service Detected"}
+              {language === "ur" ? "مسئلے کی شناخت" : "Issue Detected"}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-2 text-sm">
@@ -92,7 +92,7 @@ export function ProgressiveSolution({ partial, language }: ProgressiveSolutionPr
         <CardHeader className="pb-2">
           <CardTitle className="flex items-center gap-2 text-sm">
             <ListChecks className="size-4 text-primary" />
-            {language === "ur" ? "دستاویزات کی چیک لسٹ" : "Document Checklist"}
+            {language === "ur" ? "شہری چیک لسٹ" : "Citizen Checklist"}
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-2">

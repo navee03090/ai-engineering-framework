@@ -4,7 +4,7 @@ import {
   CheckCircle2,
   FileSearch,
   ListChecks,
-  Shield,
+  MapPin,
 } from "lucide-react";
 
 import { AnimatedCard } from "@/components/civicai/shared";
@@ -13,39 +13,39 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/ca
 const FEATURES = [
   {
     icon: Bot,
-    title: "AI Decision Assistant",
+    title: "Six-Agent AI Pipeline",
     description:
-      "Structured guidance through government procedures — not open-ended chat. Get clear steps, not vague answers.",
+      "Intent, Knowledge, OCR, Compliance, Recommendation, and Report agents — specialized for environmental intelligence.",
   },
   {
     icon: ListChecks,
-    title: "Official Checklists",
+    title: "Citizen Checklists",
     description:
-      "Auto-generated document checklists based on official requirements for 13+ government services.",
+      "Auto-generated evidence checklists for 12+ waste and environmental services across Pakistan.",
   },
   {
     icon: FileSearch,
-    title: "Document Verification",
+    title: "OCR Evidence Analysis",
     description:
-      "Upload officer notes. OCR extracts document names and compares them against the official list.",
+      "Upload waste photos or municipal notices. OCR extracts text and compares against reporting requirements.",
   },
   {
-    icon: Shield,
-    title: "Scam Warnings",
+    icon: MapPin,
+    title: "Interactive Maps",
     description:
-      "Know official fees and processing times. Get polite warnings about unofficial payments — without accusations.",
+      "View municipal offices, recycling centers, and pollution hotspots on Google Maps.",
   },
   {
     icon: AlertTriangle,
-    title: "Missing Document Alerts",
+    title: "Safety & Compliance",
     description:
-      "Instantly see which documents are required, optional, unknown, or missing from your submission.",
+      "Careful advisory language for illegal dumping indicators — never accuses individuals.",
   },
   {
     icon: CheckCircle2,
-    title: "Confidence Scoring",
+    title: "PDF + Email Reports",
     description:
-      "Every AI response includes a confidence indicator and source references for transparency.",
+      "Download environmental incident reports and receive them by email with full audit trail.",
   },
 ];
 
@@ -55,10 +55,10 @@ export function FeaturesGrid() {
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Built for Citizens, Not Bureaucrats
+            Built for Citizens & Municipalities
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Premium government technology that puts transparency first.
+            Premium environmental technology that predicts, prioritizes, and coordinates cleanup.
           </p>
         </div>
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

@@ -11,14 +11,14 @@ import { buildAgentPromptBundle } from "@/lib/prompt-manager";
 export const ocrInputSchema = z.object({
   imageBase64: z.string().min(1),
   mimeType: z.string().min(1),
-  serviceName: z.string().default("Government Service"),
+  serviceName: z.string().default("Environmental Issue"),
   language: z.enum(["en", "ur"]).default("en"),
 });
 
 export class OcrAgent extends BaseAgent<z.infer<typeof ocrInputSchema>, OcrOutput> {
   readonly name = "ocr";
   readonly description =
-    "Performs OCR on uploaded officer notes and extracts document names.";
+    "Performs OCR on uploaded waste/evidence images and extracts text and evidence items.";
   readonly inputSchema = ocrInputSchema;
 
   protected async run(
@@ -33,7 +33,7 @@ export class OcrAgent extends BaseAgent<z.infer<typeof ocrInputSchema>, OcrOutpu
         languageInstruction: getLanguageInstruction(language),
       },
       systemContext: {
-        projectName: context.projectName ?? "CivicAI",
+        projectName: context.projectName ?? "EcoMind AI",
         environment: context.environment ?? process.env.NODE_ENV ?? "development",
       },
     });

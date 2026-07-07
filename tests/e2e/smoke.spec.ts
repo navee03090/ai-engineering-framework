@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test("home page loads", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading", { name: "AI Engineering Framework" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /Cleaner Cities/i })).toBeVisible();
 });
 
 test("login page loads", async ({ page }) => {

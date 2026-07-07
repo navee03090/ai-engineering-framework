@@ -1,6 +1,6 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, FileText } from "lucide-react";
 
@@ -13,37 +13,36 @@ import { getLastAssistantResponse } from "@/lib/civicai/client";
 import { DEMO_REPORT } from "@/lib/civicai/data/reports";
 import type { DocumentStatus } from "@/lib/civicai/types";
 
-function getChecklistSnapshot(): {
+type ChecklistSnapshot = {
   serviceName: string;
   docs: { name: string; status: DocumentStatus }[];
-} {
+};
+
+function readChecklistSnapshot(): ChecklistSnapshot {
   const last = getLastAssistantResponse();
   if (last) {
     return { serviceName: last.serviceName, docs: last.checklist };
   }
-  return { serviceName: DEMO_REPORT.serviceName, docs: DEMO_REPORT.requiredDocuments };
-}
-
-function getServerChecklistSnapshot() {
-  return { serviceName: DEMO_REPORT.serviceName, docs: DEMO_REPORT.requiredDocuments };
+  return {
+    serviceName: DEMO_REPORT.serviceName,
+    docs: DEMO_REPORT.requiredDocuments,
+  };
 }
 
 export default function ChecklistPage() {
   const { language } = useCivicLanguage();
-  const { serviceName, docs } = useSyncExternalStore(
-    () => () => {},
-    getChecklistSnapshot,
-    getServerChecklistSnapshot
-  );
+  const [snapshot] = useState<ChecklistSnapshot>(readChecklistSnapshot);
+
+  const { serviceName, docs } = snapshot;
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-6 sm:px-6 lg:px-8">
       <PageHeader
-        title={language === "ur" ? "دستاویزات کی چیک لسٹ" : "Document Checklist"}
+        title={language === "ur" ? "شہری چیک لسٹ" : "Citizen Checklist"}
         description={
           language === "ur"
-            ? `${serviceName} کے لیے سرکاری چیک لسٹ`
-            : `Official checklist for ${serviceName}`
+            ? `${serviceName} کے لیے ثبوت کی چیک لسٹ`
+            : `Evidence checklist for ${serviceName}`
         }
       >
         <Link href="/reports/demo">
@@ -59,8 +58,8 @@ export default function ChecklistPage() {
         <CardHeader>
           <CardTitle>
             {language === "ur"
-              ? "ضروری اور اختیاری دستاویزات"
-              : "Required & Optional Documents"}
+              ? "ضروری اور اختیاری ثبوت"
+              : "Required & Optional Evidence"}
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
@@ -87,8 +86,8 @@ export default function ChecklistPage() {
             {language === "ur" ? "مشورہ:" : "Tip:"}
           </strong>{" "}
           {language === "ur"
-            ? "اصل اور فوٹو کاپیاں دونوں ساتھ لائیں۔ لائسنسنگ سینٹر صبح جلدی جائیں۔"
-            : "Bring both originals and photocopies. Visit the licensing center early morning to avoid queues."}
+            ? "مقام کی تصویر اور GPS پن کے ساتھ رپورٹ کریں۔ حفاظتی فاصلے سے ثبوت جمع کریں۔"
+            : "Report with a photo and GPS pin. Gather evidence from a safe distance."}
         </CardContent>
       </Card>
     </div>

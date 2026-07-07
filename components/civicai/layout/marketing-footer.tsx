@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { Building2, Code2, Mail, Share2 } from "lucide-react";
+import { Leaf, Code2, Mail, Share2 } from "lucide-react";
 
 const FOOTER_LINKS = {
   Product: [
     { href: "/features", label: "Features" },
     { href: "/how-it-works", label: "How It Works" },
-    { href: "/services", label: "Government Services" },
+    { href: "/services", label: "Environmental Services" },
     { href: "/assistant", label: "AI Assistant" },
   ],
   Resources: [
@@ -16,7 +16,7 @@ const FOOTER_LINKS = {
   ],
   Platform: [
     { href: "/dashboard", label: "Dashboard" },
-    { href: "/upload", label: "Upload Document" },
+    { href: "/upload", label: "Upload Waste Photo" },
     { href: "/history", label: "History" },
     { href: "/settings", label: "Settings" },
   ],
@@ -30,18 +30,18 @@ export function MarketingFooter() {
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-2.5">
               <div className="flex size-9 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-                <Building2 className="size-5" aria-hidden />
+                <Leaf className="size-5" aria-hidden />
               </div>
-              <span className="text-xl font-bold">CivicAI</span>
+              <span className="text-xl font-bold">EcoMind AI</span>
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
-              AI-powered Civic Navigation for Transparent Government Services.
-              Empowering Pakistani citizens to navigate government procedures with
-              confidence.
+              AI that doesn&apos;t just report waste—it predicts, prioritizes, and
+              coordinates cleanup. Helping citizens and municipalities build cleaner
+              cities across Pakistan.
             </p>
             <div className="mt-6 flex gap-3">
               <a
-                href="mailto:hello@civicai.pk"
+                href="mailto:hello@ecomind.pk"
                 className="flex size-9 items-center justify-center rounded-lg border border-border bg-background text-muted-foreground transition-colors hover:text-foreground"
                 aria-label="Email"
               >
@@ -85,10 +85,10 @@ export function MarketingFooter() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border/60 pt-8 sm:flex-row">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} CivicAI. Built for transparent governance.
+            © {new Date().getFullYear()} EcoMind AI. Built for cleaner Pakistan.
           </p>
           <p className="text-xs text-muted-foreground">
-            Mock government data for demonstration purposes.
+            Mock environmental data for demonstration purposes.
           </p>
         </div>
       </div>

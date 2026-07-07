@@ -23,7 +23,7 @@ export class RecommendationAgent extends BaseAgent<
 > {
   readonly name = "recommendation";
   readonly description =
-    "Generates citizen checklist, tips, timeline, FAQs, and next steps.";
+    "Generates citizen checklist, safety advice, reporting steps, and environmental tips.";
   readonly inputSchema = recommendationInputSchema;
 
   protected async run(
@@ -39,7 +39,7 @@ export class RecommendationAgent extends BaseAgent<
         languageInstruction: getLanguageInstruction(language),
       },
       systemContext: {
-        projectName: context.projectName ?? "CivicAI",
+        projectName: context.projectName ?? "EcoMind AI",
         environment: context.environment ?? process.env.NODE_ENV ?? "development",
       },
     });

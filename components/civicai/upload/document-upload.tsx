@@ -4,10 +4,12 @@ import { useCallback, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   AlertTriangle,
+  Camera,
   CheckCircle2,
   FileImage,
   FileSearch,
   FileText,
+  ImageIcon,
   Loader2,
   Upload,
   X,
@@ -39,7 +41,7 @@ export function DocumentUploadPanel() {
   const { language } = useCivicLanguage();
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
-  const [serviceId, setServiceId] = useState("driving-license");
+  const [serviceId, setServiceId] = useState("illegal-dumping");
   const [ocrProgress, setOcrProgress] = useState(0);
   const [ocrComplete, setOcrComplete] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -106,7 +108,7 @@ export function DocumentUploadPanel() {
       setReportId(result.reportId ?? null);
       setOcrComplete(true);
       toast.success(
-        language === "ur" ? "دستاویز کا تجزیہ مکمل" : "Document analysis complete"
+        language === "ur" ? "ثبوت کا تجزیہ مکمل" : "Evidence analysis complete"
       );
     } catch (error) {
       clearInterval(progressInterval);
@@ -127,40 +129,53 @@ export function DocumentUploadPanel() {
   return (
     <div className="mx-auto max-w-5xl px-4 py-6 sm:px-6 lg:px-8">
       <PageHeader
-        title={language === "ur" ? "دستاویز اپ لوڈ" : "Upload Document"}
+        title={language === "ur" ? "کچرے کی تصویر اپ لوڈ" : "Upload Waste Photo"}
         description={
           language === "ur"
-            ? "افسر کا ہاتھ سے لکھا نوٹ اپ لوڈ کریں۔ CivicAI سرکاری چیک لسٹ سے موازنہ کرے گا۔"
-            : "Upload an officer's handwritten note. CivicAI will extract and compare requested documents against the official checklist."
+            ? "کچرے، نوٹس بورڈ، یا ماحولیاتی وارننگ کی تصویر اپ لوڈ کریں۔ EcoMind AI ثبوت کی تصدیق کرے گا۔"
+            : "Upload a waste photo, notice board, or environmental warning. EcoMind AI will extract and verify evidence."
         }
       />
 
-      <div className="mb-6 max-w-sm">
-        <label className="mb-2 block text-sm font-medium">
-          {language === "ur" ? "سروس منتخب کریں" : "Select service"}
-        </label>
-        <Select
-          value={serviceId}
-          onValueChange={(v) => setServiceId(v ?? "driving-license")}
-        >
-          <SelectTrigger className="w-full">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            {GOVERNMENT_SERVICES.map((s) => (
-              <SelectItem key={s.id} value={s.id}>
-                {s.name}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div className="max-w-sm flex-1">
+          <label className="mb-2 block text-sm font-medium">
+            {language === "ur" ? "مسئلے کی قسم" : "Incident type"}
+          </label>
+          <Select
+            value={serviceId}
+            onValueChange={(v) => setServiceId(v ?? "illegal-dumping")}
+          >
+            <SelectTrigger className="w-full">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {GOVERNMENT_SERVICES.map((s) => (
+                <SelectItem key={s.id} value={s.id}>
+                  {s.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+        <Card className="border-primary/20 bg-primary/5 sm:max-w-xs">
+          <CardContent className="flex items-start gap-3 p-4">
+            <Camera className="mt-0.5 size-4 shrink-0 text-primary" />
+            <p className="text-xs leading-relaxed text-muted-foreground">
+              {language === "ur"
+                ? "واضح تصویر لیں — کچرا، مقام، اور کوئی نوٹس بورڈ نظر آئے۔"
+                : "Take a clear photo showing waste, location landmarks, and any notice boards."}
+            </p>
+          </CardContent>
+        </Card>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base">
-              {language === "ur" ? "افسر کا نوٹ" : "Upload Officer Note"}
+        <Card className="overflow-hidden">
+          <CardHeader className="border-b border-border/60 bg-muted/30">
+            <CardTitle className="flex items-center gap-2 text-base">
+              <ImageIcon className="size-4 text-primary" />
+              {language === "ur" ? "ثبوت کی تصویر" : "Evidence Photo"}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -172,10 +187,10 @@ export function DocumentUploadPanel() {
               onDragLeave={() => setDragOver(false)}
               onDrop={onDrop}
               className={cn(
-                "relative flex min-h-[240px] cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed transition-colors",
+                "relative flex min-h-[280px] cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed transition-all",
                 dragOver
-                  ? "border-primary bg-primary/5"
-                  : "border-border hover:border-primary/40"
+                  ? "border-primary bg-primary/10 scale-[1.01]"
+                  : "border-border hover:border-primary/40 hover:bg-muted/30"
               )}
             >
               <input
@@ -212,16 +227,18 @@ export function DocumentUploadPanel() {
                 </div>
               ) : (
                 <>
-                  <Upload className="size-10 text-muted-foreground" />
-                  <p className="mt-3 font-medium">
+                  <div className="flex size-14 items-center justify-center rounded-2xl bg-primary/10">
+                    <Upload className="size-7 text-primary" />
+                  </div>
+                  <p className="mt-4 font-medium">
                     {language === "ur"
                       ? "تصویر یہاں ڈراپ کریں"
-                      : "Drag & drop your image here"}
+                      : "Drag & drop your photo here"}
                   </p>
                   <p className="mt-1 text-sm text-muted-foreground">
                     {language === "ur"
-                      ? "یا براؤز کرنے کے لیے کلک کریں"
-                      : "or click to browse"}
+                      ? "JPG, PNG — زیادہ سے زیادہ 10MB"
+                      : "JPG, PNG — up to 10MB"}
                   </p>
                 </>
               )}
@@ -237,7 +254,7 @@ export function DocumentUploadPanel() {
                 ) : (
                   <>
                     <FileImage className="size-4" />
-                    {language === "ur" ? "دستاویز کا تجزیہ" : "Analyze Document"}
+                    {language === "ur" ? "تصویر کا تجزیہ" : "Analyze Image"}
                   </>
                 )}
               </Button>
@@ -254,6 +271,24 @@ export function DocumentUploadPanel() {
             )}
           </CardContent>
         </Card>
+
+        {!ocrComplete && (
+          <Card className="hidden border-dashed lg:flex lg:flex-col lg:items-center lg:justify-center lg:bg-muted/20">
+            <CardContent className="flex flex-col items-center p-8 text-center">
+              <FileSearch className="size-10 text-muted-foreground/50" />
+              <p className="mt-4 font-medium text-muted-foreground">
+                {language === "ur"
+                  ? "تجزیہ کا نتیجہ یہاں ظاہر ہوگا"
+                  : "Analysis results will appear here"}
+              </p>
+              <p className="mt-2 max-w-xs text-sm text-muted-foreground/80">
+                {language === "ur"
+                  ? "تصویر اپ لوڈ کریں اور OCR تجزیہ شروع کریں"
+                  : "Upload a photo and run OCR analysis to see extracted evidence, compliance score, and advisory."}
+              </p>
+            </CardContent>
+          </Card>
+        )}
 
         <AnimatePresence>
           {ocrComplete && (
@@ -308,7 +343,7 @@ export function DocumentUploadPanel() {
                         <p className="text-sm font-medium">
                           {language === "ur"
                             ? "پہچانی گئی دستاویزات"
-                            : "Detected Documents"}
+                            : "Detected Evidence"}
                         </p>
                         {ocrDocuments.map((doc) => (
                           <div
@@ -333,7 +368,7 @@ export function DocumentUploadPanel() {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-base">
                     <CheckCircle2 className="size-5 text-emerald-500" />
-                    {language === "ur" ? "نکالی گئی دستاویزات" : "Extracted Documents"}
+                    {language === "ur" ? "نکالا گیا ثبوت" : "Extracted Evidence"}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
@@ -353,7 +388,7 @@ export function DocumentUploadPanel() {
                 <Card className="border-red-500/20">
                   <CardHeader>
                     <CardTitle className="text-base text-red-600 dark:text-red-400">
-                      {language === "ur" ? "غائب دستاویزات" : "Missing Documents"}
+                      {language === "ur" ? "غائب ثبوت" : "Missing Evidence"}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>

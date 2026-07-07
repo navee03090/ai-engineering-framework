@@ -11,22 +11,22 @@ export function CtaSection() {
           <div className="relative z-10">
             <Sparkles className="mx-auto size-10 text-primary" />
             <h2 className="mt-6 text-3xl font-bold tracking-tight sm:text-4xl">
-              Ready to Navigate Government Services?
+              Ready to Build Cleaner Cities?
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-muted-foreground">
-              Join thousands of Pakistani citizens using CivicAI for transparent,
-              middleman-free government navigation.
+              Join citizens across Pakistan using EcoMind AI to report waste, detect
+              pollution, and coordinate municipal cleanup.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Link href="/assistant">
                 <Button size="lg" className="h-12 px-8">
-                  Start Free
+                  Report Waste Issue
                   <ArrowRight className="size-4" />
                 </Button>
               </Link>
-              <Link href="/how-it-works">
+              <Link href="/services">
                 <Button size="lg" variant="outline" className="h-12 px-8">
-                  See How It Works
+                  Explore Environmental Services
                 </Button>
               </Link>
             </div>

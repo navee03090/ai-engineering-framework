@@ -1,4 +1,4 @@
-import { AlertTriangle, Building2, Clock, Lightbulb, Receipt } from "lucide-react";
+import { AlertTriangle, Building2, Clock, Leaf, Lightbulb, MapPin, Receipt } from "lucide-react";
 
 import Link from "next/link";
 
@@ -19,33 +19,35 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { Separator } from "@/components/ui/separator";
 
+import { formatReportStatus } from "@/lib/civicai/format-display";
 import type { CivicReport } from "@/lib/civicai/types";
 
 export function ReportView({ report }: { report: CivicReport }) {
+  const statusInfo = formatReportStatus(report.status);
+
   return (
     <div className="mx-auto max-w-4xl px-4 py-6 sm:px-6 lg:px-8">
       <PageHeader
         title={report.pdfTitle ?? report.serviceName}
-
-        description={`Generated report · ${new Date(report.createdAt).toLocaleDateString("en-PK", { dateStyle: "long" })}`}
+        description={`Incident report · ${new Date(report.createdAt).toLocaleDateString("en-PK", { dateStyle: "long" })}`}
       >
         <ReportActions report={report} />
       </PageHeader>
 
-      <div className="mb-6 flex flex-wrap items-center gap-3">
-        <Badge>{report.status}</Badge>
-
+      <div className="mb-6 flex flex-wrap items-center gap-2">
+        <Badge variant={statusInfo.variant}>{statusInfo.label}</Badge>
         <Badge variant="secondary">{report.confidence}% confidence</Badge>
-
         <Badge variant="outline">{report.department}</Badge>
-
         {report.reportType && <Badge variant="outline">{report.reportType}</Badge>}
       </div>
 
       {report.summary && (
-        <Card className="mb-6 border-primary/20 bg-primary/5">
+        <Card className="mb-6 border-primary/20 bg-gradient-to-br from-primary/5 to-transparent">
           <CardHeader className="pb-2">
-            <CardTitle className="text-base">Citizen Summary</CardTitle>
+            <CardTitle className="flex items-center gap-2 text-base">
+              <Leaf className="size-4 text-primary" />
+              Incident Summary
+            </CardTitle>
           </CardHeader>
 
           <CardContent>
@@ -66,49 +68,49 @@ export function ReportView({ report }: { report: CivicReport }) {
         <div className="mb-6">
           <OfficeMap
             location={report.officeLocation}
-            title="Office Location"
+            title="Nearest Authority"
             height={300}
           />
         </div>
       )}
 
-      <div className="grid gap-6 md:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-3">
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="flex items-center gap-2 text-base">
+            <CardTitle className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
               <Building2 className="size-4" />
-              Department
+              Responsible Authority
             </CardTitle>
           </CardHeader>
 
           <CardContent>
-            <p className="font-medium">{report.department}</p>
+            <p className="font-semibold">{report.department}</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="flex items-center gap-2 text-base">
+            <CardTitle className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
               <Receipt className="size-4" />
-              Official Fee
+              Reporting Fee
             </CardTitle>
           </CardHeader>
 
           <CardContent>
-            <p className="text-2xl font-bold text-primary">{report.fee}</p>
+            <p className="text-xl font-bold text-primary">{report.fee}</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="flex items-center gap-2 text-base">
+            <CardTitle className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
               <Clock className="size-4" />
-              Estimated Time
+              Est. Response
             </CardTitle>
           </CardHeader>
 
           <CardContent>
-            <p className="font-medium">{report.processingTime}</p>
+            <p className="font-semibold">{report.processingTime}</p>
           </CardContent>
         </Card>
       </div>
@@ -136,7 +138,10 @@ export function ReportView({ report }: { report: CivicReport }) {
       {report.timeline.length > 0 && (
         <Card className="mt-6">
           <CardHeader>
-            <CardTitle>Procedure Timeline</CardTitle>
+            <CardTitle className="flex items-center gap-2">
+              <MapPin className="size-4 text-primary" />
+              Response Timeline
+            </CardTitle>
           </CardHeader>
 
           <CardContent>
@@ -174,7 +179,7 @@ export function ReportView({ report }: { report: CivicReport }) {
       <div className="mt-6 grid gap-6 md:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle>Required Documents</CardTitle>
+            <CardTitle>Required Evidence</CardTitle>
           </CardHeader>
 
           <CardContent className="space-y-2">
@@ -195,7 +200,7 @@ export function ReportView({ report }: { report: CivicReport }) {
         <Card className="border-red-500/20">
           <CardHeader>
             <CardTitle className="text-red-600 dark:text-red-400">
-              Missing Documents
+              Missing Evidence
             </CardTitle>
           </CardHeader>
 
@@ -241,11 +246,11 @@ export function ReportView({ report }: { report: CivicReport }) {
       )}
 
       {report.tips.length > 0 && (
-        <Card className="mt-6">
+        <Card className="mt-6 border-primary/20 bg-primary/5">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Lightbulb className="size-5 text-primary" />
-              Preparation Tips
+              Safety & Reporting Tips
             </CardTitle>
           </CardHeader>
 
@@ -265,7 +270,7 @@ export function ReportView({ report }: { report: CivicReport }) {
 
       <div className="flex flex-wrap gap-3">
         <Link href="/assistant">
-          <Button>Ask Another Question</Button>
+          <Button>Report Another Issue</Button>
         </Link>
 
         <Link href="/checklist">
@@ -273,7 +278,11 @@ export function ReportView({ report }: { report: CivicReport }) {
         </Link>
 
         <Link href="/upload">
-          <Button variant="outline">Upload Another Document</Button>
+          <Button variant="outline">Upload More Evidence</Button>
+        </Link>
+
+        <Link href="/dashboard">
+          <Button variant="ghost">Back to Dashboard</Button>
         </Link>
       </div>
     </div>

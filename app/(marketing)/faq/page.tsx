@@ -4,44 +4,45 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { CIVICAI_PRODUCT_NAME } from "@/lib/civicai/brand";
 
 export const metadata = {
   title: "FAQ",
-  description: "Frequently asked questions about CivicAI.",
+  description: `Frequently asked questions about ${CIVICAI_PRODUCT_NAME}.`,
 };
 
 const FAQ_ITEMS = [
   {
-    q: "Is CivicAI a chatbot?",
-    a: "No. CivicAI is an AI Decision Assistant. It provides structured guidance — documents, fees, timelines, and checklists — not open-ended conversation.",
+    q: `Is ${CIVICAI_PRODUCT_NAME} just a chatbot?`,
+    a: "No. EcoMind AI is an environmental decision assistant. It classifies incidents, identifies responsible authorities (LWMC, EPA, WASA), and produces structured reports — not open-ended conversation.",
   },
   {
-    q: "Is the government data official?",
-    a: "For this demo, we use mock government data based on publicly known procedures. In production, data would be verified against official sources.",
+    q: "What kinds of issues can I report?",
+    a: "Illegal dumping, missed garbage collection, chemical waste, burning garbage, sewage overflow, air pollution, recycling requests, and 5 more environmental services across Lahore and Pakistan.",
   },
   {
-    q: "Can CivicAI verify officer requests?",
-    a: "Yes. Upload a photo of a handwritten officer note. Our OCR agent extracts document names and compares them against the official checklist.",
+    q: "Can I upload photos as evidence?",
+    a: "Yes. Upload waste photos, municipal notices, or warning signs. Our OCR agent extracts text and the Compliance agent verifies evidence against official reporting requirements.",
   },
   {
-    q: "Does CivicAI accuse government officials?",
-    a: "Never. We provide polite advisories to citizens when requested documents don't match official requirements, without making accusations.",
+    q: "Does EcoMind AI accuse individuals?",
+    a: "Never. We provide careful advisories about illegal dumping indicators and compliance gaps — without accusing specific people or officials.",
   },
   {
-    q: "Which services are supported?",
-    a: "13 essential services including driving license, passport, CNIC, birth/death/marriage certificates, domicile, tax registration, vehicle registration, property transfer, utilities, police complaints, and land records.",
+    q: "Which authorities does it connect to?",
+    a: "LWMC (Lahore Waste Management Company), EPA Punjab, WASA, and other municipal bodies. Maps show the nearest facility for your incident type.",
   },
   {
-    q: "Is CivicAI free?",
-    a: "Yes. CivicAI is free for citizens during the hackathon demo. Future pricing will remain accessible for all Pakistanis.",
+    q: "Is EcoMind AI free?",
+    a: "Yes. EcoMind AI is free for citizens during the hackathon demo. The goal is accessible environmental reporting for all Pakistanis.",
   },
   {
-    q: "Can I use CivicAI in Urdu?",
-    a: "Urdu language support is planned. Currently the interface supports English with Urdu content in select areas.",
+    q: "Can I use EcoMind AI in Urdu?",
+    a: "Urdu language support is planned. Currently the interface supports English with Urdu content in select areas like reports and advisories.",
   },
   {
     q: "How accurate is the AI?",
-    a: "Every response includes a confidence score and source references. Always verify critical information at the official government office.",
+    a: "Every response includes a confidence score and source references. Always verify critical information with the responsible authority before taking action.",
   },
 ];
 
@@ -53,7 +54,7 @@ export default function FaqPage() {
           Frequently Asked Questions
         </h1>
         <p className="mt-4 text-lg text-muted-foreground">
-          Everything you need to know about CivicAI.
+          Everything you need to know about {CIVICAI_PRODUCT_NAME}.
         </p>
         <Accordion className="mt-12">
           {FAQ_ITEMS.map((item, i) => (

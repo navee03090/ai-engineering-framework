@@ -20,7 +20,7 @@ export class IntentAgent extends BaseAgent<
 > {
   readonly name = "intent";
   readonly description =
-    "Detects citizen intent, language, entities, and target government service.";
+    "Detects environmental issue intent, language, entities, and target waste/environment service.";
   readonly inputSchema = intentInputSchema;
 
   protected async run(
@@ -37,11 +37,11 @@ export class IntentAgent extends BaseAgent<
         languageInstruction: getLanguageInstruction(language),
       },
       systemContext: {
-        projectName: context.projectName ?? "CivicAI",
+        projectName: context.projectName ?? "EcoMind AI",
         environment: context.environment ?? process.env.NODE_ENV ?? "development",
       },
       extraSystemParts: [
-        "You are the Intent Agent. Return structured JSON only. Never invent services not in the index.",
+        "You are the Intent Agent for EcoMind AI. Return structured JSON only. Never invent services not in the index.",
       ],
     });
 

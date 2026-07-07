@@ -17,6 +17,7 @@ export const PROTECTED_ROUTE_PREFIXES = [
   "/uploads",
   "/notifications",
   "/command",
+  "/authority",
 ] as const;
 
 export const AUTH_ONLY_ROUTE_PREFIXES = ["/login", "/signup"] as const;

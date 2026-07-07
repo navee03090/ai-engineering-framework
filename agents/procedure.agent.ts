@@ -52,7 +52,7 @@ export type ProcedureOutput = z.infer<typeof procedureOutputSchema>;
 export class ProcedureAgent extends BaseAgent<ProcedureInput, ProcedureOutput> {
   readonly name = "procedure";
   readonly description =
-    "Provides structured government service guidance for Pakistani citizens.";
+    "Provides structured environmental service guidance for Pakistani citizens.";
   readonly inputSchema = procedureInputSchema;
 
   protected async run(
@@ -68,11 +68,11 @@ export class ProcedureAgent extends BaseAgent<ProcedureInput, ProcedureOutput> {
         languageInstruction: getLanguageInstruction(language),
       },
       systemContext: {
-        projectName: context.projectName ?? "CivicAI",
+        projectName: context.projectName ?? "EcoMind AI",
         environment: context.environment ?? process.env.NODE_ENV ?? "development",
       },
       extraSystemParts: [
-        "You are CivicAI, an AI Decision Assistant for Pakistani government services. Never accuse government officials. Provide transparent, structured guidance.",
+        "You are EcoMind AI, an AI Decision Assistant for Pakistani waste and environmental issues. Never accuse individuals. Provide transparent, structured guidance.",
       ],
     });
 

@@ -30,7 +30,7 @@ export class ComplianceAgent extends BaseAgent<
 > {
   readonly name = "compliance";
   readonly description =
-    "Compares uploaded document lists against official checklists. Never accuses officials.";
+    "Compares uploaded environmental evidence against official reporting checklists. Never accuses individuals.";
   readonly inputSchema = complianceInputSchema;
 
   protected async run(
@@ -51,11 +51,11 @@ export class ComplianceAgent extends BaseAgent<
         languageInstruction: getLanguageInstruction(language),
       },
       systemContext: {
-        projectName: context.projectName ?? "CivicAI",
+        projectName: context.projectName ?? "EcoMind AI",
         environment: context.environment ?? process.env.NODE_ENV ?? "development",
       },
       extraSystemParts: [
-        "You are the Compliance Agent. Use polite, careful wording. Never accuse government officials.",
+        "You are the Compliance Agent. Use polite, careful wording. Never accuse individuals; use careful environmental advisory language.",
       ],
     });
 

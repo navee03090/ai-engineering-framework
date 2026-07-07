@@ -100,7 +100,7 @@ export const recommendationOutputSchema = z.object({
     z.object({
       step: z.string(),
       description: z.string(),
-      duration: z.string().optional(),
+      duration: z.string().nullish().transform((v) => v ?? undefined),
     })
   ),
   faqs: z.array(z.object({ question: z.string(), answer: z.string() })),

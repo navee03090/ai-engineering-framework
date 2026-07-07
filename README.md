@@ -1,10 +1,10 @@
-# CivicAI — Pakistan Citizen Assistant
+# EcoMind AI — Pakistan's Intelligent Waste Command Center
 
-**AI-powered Civic Navigation for Transparent Government Services**
+**AI that doesn't just report waste—it predicts, prioritizes, and coordinates cleanup.**
 
-CivicAI is an AI **Decision Assistant** that helps Pakistani citizens navigate government procedures — documents, fees, timelines, scam warnings, office locations, and document verification — without relying on middlemen.
+EcoMind AI is an AI **Decision Assistant** that helps Pakistani citizens report waste and environmental issues — classify problems, identify responsible authorities, verify evidence, and generate incident reports — for cleaner cities.
 
-Built on the [AI Engineering Framework (AEF) v1.0](https://github.com/navee03090/ai-engineering-framework) template.
+Built on the [AI Engineering Framework (AEF) v1.0](https://github.com/navee03090/ai-engineering-framework) template (pivoted from CivicAI).
 
 ---
 
@@ -38,12 +38,12 @@ Open [http://localhost:3000](http://localhost:3000)
 
 ## Core features
 
-- **AI Assistant** — Ask about government services in English or Urdu (type or speak)
-- **Document Verification** — Upload officer notes; OCR + compliance comparison
-- **Structured Reports** — Checklists, fees, timelines, scam warnings
-- **Google Maps** — Office locations based on service and city
-- **PDF + Email** — Downloadable report and email with PDF attachment
-- **Dashboard & History** — Track past queries and verifications
+- **AI Assistant** — Report environmental issues in English or Urdu (type or speak)
+- **Evidence Verification** — Upload waste photos; OCR + compliance comparison
+- **Structured Reports** — Citizen checklists, safety tips, authority guidance
+- **Google Maps** — Municipal offices, recycling centers, pollution hotspots
+- **PDF + Email** — Downloadable incident report and email with PDF attachment
+- **Dashboard & History** — Track past reports and evidence uploads
 - **Bilingual UI** — English and Urdu throughout
 
 ---
@@ -52,14 +52,13 @@ Open [http://localhost:3000](http://localhost:3000)
 
 | Document | Description |
 | --- | --- |
-| **[HACKATHON-CONTEXT.md](./HACKATHON-CONTEXT.md)** | **Tomorrow's hackathon — paste theme + pivot plan** |
+| **[HACKATHON-CONTEXT.md](./HACKATHON-CONTEXT.md)** | Hackathon theme + pivot plan |
 | **[CIVICAI-PROJECT-DOCUMENTATION.md](./docs/CIVICAI-PROJECT-DOCUMENTATION.md)** | Complete project docs — tools, architecture, setup, APIs |
 | [CIVICAI-AGENT-ARCHITECTURE.md](./docs/CIVICAI-AGENT-ARCHITECTURE.md) | Six-agent system deep dive |
 | [CIVICAI-WORKFLOWS.md](./docs/CIVICAI-WORKFLOWS.md) | Query & upload pipeline flows |
 | [CIVICAI-PROMPTS.md](./docs/CIVICAI-PROMPTS.md) | Prompt engineering reference |
 | [CIVICAI-EXAMPLES.md](./docs/CIVICAI-EXAMPLES.md) | Sample queries and outputs |
 | [API-REFERENCE.md](./docs/API-REFERENCE.md) | Full HTTP API reference |
-| [PHASE_1_PROJECT_SPEC.md](./PHASE_1_PROJECT_SPEC.md) | Original product specification |
 
 ---
 
@@ -92,18 +91,22 @@ Optional: `RESEND_API_KEY` + `RESEND_FROM_EMAIL` for email delivery.
 Run migrations in order from `supabase/migrations/`:
 
 1. `00001` – `00003` — Base schema
-2. `00004_civicai.sql` — CivicAI tables
-3. `00005_civicai_seed.sql` — Government services seed data
+2. `00004_civicai.sql` — Application tables
+3. `00005_civicai_seed.sql` — Environmental services seed data
+
+**After pivot:** Re-run `00005_civicai_seed.sql` to replace government services with environmental services.
 
 ---
 
-## Demo flow
+## Demo flow (3 minutes)
 
-1. Sign up → `/assistant`
-2. Ask: *"I want to renew my driving license"*
-3. View checklist, map, and report
-4. Check email for PDF attachment
-5. Optional: upload officer note at `/upload`
+1. Landing → show tagline + six-agent architecture
+2. Sign in → `/assistant`
+3. Voice: *"There is illegal dumping near Ring Road."*
+4. View checklist, map (LWMC), and incident report
+5. Check email for PDF attachment
+6. Optional: upload waste photo at `/upload` for OCR + compliance
+7. Dashboard history
 
 ---
 

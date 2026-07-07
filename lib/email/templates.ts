@@ -1,4 +1,5 @@
 import type {
+  CivicReportAuthorityEmailContext,
   CivicReportReadyEmailContext,
   EmailTemplateId,
   IncidentAnalyzedEmailContext,
@@ -83,31 +84,69 @@ export function renderCivicReportReadyEmail(
 
   const html = layout(
     `<p>Hello${context.recipientName ? ` ${context.recipientName}` : ""},</p>
-<p>Your CivicAI government service report has been generated.</p>
+<p>Your EcoMind AI environmental incident report has been generated.</p>
 <ul>
-  <li><strong>Service:</strong> ${context.serviceName}</li>
-  <li><strong>Department:</strong> ${context.department}</li>
-  <li><strong>Official fee:</strong> ${context.fee}</li>
-  <li><strong>Processing time:</strong> ${context.processingTime}</li>
-  ${context.officeCity ? `<li><strong>Office city:</strong> ${context.officeCity}</li>` : ""}
+  <li><strong>Issue:</strong> ${context.serviceName}</li>
+  <li><strong>Responsible Authority:</strong> ${context.department}</li>
+  <li><strong>Estimated Cost:</strong> ${context.fee}</li>
+  <li><strong>Estimated Resolution:</strong> ${context.processingTime}</li>
+  ${context.officeCity ? `<li><strong>Facility city:</strong> ${context.officeCity}</li>` : ""}
 </ul>
 <p><strong>Summary:</strong> ${context.summary}</p>
 <p>Your full PDF report is attached. You can also view it online:</p>
 <p><a href="${context.reportUrl}">${context.reportUrl}</a></p>
-<p style="font-size:12px;color:#666;">Mock government data for demonstration purposes.</p>`,
-    "Your CivicAI report is ready"
+<p style="font-size:12px;color:#666;">Mock environmental data for demonstration purposes.</p>`,
+    "Your EcoMind AI report is ready"
   );
 
-  const text = `Your CivicAI report is ready
+  const text = `Your EcoMind AI report is ready
 
-Service: ${context.serviceName}
-Department: ${context.department}
-Fee: ${context.fee}
-Processing time: ${context.processingTime}
+Issue: ${context.serviceName}
+Authority: ${context.department}
+Estimated cost: ${context.fee}
+Estimated resolution: ${context.processingTime}
 ${context.officeCity ? `Office city: ${context.officeCity}\n` : ""}
 Summary: ${context.summary}
 
 View online: ${context.reportUrl}
+
+PDF attached.`;
+
+  return { subject, html, text };
+}
+
+export function renderCivicReportAuthorityEmail(
+  context: CivicReportAuthorityEmailContext
+): RenderedEmail {
+  const subject = `[${CIVICAI_PRODUCT_NAME}] New citizen report: ${context.serviceName}`;
+
+  const html = layout(
+    `<p>A citizen has submitted a new environmental incident report.</p>
+<ul>
+  <li><strong>Issue:</strong> ${context.serviceName}</li>
+  <li><strong>Responsible authority:</strong> ${context.department}</li>
+  <li><strong>Reported by:</strong> ${context.citizenName ?? context.citizenEmail}${context.citizenName ? ` (${context.citizenEmail})` : ""}</li>
+  ${context.confidence != null ? `<li><strong>AI confidence:</strong> ${context.confidence}%</li>` : ""}
+</ul>
+<p><strong>Summary:</strong> ${context.summary}</p>
+<p>Review in the authority portal:</p>
+<p><a href="${context.authorityReportUrl}">${context.authorityReportUrl}</a></p>
+<p>Citizen report link: <a href="${context.reportUrl}">${context.reportUrl}</a></p>
+<p>The full incident PDF is attached.</p>
+<p style="font-size:12px;color:#666;">Mock environmental data for demonstration purposes.</p>`,
+    "New citizen environmental report"
+  );
+
+  const text = `New citizen environmental report
+
+Issue: ${context.serviceName}
+Authority: ${context.department}
+Reported by: ${context.citizenName ?? context.citizenEmail} (${context.citizenEmail})
+${context.confidence != null ? `AI confidence: ${context.confidence}%\n` : ""}
+Summary: ${context.summary}
+
+Authority portal: ${context.authorityReportUrl}
+Citizen report: ${context.reportUrl}
 
 PDF attached.`;
 

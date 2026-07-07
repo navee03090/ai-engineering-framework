@@ -178,7 +178,7 @@ async function runAskAssistantPipeline(
     });
     throw new AppError(
       intent.clarificationQuestion ||
-        "Could you clarify which government service you need help with?",
+        "Could you clarify which environmental issue you want to report?",
       422,
       "CIVICAI_NEEDS_CLARIFICATION",
       { intent }
@@ -359,7 +359,7 @@ export const civicaiService = {
     assertGeminiConfigured();
 
     const language = options.language ?? "en";
-    const serviceSlug = options.serviceId ?? "driving-license";
+    const serviceSlug = options.serviceId ?? "illegal-dumping";
 
     const verification = await civicaiPersistence.createVerification(
       userId,

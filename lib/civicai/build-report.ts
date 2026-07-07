@@ -30,25 +30,25 @@ function buildQuerySummary(
   recommendation: RecommendationOutput,
   language: CivicLanguage
 ): string {
-  const docList = recommendation.checklist.map((item) => item.name).join(", ");
+  const evidenceList = recommendation.checklist.map((item) => item.name).join(", ");
   const nextSteps = recommendation.nextSteps.slice(0, 3).join(" ");
 
   if (language === "ur") {
     return joinParagraphs([
-      `آپ نے ${knowledge.serviceName} کے بارے میں پوچھا۔ یہ سروس ${knowledge.department} کے تحت آتی ہے۔`,
-      `سرکاری فیس ${knowledge.fee} ہے اور عام طور پر ${knowledge.processingTime} میں مکمل ہوتی ہے۔ ضروری دستاویزات: ${docList || knowledge.documents.join(", ")}۔`,
+      `آپ نے ${knowledge.serviceName} کے بارے میں رپورٹ کی۔ یہ مسئلہ ${knowledge.department} کے ذمہ ہے۔`,
+      `تخمینی جوابی وقت ${knowledge.processingTime} ہے۔ ضروری ثبوت: ${evidenceList || knowledge.documents.join(", ")}۔`,
       nextSteps
         ? `اگلے اقدامات: ${nextSteps}`
-        : `براہ کرم تمام دستاویزات ساتھ لے کر متعلقہ دفتر جائیں۔`,
+        : `براہ کرم مقام کی تصویر اور تفصیل کے ساتھ متعلقہ اتھارٹی کو رپورٹ کریں۔`,
     ]);
   }
 
   return joinParagraphs([
-    `You asked about ${knowledge.serviceName}, handled by ${knowledge.department}. CivicAI matched your request with ${intent.confidence}% confidence.`,
-    `The official fee is ${knowledge.fee} and typical processing time is ${knowledge.processingTime}. Required documents include: ${docList || knowledge.documents.join(", ")}.`,
+    `You reported ${knowledge.serviceName}, handled by ${knowledge.department}. EcoMind AI analyzed your environmental report with ${intent.confidence}% confidence.`,
+    `Estimated response time is ${knowledge.processingTime}. Required evidence includes: ${evidenceList || knowledge.documents.join(", ")}.`,
     nextSteps
       ? `Recommended next steps: ${nextSteps}`
-      : `Gather the listed documents and visit the relevant office during working hours.`,
+      : `Gather photo evidence and location details, then report to the responsible authority.`,
   ]);
 }
 
@@ -60,21 +60,21 @@ function buildVerificationSummary(
   if (language === "ur") {
     const missing =
       compliance.missingDocuments.length > 0
-        ? ` غائب دستاویزات: ${compliance.missingDocuments.join(", ")}۔`
+        ? ` غائب ثبوت: ${compliance.missingDocuments.join(", ")}۔`
         : "";
     return joinParagraphs([
-      `${knowledge.serviceName} کے لیے آپ کی آفیسر نوٹ کی جانچ مکمل ہوئی۔ مطابقت سکور: ${compliance.complianceScore}%۔${missing}`,
+      `${knowledge.serviceName} کے لیے آپ کے اپ لوڈ کردہ ثبوت کی جانچ مکمل ہوئی۔ مطابقت سکور: ${compliance.complianceScore}%۔${missing}`,
       compliance.advisory,
     ]);
   }
 
   const missing =
     compliance.missingDocuments.length > 0
-      ? ` Missing items: ${compliance.missingDocuments.join(", ")}.`
+      ? ` Missing evidence: ${compliance.missingDocuments.join(", ")}.`
       : "";
 
   return joinParagraphs([
-    `CivicAI compared your officer note against the official ${knowledge.serviceName} checklist. Compliance score: ${compliance.complianceScore}%.${missing}`,
+    `EcoMind AI compared your uploaded evidence against the ${knowledge.serviceName} reporting checklist. Compliance score: ${compliance.complianceScore}%.${missing}`,
     compliance.advisory,
   ]);
 }
@@ -99,30 +99,30 @@ export function buildQueryReport(
 
   const pdfSections = [
     {
-      heading: language === "ur" ? "سروس خلاصہ" : "Service Overview",
-      body: `${knowledge.description}\n\n${language === "ur" ? "محکمہ" : "Department"}: ${knowledge.department}\n${language === "ur" ? "فیس" : "Fee"}: ${knowledge.fee}\n${language === "ur" ? "وقت" : "Processing"}: ${knowledge.processingTime}`,
+      heading: language === "ur" ? "مسئلے کا خلاصہ" : "Issue Overview",
+      body: `${knowledge.description}\n\n${language === "ur" ? "ذمہ دار اتھارٹی" : "Responsible Authority"}: ${knowledge.department}\n${language === "ur" ? "تخمینی لاگت" : "Estimated Cost"}: ${knowledge.fee}\n${language === "ur" ? "تخمینی جواب" : "Estimated Resolution"}: ${knowledge.processingTime}`,
     },
     checklistBody
       ? {
-          heading: language === "ur" ? "دستاویزات" : "Document Checklist",
+          heading: language === "ur" ? "شہری چیک لسٹ" : "Citizen Checklist",
           body: checklistBody,
         }
       : null,
     timelineBody
       ? {
-          heading: language === "ur" ? "عمل کا وقت" : "Timeline",
+          heading: language === "ur" ? "تجویز کردہ اقدامات" : "Suggested Action",
           body: timelineBody,
         }
       : null,
     tipsBody
       ? {
-          heading: language === "ur" ? "تیاری کے مشورے" : "Preparation Tips",
+          heading: language === "ur" ? "ماحولیاتی مشورے" : "Environmental Tips",
           body: tipsBody,
         }
       : null,
     warningsBody
       ? {
-          heading: language === "ur" ? "انتباہات" : "Warnings",
+          heading: language === "ur" ? "حفاظتی انتباہات" : "Safety Warnings",
           body: warningsBody,
         }
       : null,
@@ -136,7 +136,7 @@ export function buildQueryReport(
   return {
     citizenSummary,
     printableSections,
-    pdfTitle: `${knowledge.serviceName} — ${language === "ur" ? "شہری رہنمائی رپورٹ" : "Citizen Guidance Report"}`,
+    pdfTitle: `${knowledge.serviceName} — ${language === "ur" ? "ماحولیاتی واقعے کی رپورٹ" : "Environmental Incident Report"}`,
     pdfSections,
     qrData: buildQrData(knowledge.serviceSlug, recommendation.checklist.length, "query"),
     metadata: {
@@ -161,18 +161,18 @@ export function buildVerificationReport(
 
   const pdfSections = [
     {
-      heading: language === "ur" ? "تصدیق کا نتیجہ" : "Verification Result",
+      heading: language === "ur" ? "ثبوت کی تصدیق" : "Evidence Verification",
       body: citizenSummary,
     },
     itemsBody
       ? {
-          heading: language === "ur" ? "دستاویزات کی حیثیت" : "Document Status",
+          heading: language === "ur" ? "ثبوت کی حیثیت" : "Evidence Status",
           body: itemsBody,
         }
       : null,
     compliance.suspiciousRequests.length > 0
       ? {
-          heading: language === "ur" ? "غیر سرکاری درخواستیں" : "Unlisted Requests",
+          heading: language === "ur" ? "اضافی مشاہدات" : "Additional Observations",
           body: compliance.suspiciousRequests.map((item) => `• ${item}`).join("\n"),
         }
       : null,
@@ -184,7 +184,7 @@ export function buildVerificationReport(
       title: section.heading,
       content: section.body,
     })),
-    pdfTitle: `${knowledge.serviceName} — ${language === "ur" ? "دستاویز تصدیق رپورٹ" : "Document Verification Report"}`,
+    pdfTitle: `${knowledge.serviceName} — ${language === "ur" ? "ثبوت تصدیق رپورٹ" : "Evidence Verification Report"}`,
     pdfSections,
     qrData: buildQrData(knowledge.serviceSlug, compliance.items.length, "verification"),
     metadata: {

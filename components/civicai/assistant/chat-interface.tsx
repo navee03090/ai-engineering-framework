@@ -46,17 +46,19 @@ import { useSpeechRecognition } from "@/hooks/use-speech-recognition";
 import { cn } from "@/lib/utils";
 
 const SUGGESTIONS_EN = [
-  "How do I renew my driving license?",
-  "What documents are needed for passport?",
-  "CNIC correction procedure",
-  "Official fee for domicile certificate",
+  "There is illegal dumping near Ring Road",
+  "My street garbage has not been collected",
+  "I found chemical waste near my home",
+  "There is smoke from burning garbage",
+  "My drain is blocked",
 ];
 
 const SUGGESTIONS_UR = [
-  "ڈرائیونگ لائسنس کیسے تجدید کروں؟",
-  "پاسپورٹ کے لیے کون سے دستاویزات چاہیے؟",
-  "CNIC کی تصحیح کا طریقہ",
-  "ڈومیسائل سرٹیفکیٹ کی سرکاری فیس",
+  "میرے گھر کے قریب غیر قانونی ڈمپنگ ہے",
+  "میرے گلی کا کچرا نہیں اٹھایا گیا",
+  "میں نے کیمیائی فضلہ پایا",
+  "کچرا جلنے سے دھواں آ رہا ہے",
+  "میرا نالہ بند ہے",
 ];
 
 export function AssistantChat() {
@@ -245,17 +247,17 @@ export function AssistantChat() {
 
   const placeholder =
     language === "ur"
-      ? "کسی سرکاری سروس کے بارے میں پوچھیں..."
-      : "Ask about a government service...";
+      ? "ماحولیاتی مسئلے کی رپورٹ کریں..."
+      : "Report an environmental issue...";
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
       <PageHeader
-        title={language === "ur" ? "AI معاون" : "AI Assistant"}
+        title={language === "ur" ? "ماحولیاتی AI معاون" : "Environmental AI Assistant"}
         description={
           language === "ur"
-            ? "کسی بھی سرکاری سروس کے بارے میں پوچھیں — واضح رہنمائی حاصل کریں۔"
-            : "Ask about any government service. Get structured guidance, not vague chat."
+            ? "کچرا، آلودگی، یا ماحولیاتی مسائل کی رپورٹ کریں — واضح رہنمائی حاصل کریں۔"
+            : "Report waste, pollution, or environmental issues. Get structured guidance, not vague chat."
         }
       />
 
@@ -266,31 +268,39 @@ export function AssistantChat() {
               <div className="space-y-4 p-4">
               {messages.length === 0 && !isTyping && (
                 <div className="flex min-h-[320px] flex-col items-center justify-center py-8 text-center">
-                  <div className="flex size-16 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                  <div className="flex size-16 items-center justify-center rounded-2xl bg-primary/10 text-primary ring-4 ring-primary/10">
                     <Sparkles className="size-8" />
                   </div>
                   <h3 className="mt-4 text-lg font-semibold">
                     {language === "ur"
-                      ? "CivicAI کیسے مدد کرے؟"
-                      : "How can CivicAI help you?"}
+                      ? "EcoMind AI کیسے مدد کرے؟"
+                      : "How can EcoMind AI help you?"}
                   </h3>
                   <p className="mt-2 max-w-sm text-sm text-muted-foreground">
                     {language === "ur"
-                      ? "دستاویزات، فیس، وقت کی حد، یا افسر کے نوٹ کی تصدیق کے بارے میں پوچھیں۔"
-                      : "Ask about documents, fees, timelines, or upload an officer note for verification."}
+                      ? "غیر قانونی ڈمپنگ، کچرا، آلودگی کی رپورٹ کریں یا ثبوت اپ لوڈ کریں۔"
+                      : "Report illegal dumping, garbage issues, pollution, or upload evidence for analysis."}
                   </p>
-                  <div className="mt-6 flex flex-wrap justify-center gap-2">
+                  <p className="mt-4 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                    {language === "ur" ? "مثال کے سوالات" : "Try a demo query"}
+                  </p>
+                  <div className="mt-3 flex max-w-md flex-wrap justify-center gap-2">
                     {suggestions.map((s) => (
                       <button
                         key={s}
                         type="button"
                         onClick={() => handleSend(s)}
-                        className="rounded-full border border-border px-3 py-1.5 text-xs transition-colors hover:border-primary/30 hover:bg-muted"
+                        className="rounded-full border border-border bg-background px-3 py-1.5 text-xs transition-all hover:border-primary/40 hover:bg-primary/5 hover:text-primary"
                       >
                         {s}
                       </button>
                     ))}
                   </div>
+                  <p className="mt-6 text-xs text-muted-foreground">
+                    {language === "ur"
+                      ? "مائیک دبائیں یا ٹائپ کریں — 6 AI ایجنٹس آپ کی مدد کریں گے"
+                      : "Use the mic or type — 6 AI agents will classify and guide you"}
+                  </p>
                 </div>
               )}
 
@@ -462,7 +472,7 @@ export function AssistantChat() {
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm">
-                  {language === "ur" ? "چیک لسٹ" : "Checklist"}
+                  {language === "ur" ? "شہری چیک لسٹ" : "Citizen Checklist"}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
@@ -509,7 +519,7 @@ export function AssistantChat() {
           {officeLocation && (
             <OfficeMap
               location={officeLocation}
-              title={language === "ur" ? "دفتری مقام" : "Office Location"}
+              title={language === "ur" ? "قریبی سہولت" : "Nearest Facility"}
               height={220}
             />
           )}
@@ -524,9 +534,7 @@ export function AssistantChat() {
               <Link href="/upload">
                 <Button variant="outline" size="sm" className="w-full justify-start">
                   <Upload className="size-4" />
-                  {language === "ur"
-                    ? "افسر کا نوٹ اپ لوڈ کریں"
-                    : "Upload Officer Note"}
+                  {language === "ur" ? "کچرے کی تصویر اپ لوڈ کریں" : "Upload Waste Photo"}
                 </Button>
               </Link>
               <Link href={lastReportId ? `/reports/${lastReportId}` : "/reports/demo"}>

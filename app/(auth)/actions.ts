@@ -23,6 +23,12 @@ export async function signUpAction(
     });
 
     await authService.signUp(input);
+
+    const redirectTo = formData.get("redirectTo")?.toString().trim();
+    if (redirectTo && redirectTo.startsWith("/") && !redirectTo.startsWith("//")) {
+      redirect(redirectTo);
+    }
+
     redirect(AUTH_ROUTES.dashboard);
   } catch (error) {
     if (error instanceof AppError) {
@@ -44,6 +50,12 @@ export async function signInAction(
     });
 
     await authService.signIn(input);
+
+    const redirectTo = formData.get("redirectTo")?.toString().trim();
+    if (redirectTo && redirectTo.startsWith("/") && !redirectTo.startsWith("//")) {
+      redirect(redirectTo);
+    }
+
     redirect(AUTH_ROUTES.dashboard);
   } catch (error) {
     if (error instanceof AppError) {

@@ -83,11 +83,11 @@ describe("buildAgentPromptBundle", () => {
 describe("buildSystemPrompt", () => {
   it("interpolates project context", () => {
     const prompt = buildSystemPrompt({
-      projectName: "CivicAI",
+      projectName: "EcoMind AI",
       environment: "production",
     });
 
-    expect(prompt).toContain("CivicAI");
+    expect(prompt).toContain("EcoMind AI");
     expect(prompt).toContain("production");
   });
 });

@@ -76,8 +76,8 @@ export function ServicesBrowser() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
       <PageHeader
-        title="Government Services"
-        description="Browse 13 essential Pakistan government services with official requirements."
+        title="Environmental Services"
+        description="Browse 12 waste and environmental services with evidence checklists and authority guidance."
       />
 
       <div className="mb-8 flex flex-col gap-4 sm:flex-row">
@@ -88,7 +88,7 @@ export function ServicesBrowser() {
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search services..."
             className="pl-9"
-            aria-label="Search government services"
+            aria-label="Search environmental services"
           />
         </div>
         <div className="flex flex-wrap gap-2">
@@ -146,7 +146,7 @@ export function ServicesBrowser() {
                   </div>
                   <div>
                     <p className="mb-2 text-xs font-medium text-muted-foreground">
-                      Required Documents
+                      Required Evidence
                     </p>
                     <div className="flex flex-wrap gap-1">
                       {service.documents.slice(0, 3).map((d) => (
@@ -180,7 +180,7 @@ export function ServicesBrowser() {
         <div className="mt-8">
           <OfficeMap
             location={selectedLocation}
-            title={`Where to visit — ${GOVERNMENT_SERVICES.find((s) => s.id === activeId)?.name}`}
+            title={`Facility location — ${GOVERNMENT_SERVICES.find((s) => s.id === activeId)?.name}`}
             height={320}
           />
         </div>

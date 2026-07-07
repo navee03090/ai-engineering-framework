@@ -1,11 +1,11 @@
-# CivicAI — Pakistan Citizen Assistant
+# EcoMind AI — Pakistan's Intelligent Waste Command Center
 
 **Complete Project Documentation**
 
 | Field | Value |
 | --- | --- |
-| **Product name** | CivicAI — Pakistan Citizen Assistant |
-| **Tagline** | AI-powered Civic Navigation for Transparent Government Services |
+| **Product name** | EcoMind AI — Pakistan's Intelligent Waste Command Center |
+| **Tagline** | AI that doesn't just report waste—it predicts, prioritizes, and coordinates cleanup. |
 | **Version** | 1.0.0 (Hackathon / Phase 1) |
 | **Repository folder** | `ai-engineering-framework` (built on AEF v1.0 template) |
 | **Primary stack** | Next.js 16 · TypeScript · Supabase · Google Gemini · Resend |
@@ -39,17 +39,17 @@
 
 ## 1. Executive Summary
 
-**CivicAI** is an AI **Decision Assistant** (not a chatbot) that helps Pakistani citizens navigate government services with structured, trustworthy guidance.
+**EcoMind AI** is an AI **Decision Assistant** (not a chatbot) that helps Pakistani citizens report waste and environmental issues with structured, trustworthy guidance.
 
 Citizens can:
 
-- Ask questions in **English or Urdu** (typed or via **voice input**)
-- Receive official-style guidance: documents, fees, timelines, scam warnings, and checklists
-- Upload an officer's **handwritten note** for OCR + compliance comparison
-- View **office locations on Google Maps**
-- Download a **PDF report** and receive it by **email**
+- Report issues in **English or Urdu** (typed or via **voice input**)
+- Receive authority guidance: responsible department, evidence checklists, response times, safety tips
+- Upload **waste photos or municipal notices** for OCR + compliance comparison
+- View **municipal facilities and pollution hotspots on Google Maps**
+- Download a **PDF incident report** and receive it by **email**
 
-All AI outputs are grounded in a **verified government knowledge base** (Supabase) where possible, validated through a **six-agent pipeline**, and persisted for auditability.
+All AI outputs are grounded in a **verified environmental knowledge base** (Supabase) where possible, validated through a **six-agent pipeline**, and persisted for auditability.
 
 ```mermaid
 flowchart LR
@@ -492,8 +492,8 @@ See also: **[CIVICAI-WORKFLOWS.md](./CIVICAI-WORKFLOWS.md)** and **[API-REFERENC
 
 Centralized in `lib/civicai/brand.ts`:
 
-- **Product name:** CivicAI
-- **Full title:** CivicAI — Pakistan Citizen Assistant
+- **Product name:** EcoMind AI
+- **Full title:** EcoMind AI — Pakistan's Intelligent Waste Command Center
 - Used in metadata, emails, PDFs, auth pages
 
 ---

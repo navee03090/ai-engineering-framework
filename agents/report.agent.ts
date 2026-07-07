@@ -31,7 +31,7 @@ export class ReportAgent extends BaseAgent<
 > {
   readonly name = "report";
   readonly description =
-    "Assembles final citizen summary, printable report, PDF content, and QR data from pipeline results.";
+    "Assembles final environmental incident summary, printable report, PDF content, and QR data from pipeline results.";
   readonly inputSchema = reportInputSchema;
 
   protected async run(

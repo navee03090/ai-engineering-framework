@@ -8,6 +8,7 @@ import {
   FileText,
   History,
   LayoutDashboard,
+  Leaf,
   Moon,
   Settings,
   Sparkles,
@@ -16,6 +17,7 @@ import {
 } from "lucide-react";
 import { useTheme } from "next-themes";
 
+import { SignOutButton } from "@/components/auth/sign-out-button";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -45,10 +47,10 @@ import { CIVIC_LANGUAGE_LABELS, type CivicLanguage } from "@/lib/civicai/languag
 import { cn } from "@/lib/utils";
 
 const MAIN_NAV = [
-  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/assistant", label: "AI Assistant", icon: Sparkles },
+  { href: "/dashboard", label: "Command Center", icon: LayoutDashboard },
+  { href: "/assistant", label: "Report Issue", icon: Sparkles },
   { href: "/services", label: "Services", icon: Building2 },
-  { href: "/upload", label: "Upload Document", icon: Upload },
+  { href: "/upload", label: "Upload Evidence", icon: Upload },
   { href: "/checklist", label: "Checklist", icon: FileText },
   { href: "/reports/demo", label: "Reports", icon: FileText },
   { href: "/history", label: "History", icon: History },
@@ -147,12 +149,12 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <SidebarHeader className="border-b border-border/60 p-4">
           <Link href="/" className="flex items-center gap-2.5">
             <div className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-              <Building2 className="size-4" />
+              <Leaf className="size-4" />
             </div>
             <div className="flex flex-col group-data-[collapsible=icon]:hidden">
-              <span className="text-sm font-bold">CivicAI</span>
+              <span className="text-sm font-bold">EcoMind AI</span>
               <span className="text-[10px] text-muted-foreground">
-                Citizen Assistant
+                Waste Command Center
               </span>
             </div>
           </Link>
@@ -176,15 +178,16 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <div className="flex flex-1 items-center gap-2">
             <Clock className="size-4 text-muted-foreground" />
             <span className="text-sm text-muted-foreground hidden sm:inline">
-              Transparent government navigation
+              Intelligent waste & environmental intelligence
             </span>
           </div>
           <ThemeToggle />
           <LanguageToggle />
+          <SignOutButton />
           <Link href="/assistant">
             <Button size="sm" className="hidden sm:inline-flex">
               <Sparkles className="size-4" />
-              Ask AI
+              Report Issue
             </Button>
           </Link>
         </header>

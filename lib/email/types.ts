@@ -33,6 +33,18 @@ export type CivicReportReadyEmailContext = {
   appName?: string;
 };
 
+export type CivicReportAuthorityEmailContext = {
+  serviceName: string;
+  department: string;
+  summary: string;
+  citizenEmail: string;
+  citizenName?: string;
+  reportUrl: string;
+  authorityReportUrl: string;
+  confidence?: number;
+  appName?: string;
+};
+
 export type RenderedEmail = {
   subject: string;
   html: string;

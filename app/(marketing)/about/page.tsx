@@ -1,36 +1,41 @@
 import Link from "next/link";
-import { ArrowRight, Building2, Shield, Sparkles, Users } from "lucide-react";
+import { ArrowRight, Leaf, MapPin, Shield, Sparkles } from "lucide-react";
 
 import { AnimatedCard } from "@/components/civicai/shared";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { CIVICAI_PRODUCT_NAME, CIVICAI_TAGLINE } from "@/lib/civicai/brand";
 
 export const metadata = {
   title: "About",
-  description: "Learn about CivicAI — Pakistan's AI-powered civic navigation platform.",
+  description: `Learn about ${CIVICAI_PRODUCT_NAME} — ${CIVICAI_TAGLINE}.`,
 };
 
 const VALUES = [
   {
-    icon: Shield,
-    title: "Transparency",
-    description: "Official fees, documents, and timelines — no hidden information.",
+    icon: Leaf,
+    title: "Cleaner Cities",
+    description:
+      "AI that predicts, prioritizes, and coordinates environmental cleanup across Pakistan.",
   },
   {
-    icon: Users,
-    title: "Citizen-First",
-    description: "Built for ordinary Pakistanis navigating complex government systems.",
+    icon: Shield,
+    title: "Citizen Safety",
+    description:
+      "Careful advisory language for hazardous waste — never accuses individuals.",
   },
   {
     icon: Sparkles,
-    title: "AI with Purpose",
-    description: "Structured decision assistance, not generic chatbot conversations.",
+    title: "Six-Agent Intelligence",
+    description:
+      "Intent, Knowledge, OCR, Compliance, Recommendation, and Report agents working together.",
   },
   {
-    icon: Building2,
-    title: "Government Knowledge",
-    description: "Grounded in official procedures across 13 essential services.",
+    icon: MapPin,
+    title: "Authority Routing",
+    description:
+      "Routes incidents to LWMC, EPA, WASA, and municipal bodies with map locations.",
   },
 ];
 
@@ -38,21 +43,21 @@ export default function AboutPage() {
   return (
     <main className="px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-4xl">
-        <Badge className="mb-4">About CivicAI</Badge>
+        <Badge className="mb-4">About {CIVICAI_PRODUCT_NAME}</Badge>
         <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-          Empowering Citizens Through{" "}
-          <span className="civic-gradient-text">Transparent AI</span>
+          Pakistan&apos;s{" "}
+          <span className="civic-gradient-text">Waste Command Center</span>
         </h1>
         <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-          CivicAI is an AI Decision Assistant that helps Pakistani citizens navigate
-          government services without middlemen. We provide structured guidance on
-          documents, fees, processing times, and scam warnings — so you arrive prepared
-          and confident at every government office.
+          {CIVICAI_PRODUCT_NAME} helps citizens report environmental issues — illegal
+          dumping, missed collection, chemical waste, air pollution — and receive
+          AI-powered guidance on responsible authorities, evidence requirements, and
+          estimated response times.
         </p>
         <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-          We never accuse government officials. Instead, we empower citizens with
-          official knowledge and polite advisories when requested documents don&apos;t
-          match the official checklist.
+          Built for the CECOS University hackathon, EcoMind AI reuses a production-grade
+          six-agent pipeline to turn citizen reports into actionable incident PDFs with
+          maps, checklists, and email delivery.
         </p>
 
         <div className="mt-16 grid gap-6 sm:grid-cols-2">
@@ -74,7 +79,7 @@ export default function AboutPage() {
         <div className="mt-16 text-center">
           <Link href="/assistant">
             <Button size="lg">
-              Try CivicAI Free
+              Report an Issue
               <ArrowRight className="size-4" />
             </Button>
           </Link>

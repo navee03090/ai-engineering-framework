@@ -2,117 +2,103 @@ import type { CivicReport } from "@/lib/civicai/types";
 
 export const DEMO_REPORT: CivicReport = {
   id: "demo",
-  serviceId: "driving-license",
-  serviceName: "Driving License Renewal",
-  department: "Traffic Police / Licensing Authority",
+  serviceId: "illegal-dumping",
+  serviceName: "Illegal Dumping",
+  department: "Lahore Waste Management Company (LWMC)",
   createdAt: "2026-07-05T10:30:00Z",
   status: "ready",
   confidence: 94,
-  fee: "PKR 1,800",
-  processingTime: "7–14 working days",
+  fee: "Free municipal service",
+  processingTime: "24–72 hours",
   timeline: [
     {
-      step: "Gather Documents",
+      step: "Document Location",
       description:
-        "Collect CNIC, old license, medical certificate, and passport photos.",
-      duration: "1 day",
+        "Take photos of dumped waste with GPS location near Ring Road, Lahore.",
+      duration: "10 minutes",
     },
     {
-      step: "Visit Licensing Center",
+      step: "Report to LWMC",
       description:
-        "Submit application at your district traffic police licensing office.",
-      duration: "1–2 hours",
-    },
-    {
-      step: "Biometric & Photo",
-      description: "Complete biometric verification and photograph capture on-site.",
-      duration: "30 minutes",
-    },
-    {
-      step: "Fee Payment",
-      description:
-        "Pay official fee of PKR 1,800 at the designated counter. Keep receipt.",
+        "Submit report via EcoMind AI or call LWMC helpline 1139 with location details.",
       duration: "15 minutes",
     },
     {
-      step: "Collection",
+      step: "Enforcement Inspection",
       description:
-        "Collect renewed license after processing period (7–14 working days).",
-      duration: "7–14 days",
+        "LWMC enforcement unit inspects the site and schedules cleanup crew.",
+      duration: "24–48 hours",
+    },
+    {
+      step: "Cleanup & Follow-up",
+      description:
+        "Municipal team removes waste and monitors site for repeat dumping.",
+      duration: "24–72 hours",
     },
   ],
   requiredDocuments: [
-    { name: "Original CNIC", status: "required" },
-    { name: "Expired Driving License", status: "required" },
-    { name: "Medical Fitness Certificate", status: "required" },
-    { name: "Passport-size Photographs (2)", status: "required" },
-    { name: "Copy of CNIC", status: "optional" },
-    { name: "Affidavit for lost license", status: "unknown" },
+    { name: "Photo of dumped waste", status: "required" },
+    { name: "GPS location or landmark", status: "required" },
+    { name: "Date observed", status: "required" },
+    { name: "Type of waste if known", status: "optional" },
+    { name: "Video evidence", status: "optional" },
   ],
-  missingDocuments: ["Medical Fitness Certificate"],
+  missingDocuments: ["GPS location or landmark"],
   warnings: [
-    "Only pay the official fee of PKR 1,800 at the designated counter. Avoid unofficial 'facilitation' fees.",
-    "Medical certificate must be from a government-approved medical officer.",
-    "If an officer requests documents not on this list, you may politely ask for the official written requirement.",
+    "Do not confront dumpers directly — report to municipal authority.",
+    "Avoid touching chemical or medical waste at the dumping site.",
+    "This image may indicate unauthorized waste disposal. Consider reporting it to LWMC.",
   ],
   tips: [
-    "Visit early morning to avoid long queues at licensing centers.",
-    "Bring both original and photocopies of all documents.",
-    "Check your license expiry date — renewal is easier within 30 days of expiry.",
-    "Save your fee receipt until you collect the new license.",
+    "Document the exact location using Google Maps pin near Ring Road.",
+    "Take photos from multiple angles showing the scale of dumping.",
+    "Report during daylight for clearer evidence.",
+    "Keep children away from the dumping area until cleanup is complete.",
   ],
   sources: [
-    { title: "Traffic Police Licensing Guidelines", url: "#" },
-    { title: "Official Fee Schedule 2026", url: "#" },
-    { title: "Required Documents Checklist", url: "#" },
+    { title: "LWMC Illegal Dumping Guidelines", url: "#" },
+    { title: "Punjab Environmental Protection Act", url: "#" },
+    { title: "Citizen Reporting Checklist", url: "#" },
   ],
   reportType: "verification",
   summary:
-    "Your officer note was analyzed against the official driving license renewal checklist. One required document appears to be missing. Download the PDF report for a printable summary.",
-  pdfTitle: "Driving License Renewal — Document Verification Report",
+    "Illegal dumping reported near Ring Road, Lahore. EcoMind AI analyzed your evidence against the LWMC reporting checklist. One required item (GPS location) appears to be missing. Download the PDF for a printable incident report.",
+  pdfTitle: "Illegal Dumping — Environmental Incident Report",
   pdfSections: [
     {
-      heading: "Verification Result",
-      body: "CivicAI compared the officer's handwritten note with the official document checklist for driving license renewal.",
+      heading: "Issue Overview",
+      body: "EcoMind AI analyzed an illegal dumping report near Ring Road, Lahore. Responsible authority: Lahore Waste Management Company (LWMC).",
     },
     {
-      heading: "Next Steps",
-      body: "Obtain a Medical Fitness Certificate from a government-approved medical officer before your next visit to the licensing center.",
+      heading: "Suggested Action",
+      body: "Add GPS coordinates to your report and contact LWMC enforcement at helpline 1139 for expedited cleanup scheduling.",
     },
   ],
-  qrData: "civicai://report/demo/driving-license",
+  qrData: "ecomind://report/demo/illegal-dumping",
   ocrIntelligence: {
     rawText:
-      "Please bring CNIC, old license, passport photos x2. Medical certificate required. Fee PKR 1800.",
-    overallConfidence: 88,
+      "NO DUMPING — Fine PKR 50,000. LWMC Enforcement. Report: 1139. Ring Road Sector 12.",
+    overallConfidence: 91,
     documents: [
-      { name: "CNIC", normalizedName: "Original CNIC", confidence: 92 },
-      {
-        name: "Old License",
-        normalizedName: "Expired Driving License",
-        confidence: 85,
-      },
-      {
-        name: "Photos",
-        normalizedName: "Passport-size Photographs (2)",
-        confidence: 78,
-      },
+      { name: "Warning sign", normalizedName: "Municipal warning sign", confidence: 94 },
+      { name: "LWMC 1139", normalizedName: "LWMC helpline number", confidence: 88 },
+      { name: "Ring Road", normalizedName: "Location: Ring Road", confidence: 85 },
     ],
     advisory:
-      "The officer note matches most official requirements. Medical Fitness Certificate was requested but not found in the extracted text.",
+      "The uploaded image contains a municipal no-dumping sign with LWMC contact information. This may indicate unauthorized waste disposal. Consider reporting the exact location to LWMC enforcement.",
     suspiciousRequests: [],
   },
   officeLocation: {
-    officeName: "Islamabad Traffic Police Licensing Center",
-    officeAddress: "H-9, Islamabad Traffic Police HQ, Islamabad",
-    lat: 33.6498,
-    lng: 73.0672,
-    city: "Islamabad",
+    officeName: "LWMC Enforcement Unit — Ring Road Hotspot",
+    officeAddress: "Ring Road, near Niazi Chowk, Lahore",
+    lat: 31.485,
+    lng: 74.32,
+    city: "Lahore",
   },
 };
 
 export function getReportById(id: string): CivicReport | undefined {
-  if (id === "demo" || id === "driving-license-renewal") {
+  if (id === "demo" || id === "illegal-dumping-ring-road") {
     return DEMO_REPORT;
   }
   return undefined;

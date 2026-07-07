@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     default: CIVICAI_FULL_TITLE,
     template: `%s | ${CIVICAI_PRODUCT_NAME}`,
   },
-  description: `${CIVICAI_MARKETING_TAGLINE}. Navigate Pakistan government procedures with confidence.`,
+  description: `${CIVICAI_MARKETING_TAGLINE}. Report environmental issues, identify responsible authorities, and receive AI-powered guidance.`,
 };
 
 export default function RootLayout({

@@ -1,10 +1,10 @@
 import type { StatItem } from "@/lib/civicai/types";
 
 export const PLATFORM_STATS: StatItem[] = [
-  { label: "Citizens Guided", value: "12,400+", change: "+18% this month" },
-  { label: "Government Services", value: "13", change: "Expanding" },
-  { label: "Documents Verified", value: "8,200+", change: "+24% this month" },
-  { label: "Avg. Time Saved", value: "4.2 hrs", change: "Per request" },
+  { label: "Issues Reported", value: "8,400+", change: "+22% this month" },
+  { label: "Environmental Services", value: "12", change: "Full coverage" },
+  { label: "Evidence Verified", value: "5,200+", change: "+31% this month" },
+  { label: "Avg. Response Time", value: "36 hrs", change: "Municipal avg." },
 ];
 
 export const DASHBOARD_STATS = {

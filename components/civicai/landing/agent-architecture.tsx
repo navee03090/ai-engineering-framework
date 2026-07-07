@@ -1,4 +1,4 @@
-import { Brain, FileSearch, ListChecks, MessageSquare, Sparkles } from "lucide-react";
+import { Brain, FileSearch, ListChecks, MessageSquare, Shield, Sparkles } from "lucide-react";
 
 import { AnimatedCard } from "@/components/civicai/shared";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -6,28 +6,33 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 const AGENTS = [
   {
     icon: MessageSquare,
-    name: "Intake Agent",
-    role: "Parses citizen queries and normalizes intent",
+    name: "Intent Agent",
+    role: "Detects illegal dumping, pollution, and waste issues",
   },
   {
     icon: Brain,
-    name: "Classifier Agent",
-    role: "Maps intent to government service and department",
-  },
-  {
-    icon: ListChecks,
-    name: "Procedure Agent",
-    role: "Retrieves documents, fees, and timelines",
+    name: "Knowledge Agent",
+    role: "Reads environmental data — authority, procedures, response time",
   },
   {
     icon: FileSearch,
     name: "OCR Agent",
-    role: "Extracts text from uploaded officer notes",
+    role: "Extracts text from waste photos and municipal notices",
+  },
+  {
+    icon: Shield,
+    name: "Compliance Agent",
+    role: "Verifies evidence against environmental procedures",
+  },
+  {
+    icon: ListChecks,
+    name: "Recommendation Agent",
+    role: "Generates citizen checklist and safety guidance",
   },
   {
     icon: Sparkles,
-    name: "Advisor Agent",
-    role: "Compares docs and generates citizen guidance",
+    name: "Report Agent",
+    role: "Assembles PDF incident report and email delivery",
   },
 ];
 
@@ -37,13 +42,13 @@ export function AgentArchitecture() {
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            Multi-Agent AI Architecture
+            Six-Agent AI Architecture
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Specialized agents orchestrated for accuracy — not one generic chatbot.
+            Specialized agents orchestrated for environmental accuracy — not one generic chatbot.
           </p>
         </div>
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {AGENTS.map((agent, i) => (
             <AnimatedCard key={agent.name} delay={i * 0.08}>
               <Card className="h-full text-center">

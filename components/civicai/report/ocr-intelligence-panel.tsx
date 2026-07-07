@@ -32,7 +32,7 @@ export function OcrIntelligencePanel({ ocr }: { ocr: OcrIntelligence }) {
 
         {ocr.documents && ocr.documents.length > 0 && (
           <div>
-            <p className="mb-2 text-sm font-medium">Detected Documents</p>
+            <p className="mb-2 text-sm font-medium">Detected Text & Evidence</p>
             <div className="space-y-2">
               {ocr.documents.map((doc) => (
                 <div
@@ -52,7 +52,7 @@ export function OcrIntelligencePanel({ ocr }: { ocr: OcrIntelligence }) {
         {ocr.suspiciousRequests && ocr.suspiciousRequests.length > 0 && (
           <div>
             <p className="mb-2 text-sm font-medium text-amber-700 dark:text-amber-400">
-              Documents Not on Official List
+              Items Not on Official Checklist
             </p>
             <ul className="space-y-1 text-sm text-muted-foreground">
               {ocr.suspiciousRequests.map((item) => (
