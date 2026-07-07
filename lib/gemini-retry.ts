@@ -1,3 +1,6 @@
+import type { GeminiTask } from "@/lib/gemini-models";
+import { getGeminiModelPool } from "@/lib/gemini-models";
+
 const RETRYABLE_PATTERN =
   /503|high demand|unavailable|overloaded|resource exhausted|try again later/i;
 
@@ -8,6 +11,9 @@ const QUOTA_PATTERN =
 
 const INVALID_MODEL_PATTERN =
   /404|not found|not supported for generatecontent|listmodels/i;
+
+const modelBusyUntil = new Map<string, number>();
+let poolRotationIndex = 0;
 
 export function isRetryableGeminiError(error: unknown): boolean {
   const message = error instanceof Error ? error.message : String(error);
@@ -42,31 +48,49 @@ export function isInvalidGeminiModelError(error: unknown): boolean {
   return INVALID_MODEL_PATTERN.test(message);
 }
 
+export function markModelBusy(modelName: string, cooldownMs = 45_000): void {
+  modelBusyUntil.set(modelName, Date.now() + cooldownMs);
+}
+
+export function isModelBusy(modelName: string): boolean {
+  const until = modelBusyUntil.get(modelName);
+  if (!until) return false;
+  if (Date.now() >= until) {
+    modelBusyUntil.delete(modelName);
+    return false;
+  }
+  return true;
+}
+
+function orderModelsByHealth(models: string[]): string[] {
+  const available = models.filter((model) => !isModelBusy(model));
+  const busy = models.filter((model) => isModelBusy(model));
+  const pool = available.length > 0 ? available : models;
+
+  const start = poolRotationIndex % pool.length;
+  poolRotationIndex += 1;
+
+  return [...pool.slice(start), ...pool.slice(0, start), ...busy];
+}
+
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-export function getGeminiModelCandidates(): string[] {
-  const primary = process.env.GEMINI_MODEL ?? "gemini-flash-latest";
-  const fallbacks = (
-    process.env.GEMINI_FALLBACK_MODELS ?? "gemini-2.5-flash,gemini-flash-latest"
-  )
-    .split(",")
-    .map((model) => model.trim())
-    .filter(Boolean);
+export type GeminiRetryOptions = {
+  task?: GeminiTask;
+};
 
-  return [...new Set([primary, ...fallbacks])];
-}
-
-/** Retry transient Gemini errors (503/429) with backoff and skip invalid models (404). */
+/** Retry transient Gemini errors; rotate across model pool when busy or rate-limited. */
 export async function withGeminiRetry<T>(
-  operation: (modelName: string) => Promise<T>
+  operation: (modelName: string) => Promise<T>,
+  options: GeminiRetryOptions = {}
 ): Promise<T> {
-  const models = getGeminiModelCandidates();
+  const models = orderModelsByHealth(getGeminiModelPool(options.task ?? "general"));
   let lastError: unknown;
 
   for (const modelName of models) {
-    for (let attempt = 0; attempt < 3; attempt++) {
+    for (let attempt = 0; attempt < 2; attempt++) {
       try {
         return await operation(modelName);
       } catch (error) {
@@ -79,20 +103,19 @@ export async function withGeminiRetry<T>(
           break;
         }
 
-        if (isGeminiQuotaError(error)) {
+        if (isGeminiQuotaError(error) || isRetryableGeminiError(error)) {
+          markModelBusy(modelName);
           if (process.env.NODE_ENV === "development") {
-            console.warn(`[gemini] Quota/rate limit for model ${modelName}, trying next...`);
+            console.warn(`[gemini] Model busy ${modelName}, switching...`);
+          }
+          if (isRetryableGeminiError(error) && !isGeminiQuotaError(error) && attempt < 1) {
+            await sleep(800 * (attempt + 1));
+            continue;
           }
           break;
         }
 
-        if (!isRetryableGeminiError(error)) {
-          throw error;
-        }
-
-        if (attempt < 2) {
-          await sleep(1000 * (attempt + 1));
-        }
+        throw error;
       }
     }
   }

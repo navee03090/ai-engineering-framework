@@ -48,6 +48,7 @@ export class IntentAgent extends BaseAgent<
     return generateStructuredResponse(user, intentOutputSchema, {
       systemInstruction: system,
       temperature: 0.2,
+      task: "intent",
     });
   }
 }

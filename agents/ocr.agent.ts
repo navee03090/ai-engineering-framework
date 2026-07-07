@@ -42,7 +42,7 @@ export class OcrAgent extends BaseAgent<z.infer<typeof ocrInputSchema>, OcrOutpu
       user,
       { imageBase64: input.imageBase64, mimeType: input.mimeType },
       ocrOutputSchema,
-      { systemInstruction: system, temperature: 0.1 }
+      { systemInstruction: system, temperature: 0.1, task: "ocr" }
     );
   }
 }

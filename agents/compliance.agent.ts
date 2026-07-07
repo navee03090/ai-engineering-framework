@@ -62,6 +62,7 @@ export class ComplianceAgent extends BaseAgent<
     return generateStructuredResponse(user, complianceOutputSchema, {
       systemInstruction: system,
       temperature: 0.2,
+      task: "compliance",
     });
   }
 }

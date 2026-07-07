@@ -47,6 +47,7 @@ export class RecommendationAgent extends BaseAgent<
     return generateStructuredResponse(user, recommendationOutputSchema, {
       systemInstruction: system,
       temperature: 0.3,
+      task: "recommendation",
     });
   }
 }
